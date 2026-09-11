@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Jecris" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/papier</item>
+        <item name="android:statusBarColor">@color/vermillon</item>
+        <item name="android:navigationBarColor">@color/papier</item>
+    </style>
+</resources>

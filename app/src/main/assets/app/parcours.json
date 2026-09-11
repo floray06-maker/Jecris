@@ -1,0 +1,4917 @@
+{
+ "version": 2,
+ "etablissement": "Lycée Victor Laloux, Tours",
+ "methode": "Progression syllabique explicite : correspondances graphème-phonème introduites une à une, mots strictement déchiffrables, fusion, lecture à voix haute et encodage en miroir.",
+ "competences": {
+  "phonologie": "L'oreille",
+  "code": "Le code (lettres et sons)",
+  "lecture": "La lecture",
+  "encodage": "L'écriture sous dictée",
+  "comprehension": "La compréhension",
+  "ecriture": "Le geste d'écriture",
+  "phrases": "Les phrases",
+  "grammaire": "La grammaire"
+ },
+ "paliers": [
+  {
+   "n": 1,
+   "niveau": "A1",
+   "titre": "J'entends, je lis mes premières syllabes",
+   "resume": "Les cinq voyelles et trois consonnes. Assembler une consonne et une voyelle : le geste qui ouvre la lecture.",
+   "seuil": 60,
+   "graphemes": [
+    "a",
+    "i",
+    "o",
+    "u",
+    "e",
+    "é",
+    "l",
+    "m",
+    "r"
+   ],
+   "exercices": [
+    {
+     "type": "choix",
+     "competence": "phonologie",
+     "titre": "J'entends le son « a »",
+     "consigne": "Écoute chaque mot. Entends-tu le son « a » ? Réponds oui ou non.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "lama",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "rame",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "ami",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "mari",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "mur",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "lime",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "mule",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      }
+     ],
+     "id": "1.1"
+    },
+    {
+     "type": "choix",
+     "competence": "code",
+     "titre": "Quelle lettre entends-tu au début ?",
+     "consigne": "Écoute la syllabe, puis touche la lettre par laquelle elle commence.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "mu",
+        "libelle": "la syllabe"
+       },
+       "reponse": "m",
+       "choix": [
+        "m",
+        "s",
+        "t"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "ru",
+        "libelle": "la syllabe"
+       },
+       "reponse": "r",
+       "choix": [
+        "r",
+        "m",
+        "t"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "lu",
+        "libelle": "la syllabe"
+       },
+       "reponse": "l",
+       "choix": [
+        "l",
+        "r",
+        "t"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "ro",
+        "libelle": "la syllabe"
+       },
+       "reponse": "r",
+       "choix": [
+        "r",
+        "s",
+        "p"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "ra",
+        "libelle": "la syllabe"
+       },
+       "reponse": "r",
+       "choix": [
+        "r",
+        "s",
+        "t"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "ma",
+        "libelle": "la syllabe"
+       },
+       "reponse": "m",
+       "choix": [
+        "m",
+        "r",
+        "p"
+       ]
+      }
+     ],
+     "id": "1.2"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "J'assemble une syllabe",
+     "consigne": "Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.",
+     "questions": [
+      {
+       "cible": [
+        "m",
+        "i"
+       ],
+       "banque": [
+        "m",
+        "i",
+        "r",
+        "a"
+       ],
+       "invite": {
+        "audio": "mi",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "l",
+        "u"
+       ],
+       "banque": [
+        "l",
+        "u",
+        "r",
+        "o"
+       ],
+       "invite": {
+        "audio": "lu",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "l",
+        "a"
+       ],
+       "banque": [
+        "l",
+        "a",
+        "r",
+        "o"
+       ],
+       "invite": {
+        "audio": "la",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "r",
+        "u"
+       ],
+       "banque": [
+        "r",
+        "u",
+        "l",
+        "i"
+       ],
+       "invite": {
+        "audio": "ru",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "m",
+        "u"
+       ],
+       "banque": [
+        "m",
+        "u",
+        "r",
+        "a"
+       ],
+       "invite": {
+        "audio": "mu",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "m",
+        "o"
+       ],
+       "banque": [
+        "m",
+        "o",
+        "r",
+        "a"
+       ],
+       "invite": {
+        "audio": "mo",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "1.3"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des syllabes",
+     "consigne": "Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.",
+     "questions": [
+      {
+       "texte": "lo",
+       "audio": "lo"
+      },
+      {
+       "texte": "li",
+       "audio": "li"
+      },
+      {
+       "texte": "mo",
+       "audio": "mo"
+      },
+      {
+       "texte": "lu",
+       "audio": "lu"
+      },
+      {
+       "texte": "ri",
+       "audio": "ri"
+      },
+      {
+       "texte": "la",
+       "audio": "la"
+      },
+      {
+       "texte": "ru",
+       "audio": "ru"
+      },
+      {
+       "texte": "ma",
+       "audio": "ma"
+      }
+     ],
+     "id": "1.4"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des syllabes",
+     "consigne": "Écoute la syllabe et compose-la avec les lettres.",
+     "questions": [
+      {
+       "mot": "ra",
+       "invite": {
+        "audio": "ra",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "lu",
+       "invite": {
+        "audio": "lu",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "ro",
+       "invite": {
+        "audio": "ro",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "ru",
+       "invite": {
+        "audio": "ru",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "mi",
+       "invite": {
+        "audio": "mi",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "ma",
+       "invite": {
+        "audio": "ma",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "1.5"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des mots",
+     "consigne": "Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.",
+     "questions": [
+      {
+       "texte": "ami",
+       "syllabes": [
+        "a",
+        "mi"
+       ],
+       "audio": "ami"
+      },
+      {
+       "texte": "mari",
+       "syllabes": [
+        "ma",
+        "ri"
+       ],
+       "audio": "mari"
+      },
+      {
+       "texte": "mur",
+       "syllabes": [
+        "mur"
+       ],
+       "audio": "mur",
+       "picto": "mur"
+      },
+      {
+       "texte": "lama",
+       "syllabes": [
+        "la",
+        "ma"
+       ],
+       "audio": "lama"
+      },
+      {
+       "texte": "rame",
+       "syllabes": [
+        "ra",
+        "me"
+       ],
+       "audio": "rame"
+      },
+      {
+       "texte": "lime",
+       "syllabes": [
+        "li",
+        "me"
+       ],
+       "audio": "lime"
+      },
+      {
+       "texte": "mule",
+       "syllabes": [
+        "mu",
+        "le"
+       ],
+       "audio": "mule"
+      }
+     ],
+     "id": "1.6"
+    },
+    {
+     "type": "choix",
+     "competence": "lecture",
+     "titre": "Les mots à retenir",
+     "consigne": "Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "la",
+        "libelle": "le mot"
+       },
+       "reponse": "la",
+       "choix": [
+        "la",
+        "je suis",
+        "dans"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "le",
+        "libelle": "le mot"
+       },
+       "reponse": "le",
+       "choix": [
+        "le",
+        "tu es",
+        "elles"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "il",
+        "libelle": "le mot"
+       },
+       "reponse": "il",
+       "choix": [
+        "il",
+        "tu es",
+        "une"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "elle",
+        "libelle": "le mot"
+       },
+       "reponse": "elle",
+       "choix": [
+        "elle",
+        "une",
+        "tu es"
+       ]
+      }
+     ],
+     "id": "1.7"
+    },
+    {
+     "type": "choix",
+     "competence": "comprehension",
+     "titre": "Je lis et je comprends",
+     "consigne": "Lis le mot, puis dis ce que c'est.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "ami",
+        "syllabes": [
+         "a",
+         "mi"
+        ]
+       },
+       "reponse": "une personne",
+       "choix": [
+        "une personne",
+        "une musique",
+        "un temps"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "mari",
+        "syllabes": [
+         "ma",
+         "ri"
+        ]
+       },
+       "reponse": "une personne",
+       "choix": [
+        "une personne",
+        "un vêtement",
+        "une musique"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "mur",
+        "syllabes": [
+         "mur"
+        ]
+       },
+       "reponse": "un objet",
+       "choix": [
+        "un objet",
+        "une plante",
+        "un vêtement"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "lama",
+        "syllabes": [
+         "la",
+         "ma"
+        ]
+       },
+       "reponse": "un animal",
+       "choix": [
+        "un animal",
+        "un lieu",
+        "un art"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "rame",
+        "syllabes": [
+         "ra",
+         "me"
+        ]
+       },
+       "reponse": "un objet",
+       "choix": [
+        "un objet",
+        "un mot général",
+        "un aliment"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "lime",
+        "syllabes": [
+         "li",
+         "me"
+        ]
+       },
+       "reponse": "un objet",
+       "choix": [
+        "un objet",
+        "un vêtement",
+        "le ciel"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "mule",
+        "syllabes": [
+         "mu",
+         "le"
+        ]
+       },
+       "reponse": "un animal",
+       "choix": [
+        "un animal",
+        "une plante",
+        "une personne"
+       ]
+      }
+     ],
+     "id": "1.8"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "Je remets les syllabes en ordre",
+     "consigne": "Écoute le mot, puis remets ses syllabes dans l'ordre.",
+     "questions": [
+      {
+       "cible": [
+        "a",
+        "mi"
+       ],
+       "banque": [
+        "a",
+        "mi",
+        "po"
+       ],
+       "invite": {
+        "audio": "ami",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "ma",
+        "ri"
+       ],
+       "banque": [
+        "ma",
+        "ri",
+        "po"
+       ],
+       "invite": {
+        "audio": "mari",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "la",
+        "ma"
+       ],
+       "banque": [
+        "la",
+        "ma",
+        "tu"
+       ],
+       "invite": {
+        "audio": "lama",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "ra",
+        "me"
+       ],
+       "banque": [
+        "ra",
+        "me",
+        "po"
+       ],
+       "invite": {
+        "audio": "rame",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "li",
+        "me"
+       ],
+       "banque": [
+        "li",
+        "me",
+        "ri"
+       ],
+       "invite": {
+        "audio": "lime",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "mu",
+        "le"
+       ],
+       "banque": [
+        "mu",
+        "le",
+        "ri"
+       ],
+       "invite": {
+        "audio": "mule",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "1.9"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des mots",
+     "consigne": "Écoute le mot et écris-le, lettre après lettre.",
+     "questions": [
+      {
+       "mot": "ami",
+       "invite": {
+        "audio": "ami",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "mari",
+       "invite": {
+        "audio": "mari",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "mur",
+       "invite": {
+        "audio": "mur",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "lama",
+       "invite": {
+        "audio": "lama",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "rame",
+       "invite": {
+        "audio": "rame",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "1.10"
+    },
+    {
+     "type": "trace",
+     "competence": "ecriture",
+     "titre": "Je trace les nouvelles lettres",
+     "consigne": "Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.",
+     "questions": [
+      {
+       "glyphes": [
+        "a"
+       ]
+      },
+      {
+       "glyphes": [
+        "i"
+       ]
+      },
+      {
+       "glyphes": [
+        "o"
+       ]
+      },
+      {
+       "glyphes": [
+        "u"
+       ]
+      },
+      {
+       "glyphes": [
+        "l"
+       ]
+      },
+      {
+       "glyphes": [
+        "m"
+       ]
+      },
+      {
+       "glyphes": [
+        "r"
+       ]
+      },
+      {
+       "glyphes": [
+        "a",
+        "m",
+        "i"
+       ]
+      }
+     ],
+     "id": "1.11"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "niveau": "A1",
+   "titre": "Je lis mes premiers mots",
+   "resume": "Cinq consonnes de plus. Assez de lettres pour lire de vrais mots de deux et trois syllabes.",
+   "seuil": 60,
+   "graphemes": [
+    "p",
+    "t",
+    "s",
+    "n",
+    "d"
+   ],
+   "exercices": [
+    {
+     "type": "choix",
+     "competence": "phonologie",
+     "titre": "J'entends le son « i »",
+     "consigne": "Écoute chaque mot. Entends-tu le son « i » ? Réponds oui ou non.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "minute",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "pirate",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "domino",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "tulipe",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "papa",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "moto",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "salade",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      }
+     ],
+     "id": "2.1"
+    },
+    {
+     "type": "choix",
+     "competence": "code",
+     "titre": "Quelle lettre entends-tu au début ?",
+     "consigne": "Écoute la syllabe, puis touche la lettre par laquelle elle commence.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "po",
+        "libelle": "la syllabe"
+       },
+       "reponse": "p",
+       "choix": [
+        "p",
+        "d",
+        "s"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "ti",
+        "libelle": "la syllabe"
+       },
+       "reponse": "t",
+       "choix": [
+        "t",
+        "s",
+        "l"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "pa",
+        "libelle": "la syllabe"
+       },
+       "reponse": "p",
+       "choix": [
+        "p",
+        "n",
+        "l"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "ta",
+        "libelle": "la syllabe"
+       },
+       "reponse": "t",
+       "choix": [
+        "t",
+        "p",
+        "l"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "so",
+        "libelle": "la syllabe"
+       },
+       "reponse": "s",
+       "choix": [
+        "s",
+        "d",
+        "n"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "no",
+        "libelle": "la syllabe"
+       },
+       "reponse": "n",
+       "choix": [
+        "n",
+        "s",
+        "l"
+       ]
+      }
+     ],
+     "id": "2.2"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "J'assemble une syllabe",
+     "consigne": "Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.",
+     "questions": [
+      {
+       "cible": [
+        "n",
+        "o"
+       ],
+       "banque": [
+        "n",
+        "o",
+        "d",
+        "a"
+       ],
+       "invite": {
+        "audio": "no",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "p",
+        "i"
+       ],
+       "banque": [
+        "p",
+        "i",
+        "s",
+        "a"
+       ],
+       "invite": {
+        "audio": "pi",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "s",
+        "i"
+       ],
+       "banque": [
+        "s",
+        "i",
+        "d",
+        "a"
+       ],
+       "invite": {
+        "audio": "si",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "t",
+        "o"
+       ],
+       "banque": [
+        "t",
+        "o",
+        "d",
+        "a"
+       ],
+       "invite": {
+        "audio": "to",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "p",
+        "o"
+       ],
+       "banque": [
+        "p",
+        "o",
+        "s",
+        "a"
+       ],
+       "invite": {
+        "audio": "po",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "s",
+        "o"
+       ],
+       "banque": [
+        "s",
+        "o",
+        "n",
+        "i"
+       ],
+       "invite": {
+        "audio": "so",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "2.3"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des syllabes",
+     "consigne": "Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.",
+     "questions": [
+      {
+       "texte": "ni",
+       "audio": "ni"
+      },
+      {
+       "texte": "to",
+       "audio": "to"
+      },
+      {
+       "texte": "da",
+       "audio": "da"
+      },
+      {
+       "texte": "po",
+       "audio": "po"
+      },
+      {
+       "texte": "di",
+       "audio": "di"
+      },
+      {
+       "texte": "na",
+       "audio": "na"
+      },
+      {
+       "texte": "sa",
+       "audio": "sa"
+      },
+      {
+       "texte": "no",
+       "audio": "no"
+      }
+     ],
+     "id": "2.4"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des syllabes",
+     "consigne": "Écoute la syllabe et compose-la avec les lettres.",
+     "questions": [
+      {
+       "mot": "sa",
+       "invite": {
+        "audio": "sa",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "pa",
+       "invite": {
+        "audio": "pa",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "na",
+       "invite": {
+        "audio": "na",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "pi",
+       "invite": {
+        "audio": "pi",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "po",
+       "invite": {
+        "audio": "po",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "da",
+       "invite": {
+        "audio": "da",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "2.5"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des mots",
+     "consigne": "Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.",
+     "questions": [
+      {
+       "texte": "papa",
+       "syllabes": [
+        "pa",
+        "pa"
+       ],
+       "audio": "papa"
+      },
+      {
+       "texte": "moto",
+       "syllabes": [
+        "mo",
+        "to"
+       ],
+       "audio": "moto"
+      },
+      {
+       "texte": "tomate",
+       "syllabes": [
+        "to",
+        "ma",
+        "te"
+       ],
+       "audio": "tomate"
+      },
+      {
+       "texte": "minute",
+       "syllabes": [
+        "mi",
+        "nu",
+        "te"
+       ],
+       "audio": "minute"
+      },
+      {
+       "texte": "salade",
+       "syllabes": [
+        "sa",
+        "la",
+        "de"
+       ],
+       "audio": "salade"
+      },
+      {
+       "texte": "pirate",
+       "syllabes": [
+        "pi",
+        "ra",
+        "te"
+       ],
+       "audio": "pirate"
+      },
+      {
+       "texte": "tulipe",
+       "syllabes": [
+        "tu",
+        "li",
+        "pe"
+       ],
+       "audio": "tulipe"
+      },
+      {
+       "texte": "domino",
+       "syllabes": [
+        "do",
+        "mi",
+        "no"
+       ],
+       "audio": "domino"
+      }
+     ],
+     "id": "2.6"
+    },
+    {
+     "type": "choix",
+     "competence": "lecture",
+     "titre": "Les mots à retenir",
+     "consigne": "Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "un",
+        "libelle": "le mot"
+       },
+       "reponse": "un",
+       "choix": [
+        "un",
+        "des",
+        "avec"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "une",
+        "libelle": "le mot"
+       },
+       "reponse": "une",
+       "choix": [
+        "une",
+        "des",
+        "ils"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "des",
+        "libelle": "le mot"
+       },
+       "reponse": "des",
+       "choix": [
+        "des",
+        "je",
+        "elle"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "est",
+        "libelle": "le mot"
+       },
+       "reponse": "est",
+       "choix": [
+        "est",
+        "je",
+        "des"
+       ]
+      }
+     ],
+     "id": "2.7"
+    },
+    {
+     "type": "choix",
+     "competence": "comprehension",
+     "titre": "Je lis et je comprends",
+     "consigne": "Lis le mot, puis dis ce que c'est.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "papa",
+        "syllabes": [
+         "pa",
+         "pa"
+        ]
+       },
+       "reponse": "une personne",
+       "choix": [
+        "une personne",
+        "un lieu",
+        "une musique"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "moto",
+        "syllabes": [
+         "mo",
+         "to"
+        ]
+       },
+       "reponse": "un objet",
+       "choix": [
+        "un objet",
+        "un art",
+        "une personne"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "tomate",
+        "syllabes": [
+         "to",
+         "ma",
+         "te"
+        ]
+       },
+       "reponse": "un aliment",
+       "choix": [
+        "un aliment",
+        "une personne",
+        "un mot général"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "minute",
+        "syllabes": [
+         "mi",
+         "nu",
+         "te"
+        ]
+       },
+       "reponse": "un temps",
+       "choix": [
+        "un temps",
+        "un objet",
+        "le ciel"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "salade",
+        "syllabes": [
+         "sa",
+         "la",
+         "de"
+        ]
+       },
+       "reponse": "un aliment",
+       "choix": [
+        "un aliment",
+        "un lieu",
+        "un objet"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "pirate",
+        "syllabes": [
+         "pi",
+         "ra",
+         "te"
+        ]
+       },
+       "reponse": "une personne",
+       "choix": [
+        "une personne",
+        "un mot général",
+        "le ciel"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "tulipe",
+        "syllabes": [
+         "tu",
+         "li",
+         "pe"
+        ]
+       },
+       "reponse": "une plante",
+       "choix": [
+        "une plante",
+        "une personne",
+        "un temps"
+       ]
+      }
+     ],
+     "id": "2.8"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "Je remets les syllabes en ordre",
+     "consigne": "Écoute le mot, puis remets ses syllabes dans l'ordre.",
+     "questions": [
+      {
+       "cible": [
+        "pa",
+        "pa"
+       ],
+       "banque": [
+        "pa",
+        "pa",
+        "tu"
+       ],
+       "invite": {
+        "audio": "papa",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "mo",
+        "to"
+       ],
+       "banque": [
+        "mo",
+        "to",
+        "ri"
+       ],
+       "invite": {
+        "audio": "moto",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "to",
+        "ma",
+        "te"
+       ],
+       "banque": [
+        "to",
+        "ma",
+        "te",
+        "tu"
+       ],
+       "invite": {
+        "audio": "tomate",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "mi",
+        "nu",
+        "te"
+       ],
+       "banque": [
+        "mi",
+        "nu",
+        "te",
+        "tu"
+       ],
+       "invite": {
+        "audio": "minute",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "sa",
+        "la",
+        "de"
+       ],
+       "banque": [
+        "sa",
+        "la",
+        "de",
+        "ri"
+       ],
+       "invite": {
+        "audio": "salade",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "pi",
+        "ra",
+        "te"
+       ],
+       "banque": [
+        "pi",
+        "ra",
+        "te",
+        "tu"
+       ],
+       "invite": {
+        "audio": "pirate",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "2.9"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des mots",
+     "consigne": "Écoute le mot et écris-le, lettre après lettre. Les deux derniers sont des mots des paliers précédents.",
+     "questions": [
+      {
+       "mot": "papa",
+       "invite": {
+        "audio": "papa",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "moto",
+       "invite": {
+        "audio": "moto",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "tomate",
+       "invite": {
+        "audio": "tomate",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "minute",
+       "invite": {
+        "audio": "minute",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "salade",
+       "invite": {
+        "audio": "salade",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "lama",
+       "invite": {
+        "audio": "lama",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "lime",
+       "invite": {
+        "audio": "lime",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "2.10"
+    },
+    {
+     "type": "trace",
+     "competence": "ecriture",
+     "titre": "Je trace les nouvelles lettres",
+     "consigne": "Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.",
+     "questions": [
+      {
+       "glyphes": [
+        "p"
+       ]
+      },
+      {
+       "glyphes": [
+        "t"
+       ]
+      },
+      {
+       "glyphes": [
+        "s"
+       ]
+      },
+      {
+       "glyphes": [
+        "n"
+       ]
+      },
+      {
+       "glyphes": [
+        "d"
+       ]
+      },
+      {
+       "glyphes": [
+        "p",
+        "a",
+        "p",
+        "a"
+       ]
+      }
+     ],
+     "id": "2.11"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "niveau": "A1",
+   "titre": "Deux lettres pour un seul son",
+   "resume": "ou, on, an, en, in, ch : des sons qui s'écrivent avec deux lettres. Un obstacle majeur, franchi ici.",
+   "seuil": 60,
+   "graphemes": [
+    "ou",
+    "on",
+    "an",
+    "en",
+    "in",
+    "ch"
+   ],
+   "exercices": [
+    {
+     "type": "choix",
+     "competence": "phonologie",
+     "titre": "J'entends le son « ou »",
+     "consigne": "Écoute chaque mot. Entends-tu le son « ou » ? Réponds oui ou non.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "mouton",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "poule",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "moulin",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "lapin",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "sapin",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "chaton",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      }
+     ],
+     "id": "3.1"
+    },
+    {
+     "type": "choix",
+     "competence": "code",
+     "titre": "Quelle lettre entends-tu au début ?",
+     "consigne": "Écoute la syllabe, puis touche la lettre par laquelle elle commence.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "pou",
+        "libelle": "la syllabe"
+       },
+       "reponse": "p",
+       "choix": [
+        "p",
+        "t",
+        "l"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "lin",
+        "libelle": "la syllabe"
+       },
+       "reponse": "l",
+       "choix": [
+        "l",
+        "t",
+        "s"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "son",
+        "libelle": "la syllabe"
+       },
+       "reponse": "s",
+       "choix": [
+        "s",
+        "ch",
+        "l"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "chou",
+        "libelle": "la syllabe"
+       },
+       "reponse": "ch",
+       "choix": [
+        "ch",
+        "t",
+        "m"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "sou",
+        "libelle": "la syllabe"
+       },
+       "reponse": "s",
+       "choix": [
+        "s",
+        "m",
+        "t"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "chi",
+        "libelle": "la syllabe"
+       },
+       "reponse": "ch",
+       "choix": [
+        "ch",
+        "l",
+        "s"
+       ]
+      }
+     ],
+     "id": "3.2"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "J'assemble une syllabe",
+     "consigne": "Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.",
+     "questions": [
+      {
+       "cible": [
+        "m",
+        "on"
+       ],
+       "banque": [
+        "m",
+        "on",
+        "l",
+        "a"
+       ],
+       "invite": {
+        "audio": "mon",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "s",
+        "on"
+       ],
+       "banque": [
+        "s",
+        "on",
+        "m",
+        "i"
+       ],
+       "invite": {
+        "audio": "son",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "l",
+        "an"
+       ],
+       "banque": [
+        "l",
+        "an",
+        "ch",
+        "on"
+       ],
+       "invite": {
+        "audio": "lan",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "m",
+        "an"
+       ],
+       "banque": [
+        "m",
+        "an",
+        "ch",
+        "i"
+       ],
+       "invite": {
+        "audio": "man",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "l",
+        "ou"
+       ],
+       "banque": [
+        "l",
+        "ou",
+        "t",
+        "in"
+       ],
+       "invite": {
+        "audio": "lou",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "m",
+        "ou"
+       ],
+       "banque": [
+        "m",
+        "ou",
+        "l",
+        "in"
+       ],
+       "invite": {
+        "audio": "mou",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "3.3"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des syllabes",
+     "consigne": "Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.",
+     "questions": [
+      {
+       "texte": "pou",
+       "audio": "pou"
+      },
+      {
+       "texte": "chi",
+       "audio": "chi"
+      },
+      {
+       "texte": "lan",
+       "audio": "lan"
+      },
+      {
+       "texte": "sou",
+       "audio": "sou"
+      },
+      {
+       "texte": "son",
+       "audio": "son"
+      },
+      {
+       "texte": "lin",
+       "audio": "lin"
+      },
+      {
+       "texte": "pin",
+       "audio": "pin"
+      },
+      {
+       "texte": "man",
+       "audio": "man"
+      }
+     ],
+     "id": "3.4"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des syllabes",
+     "consigne": "Écoute la syllabe et compose-la avec les lettres.",
+     "questions": [
+      {
+       "mot": "pin",
+       "invite": {
+        "audio": "pin",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "pou",
+       "invite": {
+        "audio": "pou",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "cha",
+       "invite": {
+        "audio": "cha",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "sou",
+       "invite": {
+        "audio": "sou",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "ton",
+       "invite": {
+        "audio": "ton",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "lan",
+       "invite": {
+        "audio": "lan",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "3.5"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des mots",
+     "consigne": "Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.",
+     "questions": [
+      {
+       "texte": "mouton",
+       "syllabes": [
+        "mou",
+        "ton"
+       ],
+       "audio": "mouton"
+      },
+      {
+       "texte": "poule",
+       "syllabes": [
+        "pou",
+        "le"
+       ],
+       "audio": "poule"
+      },
+      {
+       "texte": "lapin",
+       "syllabes": [
+        "la",
+        "pin"
+       ],
+       "audio": "lapin"
+      },
+      {
+       "texte": "moulin",
+       "syllabes": [
+        "mou",
+        "lin"
+       ],
+       "audio": "moulin"
+      },
+      {
+       "texte": "chemin",
+       "syllabes": [
+        "che",
+        "min"
+       ],
+       "audio": "chemin"
+      },
+      {
+       "texte": "sapin",
+       "syllabes": [
+        "sa",
+        "pin"
+       ],
+       "audio": "sapin"
+      },
+      {
+       "texte": "dimanche",
+       "syllabes": [
+        "di",
+        "man",
+        "che"
+       ],
+       "audio": "dimanche"
+      },
+      {
+       "texte": "mandarine",
+       "syllabes": [
+        "man",
+        "da",
+        "ri",
+        "ne"
+       ],
+       "audio": "mandarine"
+      }
+     ],
+     "id": "3.6"
+    },
+    {
+     "type": "choix",
+     "competence": "lecture",
+     "titre": "Les mots à retenir",
+     "consigne": "Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "dans",
+        "libelle": "le mot"
+       },
+       "reponse": "dans",
+       "choix": [
+        "dans",
+        "mais",
+        "et"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "sur",
+        "libelle": "le mot"
+       },
+       "reponse": "sur",
+       "choix": [
+        "sur",
+        "pour",
+        "il"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "je",
+        "libelle": "le mot"
+       },
+       "reponse": "je",
+       "choix": [
+        "je",
+        "sur",
+        "tu"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "tu",
+        "libelle": "le mot"
+       },
+       "reponse": "tu",
+       "choix": [
+        "tu",
+        "je",
+        "avec"
+       ]
+      }
+     ],
+     "id": "3.7"
+    },
+    {
+     "type": "choix",
+     "competence": "comprehension",
+     "titre": "Je lis et je comprends",
+     "consigne": "Lis le mot, puis dis ce que c'est.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "mouton",
+        "syllabes": [
+         "mou",
+         "ton"
+        ]
+       },
+       "reponse": "un animal",
+       "choix": [
+        "un animal",
+        "un lieu",
+        "un temps"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "poule",
+        "syllabes": [
+         "pou",
+         "le"
+        ]
+       },
+       "reponse": "un animal",
+       "choix": [
+        "un animal",
+        "un art",
+        "un temps"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "lapin",
+        "syllabes": [
+         "la",
+         "pin"
+        ]
+       },
+       "reponse": "un animal",
+       "choix": [
+        "un animal",
+        "un lieu",
+        "une plante"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "moulin",
+        "syllabes": [
+         "mou",
+         "lin"
+        ]
+       },
+       "reponse": "un objet",
+       "choix": [
+        "un objet",
+        "un lieu",
+        "un temps"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "chemin",
+        "syllabes": [
+         "che",
+         "min"
+        ]
+       },
+       "reponse": "un lieu",
+       "choix": [
+        "un lieu",
+        "un temps",
+        "un animal"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "sapin",
+        "syllabes": [
+         "sa",
+         "pin"
+        ]
+       },
+       "reponse": "une plante",
+       "choix": [
+        "une plante",
+        "un aliment",
+        "un lieu"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "dimanche",
+        "syllabes": [
+         "di",
+         "man",
+         "che"
+        ]
+       },
+       "reponse": "un temps",
+       "choix": [
+        "un temps",
+        "une musique",
+        "un aliment"
+       ]
+      }
+     ],
+     "id": "3.8"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "Je remets les syllabes en ordre",
+     "consigne": "Écoute le mot, puis remets ses syllabes dans l'ordre.",
+     "questions": [
+      {
+       "cible": [
+        "mou",
+        "ton"
+       ],
+       "banque": [
+        "mou",
+        "ton",
+        "po"
+       ],
+       "invite": {
+        "audio": "mouton",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "pou",
+        "le"
+       ],
+       "banque": [
+        "pou",
+        "le",
+        "po"
+       ],
+       "invite": {
+        "audio": "poule",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "la",
+        "pin"
+       ],
+       "banque": [
+        "la",
+        "pin",
+        "tu"
+       ],
+       "invite": {
+        "audio": "lapin",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "mou",
+        "lin"
+       ],
+       "banque": [
+        "mou",
+        "lin",
+        "po"
+       ],
+       "invite": {
+        "audio": "moulin",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "che",
+        "min"
+       ],
+       "banque": [
+        "che",
+        "min",
+        "po"
+       ],
+       "invite": {
+        "audio": "chemin",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "sa",
+        "pin"
+       ],
+       "banque": [
+        "sa",
+        "pin",
+        "ri"
+       ],
+       "invite": {
+        "audio": "sapin",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "3.9"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des mots",
+     "consigne": "Écoute le mot et écris-le, lettre après lettre. Les deux derniers sont des mots des paliers précédents.",
+     "questions": [
+      {
+       "mot": "mouton",
+       "invite": {
+        "audio": "mouton",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "poule",
+       "invite": {
+        "audio": "poule",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "lapin",
+       "invite": {
+        "audio": "lapin",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "moulin",
+       "invite": {
+        "audio": "moulin",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "chemin",
+       "invite": {
+        "audio": "chemin",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "rame",
+       "invite": {
+        "audio": "rame",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "ami",
+       "invite": {
+        "audio": "ami",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "3.10"
+    },
+    {
+     "type": "trace",
+     "competence": "ecriture",
+     "titre": "Je trace les nouvelles lettres",
+     "consigne": "Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.",
+     "questions": [
+      {
+       "glyphes": [
+        "c"
+       ]
+      },
+      {
+       "glyphes": [
+        "h"
+       ]
+      },
+      {
+       "glyphes": [
+        "é"
+       ]
+      },
+      {
+       "glyphes": [
+        "è"
+       ]
+      },
+      {
+       "glyphes": [
+        "m",
+        "o",
+        "u",
+        "t",
+        "o",
+        "n"
+       ]
+      }
+     ],
+     "id": "3.11"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "niveau": "A1",
+   "titre": "Les dernières consonnes, les sons oi, au, ai",
+   "resume": "v, f, b, j, c, g, puis oi, au, eau, ai. Presque toute la langue écrite devient lisible.",
+   "seuil": 60,
+   "graphemes": [
+    "v",
+    "f",
+    "b",
+    "j",
+    "c",
+    "g",
+    "oi",
+    "au",
+    "eau",
+    "ai",
+    "ei",
+    "è",
+    "ê",
+    "â"
+   ],
+   "exercices": [
+    {
+     "type": "choix",
+     "competence": "phonologie",
+     "titre": "J'entends le son « oi »",
+     "consigne": "Écoute chaque mot. Entends-tu le son « oi » ? Réponds oui ou non.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "voiture",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "boisson",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "poire",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "bateau",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "banane",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "jardin",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      }
+     ],
+     "id": "4.1"
+    },
+    {
+     "type": "choix",
+     "competence": "code",
+     "titre": "Quelle lettre entends-tu au début ?",
+     "consigne": "Écoute la syllabe, puis touche la lettre par laquelle elle commence.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "jo",
+        "libelle": "la syllabe"
+       },
+       "reponse": "j",
+       "choix": [
+        "j",
+        "b",
+        "m"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "sau",
+        "libelle": "la syllabe"
+       },
+       "reponse": "s",
+       "choix": [
+        "s",
+        "g",
+        "p"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "fa",
+        "libelle": "la syllabe"
+       },
+       "reponse": "f",
+       "choix": [
+        "f",
+        "m",
+        "s"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "moi",
+        "libelle": "la syllabe"
+       },
+       "reponse": "m",
+       "choix": [
+        "m",
+        "b",
+        "s"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "va",
+        "libelle": "la syllabe"
+       },
+       "reponse": "v",
+       "choix": [
+        "v",
+        "j",
+        "t"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "vi",
+        "libelle": "la syllabe"
+       },
+       "reponse": "v",
+       "choix": [
+        "v",
+        "t",
+        "j"
+       ]
+      }
+     ],
+     "id": "4.2"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "J'assemble une syllabe",
+     "consigne": "Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.",
+     "questions": [
+      {
+       "cible": [
+        "v",
+        "i"
+       ],
+       "banque": [
+        "v",
+        "i",
+        "b",
+        "a"
+       ],
+       "invite": {
+        "audio": "vi",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "b",
+        "a"
+       ],
+       "banque": [
+        "b",
+        "a",
+        "v",
+        "i"
+       ],
+       "invite": {
+        "audio": "ba",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "g",
+        "a"
+       ],
+       "banque": [
+        "g",
+        "a",
+        "m",
+        "eau"
+       ],
+       "invite": {
+        "audio": "ga",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "b",
+        "eau"
+       ],
+       "banque": [
+        "b",
+        "eau",
+        "p",
+        "oi"
+       ],
+       "invite": {
+        "audio": "beau",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "m",
+        "oi"
+       ],
+       "banque": [
+        "m",
+        "oi",
+        "f",
+        "a"
+       ],
+       "invite": {
+        "audio": "moi",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "b",
+        "i"
+       ],
+       "banque": [
+        "b",
+        "i",
+        "s",
+        "a"
+       ],
+       "invite": {
+        "audio": "bi",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "4.3"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des syllabes",
+     "consigne": "Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.",
+     "questions": [
+      {
+       "texte": "vi",
+       "audio": "vi"
+      },
+      {
+       "texte": "loi",
+       "audio": "loi"
+      },
+      {
+       "texte": "toi",
+       "audio": "toi"
+      },
+      {
+       "texte": "bi",
+       "audio": "bi"
+      },
+      {
+       "texte": "peau",
+       "audio": "peau"
+      },
+      {
+       "texte": "jo",
+       "audio": "jo"
+      },
+      {
+       "texte": "moi",
+       "audio": "moi"
+      },
+      {
+       "texte": "fo",
+       "audio": "fo"
+      }
+     ],
+     "id": "4.4"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des syllabes",
+     "consigne": "Écoute la syllabe et compose-la avec les lettres.",
+     "questions": [
+      {
+       "mot": "ba",
+       "invite": {
+        "audio": "ba",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "ga",
+       "invite": {
+        "audio": "ga",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "beau",
+       "invite": {
+        "audio": "beau",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "loi",
+       "invite": {
+        "audio": "loi",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "toi",
+       "invite": {
+        "audio": "toi",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "va",
+       "invite": {
+        "audio": "va",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "4.5"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des mots",
+     "consigne": "Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.",
+     "questions": [
+      {
+       "texte": "bateau",
+       "syllabes": [
+        "ba",
+        "teau"
+       ],
+       "audio": "bateau",
+       "picto": "bateau"
+      },
+      {
+       "texte": "voiture",
+       "syllabes": [
+        "voi",
+        "tu",
+        "re"
+       ],
+       "audio": "voiture"
+      },
+      {
+       "texte": "gâteau",
+       "syllabes": [
+        "gâ",
+        "teau"
+       ],
+       "audio": "gâteau"
+      },
+      {
+       "texte": "chapeau",
+       "syllabes": [
+        "cha",
+        "peau"
+       ],
+       "audio": "chapeau",
+       "picto": "chapeau"
+      },
+      {
+       "texte": "jardin",
+       "syllabes": [
+        "jar",
+        "din"
+       ],
+       "audio": "jardin"
+      },
+      {
+       "texte": "table",
+       "syllabes": [
+        "ta",
+        "ble"
+       ],
+       "audio": "table",
+       "picto": "table"
+      },
+      {
+       "texte": "livre",
+       "syllabes": [
+        "li",
+        "vre"
+       ],
+       "audio": "livre",
+       "picto": "livre"
+      },
+      {
+       "texte": "robe",
+       "syllabes": [
+        "ro",
+        "be"
+       ],
+       "audio": "robe",
+       "picto": "robe"
+      }
+     ],
+     "id": "4.6"
+    },
+    {
+     "type": "choix",
+     "competence": "lecture",
+     "titre": "Les mots à retenir",
+     "consigne": "Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "avec",
+        "libelle": "le mot"
+       },
+       "reponse": "avec",
+       "choix": [
+        "avec",
+        "sur",
+        "pour"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "pour",
+        "libelle": "le mot"
+       },
+       "reponse": "pour",
+       "choix": [
+        "pour",
+        "est",
+        "nous sommes"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "c'est",
+        "libelle": "le mot"
+       },
+       "reponse": "c'est",
+       "choix": [
+        "c'est",
+        "un",
+        "les"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "il y a",
+        "libelle": "le mot"
+       },
+       "reponse": "il y a",
+       "choix": [
+        "il y a",
+        "pour",
+        "est"
+       ]
+      }
+     ],
+     "id": "4.7"
+    },
+    {
+     "type": "choix",
+     "competence": "comprehension",
+     "choixPicto": true,
+     "titre": "Je lis et je choisis l'image",
+     "consigne": "Lis le mot sans l'écouter, puis touche l'image qui lui correspond.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "bateau",
+        "syllabes": [
+         "ba",
+         "teau"
+        ]
+       },
+       "reponse": "bateau",
+       "choix": [
+        "bateau",
+        "table",
+        "ballon"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "chapeau",
+        "syllabes": [
+         "cha",
+         "peau"
+        ]
+       },
+       "reponse": "chapeau",
+       "choix": [
+        "chapeau",
+        "ballon",
+        "livre"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "table",
+        "syllabes": [
+         "ta",
+         "ble"
+        ]
+       },
+       "reponse": "table",
+       "choix": [
+        "table",
+        "banane",
+        "bateau"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "livre",
+        "syllabes": [
+         "li",
+         "vre"
+        ]
+       },
+       "reponse": "livre",
+       "choix": [
+        "livre",
+        "bateau",
+        "chapeau"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "robe",
+        "syllabes": [
+         "ro",
+         "be"
+        ]
+       },
+       "reponse": "robe",
+       "choix": [
+        "robe",
+        "ballon",
+        "bateau"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "ballon",
+        "syllabes": [
+         "bal",
+         "lon"
+        ]
+       },
+       "reponse": "ballon",
+       "choix": [
+        "ballon",
+        "table",
+        "bateau"
+       ]
+      }
+     ],
+     "id": "4.8"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "Je remets les syllabes en ordre",
+     "consigne": "Écoute le mot, puis remets ses syllabes dans l'ordre.",
+     "questions": [
+      {
+       "cible": [
+        "ba",
+        "teau"
+       ],
+       "banque": [
+        "ba",
+        "teau",
+        "tu"
+       ],
+       "invite": {
+        "audio": "bateau",
+        "libelle": "le mot",
+        "picto": "bateau"
+       }
+      },
+      {
+       "cible": [
+        "voi",
+        "tu",
+        "re"
+       ],
+       "banque": [
+        "voi",
+        "tu",
+        "re",
+        "po"
+       ],
+       "invite": {
+        "audio": "voiture",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "gâ",
+        "teau"
+       ],
+       "banque": [
+        "gâ",
+        "teau",
+        "ri"
+       ],
+       "invite": {
+        "audio": "gâteau",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "cha",
+        "peau"
+       ],
+       "banque": [
+        "cha",
+        "peau",
+        "ri"
+       ],
+       "invite": {
+        "audio": "chapeau",
+        "libelle": "le mot",
+        "picto": "chapeau"
+       }
+      },
+      {
+       "cible": [
+        "jar",
+        "din"
+       ],
+       "banque": [
+        "jar",
+        "din",
+        "po"
+       ],
+       "invite": {
+        "audio": "jardin",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "ta",
+        "ble"
+       ],
+       "banque": [
+        "ta",
+        "ble",
+        "ri"
+       ],
+       "invite": {
+        "audio": "table",
+        "libelle": "le mot",
+        "picto": "table"
+       }
+      }
+     ],
+     "id": "4.9"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des mots",
+     "consigne": "Écoute le mot et écris-le, lettre après lettre. Les deux derniers sont des mots des paliers précédents.",
+     "questions": [
+      {
+       "mot": "bateau",
+       "invite": {
+        "audio": "bateau",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "voiture",
+       "invite": {
+        "audio": "voiture",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "gâteau",
+       "invite": {
+        "audio": "gâteau",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "chapeau",
+       "invite": {
+        "audio": "chapeau",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "jardin",
+       "invite": {
+        "audio": "jardin",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "tulipe",
+       "invite": {
+        "audio": "tulipe",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "poule",
+       "invite": {
+        "audio": "poule",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "4.10"
+    },
+    {
+     "type": "trace",
+     "competence": "ecriture",
+     "titre": "Je trace les nouvelles lettres",
+     "consigne": "Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.",
+     "questions": [
+      {
+       "glyphes": [
+        "v"
+       ]
+      },
+      {
+       "glyphes": [
+        "f"
+       ]
+      },
+      {
+       "glyphes": [
+        "b"
+       ]
+      },
+      {
+       "glyphes": [
+        "j"
+       ]
+      },
+      {
+       "glyphes": [
+        "g"
+       ]
+      },
+      {
+       "glyphes": [
+        "b",
+        "a",
+        "t",
+        "e",
+        "a",
+        "u"
+       ]
+      }
+     ],
+     "id": "4.11"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "niveau": "A1",
+   "titre": "Les sons plus rares, les lettres muettes",
+   "resume": "eu, gn, ill, qu, ge, s entre deux voyelles, et ces lettres finales qu'on écrit sans les entendre.",
+   "seuil": 60,
+   "graphemes": [
+    "eu",
+    "gn",
+    "ill",
+    "qu",
+    "ph",
+    "z",
+    "y",
+    "ien",
+    "oin",
+    "ge",
+    "gi",
+    "ss",
+    "h",
+    "x",
+    "k",
+    "w",
+    "t#",
+    "s#",
+    "d#",
+    "x#"
+   ],
+   "exercices": [
+    {
+     "type": "choix",
+     "competence": "phonologie",
+     "titre": "J'entends le son « eu »",
+     "consigne": "Écoute chaque mot. Entends-tu le son « eu » ? Réponds oui ou non.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "fleur",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "feuille",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "deux",
+        "libelle": "le mot"
+       },
+       "reponse": "oui",
+       "choix": [
+        "oui",
+        "non"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "chaise",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "musique",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "orange",
+        "libelle": "le mot"
+       },
+       "reponse": "non",
+       "choix": [
+        "non",
+        "oui"
+       ]
+      }
+     ],
+     "id": "5.1"
+    },
+    {
+     "type": "choix",
+     "competence": "code",
+     "titre": "Quelle lettre entends-tu au début ?",
+     "consigne": "Écoute la syllabe, puis touche la lettre par laquelle elle commence.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "zo",
+        "libelle": "la syllabe"
+       },
+       "reponse": "z",
+       "choix": [
+        "z",
+        "d",
+        "qu"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "leu",
+        "libelle": "la syllabe"
+       },
+       "reponse": "l",
+       "choix": [
+        "l",
+        "d",
+        "m"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "jeu",
+        "libelle": "la syllabe"
+       },
+       "reponse": "j",
+       "choix": [
+        "j",
+        "f",
+        "ph"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "gna",
+        "libelle": "la syllabe"
+       },
+       "reponse": "gn",
+       "choix": [
+        "gn",
+        "f",
+        "p"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "qui",
+        "libelle": "la syllabe"
+       },
+       "reponse": "qu",
+       "choix": [
+        "qu",
+        "s",
+        "d"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "meu",
+        "libelle": "la syllabe"
+       },
+       "reponse": "m",
+       "choix": [
+        "m",
+        "d",
+        "qu"
+       ]
+      }
+     ],
+     "id": "5.2"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "J'assemble une syllabe",
+     "consigne": "Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.",
+     "questions": [
+      {
+       "cible": [
+        "gn",
+        "o"
+       ],
+       "banque": [
+        "gn",
+        "o",
+        "qu",
+        "a"
+       ],
+       "invite": {
+        "audio": "gno",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "gn",
+        "a"
+       ],
+       "banque": [
+        "gn",
+        "a",
+        "d",
+        "o"
+       ],
+       "invite": {
+        "audio": "gna",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "l",
+        "eu"
+       ],
+       "banque": [
+        "l",
+        "eu",
+        "gn",
+        "a"
+       ],
+       "invite": {
+        "audio": "leu",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "ph",
+        "o"
+       ],
+       "banque": [
+        "ph",
+        "o",
+        "qu",
+        "a"
+       ],
+       "invite": {
+        "audio": "pho",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "m",
+        "eu"
+       ],
+       "banque": [
+        "m",
+        "eu",
+        "p",
+        "i"
+       ],
+       "invite": {
+        "audio": "meu",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "cible": [
+        "qu",
+        "i"
+       ],
+       "banque": [
+        "qu",
+        "i",
+        "f",
+        "o"
+       ],
+       "invite": {
+        "audio": "qui",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "5.3"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des syllabes",
+     "consigne": "Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.",
+     "questions": [
+      {
+       "texte": "zo",
+       "audio": "zo"
+      },
+      {
+       "texte": "pho",
+       "audio": "pho"
+      },
+      {
+       "texte": "gno",
+       "audio": "gno"
+      },
+      {
+       "texte": "deu",
+       "audio": "deu"
+      },
+      {
+       "texte": "qua",
+       "audio": "qua"
+      },
+      {
+       "texte": "meu",
+       "audio": "meu"
+      },
+      {
+       "texte": "gna",
+       "audio": "gna"
+      },
+      {
+       "texte": "feu",
+       "audio": "feu"
+      }
+     ],
+     "id": "5.4"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des syllabes",
+     "consigne": "Écoute la syllabe et compose-la avec les lettres.",
+     "questions": [
+      {
+       "mot": "gno",
+       "invite": {
+        "audio": "gno",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "peu",
+       "invite": {
+        "audio": "peu",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "qua",
+       "invite": {
+        "audio": "qua",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "deu",
+       "invite": {
+        "audio": "deu",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "gna",
+       "invite": {
+        "audio": "gna",
+        "libelle": "la syllabe"
+       }
+      },
+      {
+       "mot": "meu",
+       "invite": {
+        "audio": "meu",
+        "libelle": "la syllabe"
+       }
+      }
+     ],
+     "id": "5.5"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des mots",
+     "consigne": "Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.",
+     "questions": [
+      {
+       "texte": "fleur",
+       "syllabes": [
+        "fleur"
+       ],
+       "audio": "fleur",
+       "picto": "fleur"
+      },
+      {
+       "texte": "soleil",
+       "syllabes": [
+        "so",
+        "leil"
+       ],
+       "audio": "soleil",
+       "picto": "soleil"
+      },
+      {
+       "texte": "étoile",
+       "syllabes": [
+        "é",
+        "toi",
+        "le"
+       ],
+       "audio": "étoile",
+       "picto": "étoile"
+      },
+      {
+       "texte": "poisson",
+       "syllabes": [
+        "pois",
+        "son"
+       ],
+       "audio": "poisson",
+       "picto": "poisson"
+      },
+      {
+       "texte": "feuille",
+       "syllabes": [
+        "feu",
+        "ille"
+       ],
+       "audio": "feuille"
+      },
+      {
+       "texte": "montagne",
+       "syllabes": [
+        "mon",
+        "ta",
+        "gne"
+       ],
+       "audio": "montagne"
+      },
+      {
+       "texte": "musique",
+       "syllabes": [
+        "mu",
+        "si",
+        "que"
+       ],
+       "audio": "musique"
+      },
+      {
+       "texte": "rose",
+       "syllabes": [
+        "ro",
+        "se"
+       ],
+       "audio": "rose"
+      }
+     ],
+     "id": "5.6"
+    },
+    {
+     "type": "choix",
+     "competence": "lecture",
+     "titre": "Les mots à retenir",
+     "consigne": "Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.",
+     "questions": [
+      {
+       "invite": {
+        "audio": "les",
+        "libelle": "le mot"
+       },
+       "reponse": "les",
+       "choix": [
+        "les",
+        "nous sommes",
+        "tu"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "elles",
+        "libelle": "le mot"
+       },
+       "reponse": "elles",
+       "choix": [
+        "elles",
+        "tu",
+        "est"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "ils",
+        "libelle": "le mot"
+       },
+       "reponse": "ils",
+       "choix": [
+        "ils",
+        "est",
+        "un"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "et",
+        "libelle": "le mot"
+       },
+       "reponse": "et",
+       "choix": [
+        "et",
+        "il est",
+        "nous sommes"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "mais",
+        "libelle": "le mot"
+       },
+       "reponse": "mais",
+       "choix": [
+        "mais",
+        "est",
+        "avec"
+       ]
+      }
+     ],
+     "id": "5.7"
+    },
+    {
+     "type": "choix",
+     "competence": "comprehension",
+     "choixPicto": true,
+     "titre": "Je lis et je choisis l'image",
+     "consigne": "Lis le mot sans l'écouter, puis touche l'image qui lui correspond.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "fleur",
+        "syllabes": [
+         "fleur"
+        ]
+       },
+       "reponse": "fleur",
+       "choix": [
+        "fleur",
+        "chat",
+        "lit"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "soleil",
+        "syllabes": [
+         "so",
+         "leil"
+        ]
+       },
+       "reponse": "soleil",
+       "choix": [
+        "soleil",
+        "étoile",
+        "lit"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "étoile",
+        "syllabes": [
+         "é",
+         "toi",
+         "le"
+        ]
+       },
+       "reponse": "étoile",
+       "choix": [
+        "étoile",
+        "fleur",
+        "sac"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "poisson",
+        "syllabes": [
+         "pois",
+         "son"
+        ]
+       },
+       "reponse": "poisson",
+       "choix": [
+        "poisson",
+        "maison",
+        "lit"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "chaise",
+        "syllabes": [
+         "chai",
+         "se"
+        ]
+       },
+       "reponse": "chaise",
+       "choix": [
+        "chaise",
+        "orange",
+        "soleil"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "maison",
+        "syllabes": [
+         "mai",
+         "son"
+        ]
+       },
+       "reponse": "maison",
+       "choix": [
+        "maison",
+        "chat",
+        "étoile"
+       ]
+      }
+     ],
+     "id": "5.8"
+    },
+    {
+     "type": "sequence",
+     "competence": "code",
+     "titre": "Je remets les syllabes en ordre",
+     "consigne": "Écoute le mot, puis remets ses syllabes dans l'ordre.",
+     "questions": [
+      {
+       "cible": [
+        "so",
+        "leil"
+       ],
+       "banque": [
+        "so",
+        "leil",
+        "tu"
+       ],
+       "invite": {
+        "audio": "soleil",
+        "libelle": "le mot",
+        "picto": "soleil"
+       }
+      },
+      {
+       "cible": [
+        "é",
+        "toi",
+        "le"
+       ],
+       "banque": [
+        "é",
+        "toi",
+        "le",
+        "ri"
+       ],
+       "invite": {
+        "audio": "étoile",
+        "libelle": "le mot",
+        "picto": "étoile"
+       }
+      },
+      {
+       "cible": [
+        "pois",
+        "son"
+       ],
+       "banque": [
+        "pois",
+        "son",
+        "ri"
+       ],
+       "invite": {
+        "audio": "poisson",
+        "libelle": "le mot",
+        "picto": "poisson"
+       }
+      },
+      {
+       "cible": [
+        "feu",
+        "ille"
+       ],
+       "banque": [
+        "feu",
+        "ille",
+        "ri"
+       ],
+       "invite": {
+        "audio": "feuille",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "mon",
+        "ta",
+        "gne"
+       ],
+       "banque": [
+        "mon",
+        "ta",
+        "gne",
+        "tu"
+       ],
+       "invite": {
+        "audio": "montagne",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "cible": [
+        "mu",
+        "si",
+        "que"
+       ],
+       "banque": [
+        "mu",
+        "si",
+        "que",
+        "tu"
+       ],
+       "invite": {
+        "audio": "musique",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "5.9"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des mots",
+     "consigne": "Écoute le mot et écris-le, lettre après lettre. Les deux derniers sont des mots des paliers précédents.",
+     "questions": [
+      {
+       "mot": "fleur",
+       "invite": {
+        "audio": "fleur",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "soleil",
+       "invite": {
+        "audio": "soleil",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "étoile",
+       "invite": {
+        "audio": "étoile",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "poisson",
+       "invite": {
+        "audio": "poisson",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "feuille",
+       "invite": {
+        "audio": "feuille",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "dame",
+       "invite": {
+        "audio": "dame",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "minute",
+       "invite": {
+        "audio": "minute",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "5.10"
+    },
+    {
+     "type": "trace",
+     "competence": "ecriture",
+     "titre": "Je trace les nouvelles lettres",
+     "consigne": "Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.",
+     "questions": [
+      {
+       "glyphes": [
+        "q"
+       ]
+      },
+      {
+       "glyphes": [
+        "k"
+       ]
+      },
+      {
+       "glyphes": [
+        "w"
+       ]
+      },
+      {
+       "glyphes": [
+        "x"
+       ]
+      },
+      {
+       "glyphes": [
+        "y"
+       ]
+      },
+      {
+       "glyphes": [
+        "z"
+       ]
+      },
+      {
+       "glyphes": [
+        "f",
+        "l",
+        "e",
+        "u",
+        "r"
+       ]
+      }
+     ],
+     "id": "5.11"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "niveau": "A2",
+   "titre": "Je lis et j'écris des phrases",
+   "resume": "La phrase : majuscule et point, articles, genre et nombre, premiers verbes. L'entrée dans l'A2 écrit.",
+   "seuil": 65,
+   "graphemes": [],
+   "exercices": [
+    {
+     "type": "sequence",
+     "competence": "phrases",
+     "titre": "Je remets la phrase en ordre",
+     "consigne": "Écoute la phrase, puis remets les mots dans l'ordre. Relis-la ensuite à voix haute.",
+     "questions": [
+      {
+       "cible": [
+        "Le",
+        "chat",
+        "est",
+        "sur",
+        "la",
+        "table"
+       ],
+       "invite": {
+        "audio": "Le chat est sur la table",
+        "libelle": "la phrase"
+       }
+      },
+      {
+       "cible": [
+        "Je",
+        "mange",
+        "une",
+        "banane"
+       ],
+       "invite": {
+        "audio": "Je mange une banane",
+        "libelle": "la phrase"
+       }
+      },
+      {
+       "cible": [
+        "La",
+        "fleur",
+        "est",
+        "dans",
+        "le",
+        "jardin"
+       ],
+       "invite": {
+        "audio": "La fleur est dans le jardin",
+        "libelle": "la phrase"
+       }
+      },
+      {
+       "cible": [
+        "Il",
+        "y",
+        "a",
+        "un",
+        "livre",
+        "sur",
+        "la",
+        "chaise"
+       ],
+       "invite": {
+        "audio": "Il y a un livre sur la chaise",
+        "libelle": "la phrase"
+       }
+      },
+      {
+       "cible": [
+        "Nous",
+        "habitons",
+        "à",
+        "Tours"
+       ],
+       "invite": {
+        "audio": "Nous habitons à Tours",
+        "libelle": "la phrase"
+       }
+      }
+     ],
+     "id": "6.1"
+    },
+    {
+     "type": "lecture",
+     "competence": "lecture",
+     "titre": "Je lis des phrases",
+     "consigne": "Lis chaque phrase à voix haute, d'un seul souffle, puis écoute pour vérifier.",
+     "questions": [
+      {
+       "texte": "Le chat est sur la table.",
+       "audio": "Le chat est sur la table"
+      },
+      {
+       "texte": "Je mange une banane.",
+       "audio": "Je mange une banane"
+      },
+      {
+       "texte": "La fleur est dans le jardin.",
+       "audio": "La fleur est dans le jardin"
+      },
+      {
+       "texte": "Il y a un livre sur la chaise.",
+       "audio": "Il y a un livre sur la chaise"
+      },
+      {
+       "texte": "Nous habitons à Tours.",
+       "audio": "Nous habitons à Tours"
+      }
+     ],
+     "id": "6.2"
+    },
+    {
+     "type": "choix",
+     "competence": "grammaire",
+     "titre": "le, la, l'",
+     "consigne": "Choisis l'article qui convient.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "…  table",
+        "picto": "table"
+       },
+       "reponse": "la",
+       "choix": [
+        "la",
+        "le",
+        "l'"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  livre",
+        "picto": "livre"
+       },
+       "reponse": "le",
+       "choix": [
+        "le",
+        "la",
+        "l'"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  maison",
+        "picto": "maison"
+       },
+       "reponse": "la",
+       "choix": [
+        "la",
+        "le",
+        "l'"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  bateau",
+        "picto": "bateau"
+       },
+       "reponse": "le",
+       "choix": [
+        "le",
+        "la",
+        "l'"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  porte",
+        "picto": "porte"
+       },
+       "reponse": "la",
+       "choix": [
+        "la",
+        "le",
+        "l'"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  vélo",
+        "picto": "vélo"
+       },
+       "reponse": "le",
+       "choix": [
+        "le",
+        "la",
+        "l'"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  fleur",
+        "picto": "fleur"
+       },
+       "reponse": "la",
+       "choix": [
+        "la",
+        "le",
+        "l'"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  pain",
+        "picto": "pain"
+       },
+       "reponse": "le",
+       "choix": [
+        "le",
+        "la",
+        "l'"
+       ]
+      }
+     ],
+     "id": "6.3"
+    },
+    {
+     "type": "choix",
+     "competence": "grammaire",
+     "titre": "un ou une ?",
+     "consigne": "Masculin ou féminin ? Regarde l'image, écoute, puis choisis.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "…  table",
+        "picto": "table"
+       },
+       "reponse": "une",
+       "choix": [
+        "une",
+        "un"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  livre",
+        "picto": "livre"
+       },
+       "reponse": "un",
+       "choix": [
+        "un",
+        "une"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  chaise",
+        "picto": "chaise"
+       },
+       "reponse": "une",
+       "choix": [
+        "une",
+        "un"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  bateau",
+        "picto": "bateau"
+       },
+       "reponse": "un",
+       "choix": [
+        "un",
+        "une"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  étoile",
+        "picto": "étoile"
+       },
+       "reponse": "une",
+       "choix": [
+        "une",
+        "un"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  arbre",
+        "picto": "arbre"
+       },
+       "reponse": "un",
+       "choix": [
+        "un",
+        "une"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  orange",
+        "picto": "orange"
+       },
+       "reponse": "une",
+       "choix": [
+        "une",
+        "un"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  poisson",
+        "picto": "poisson"
+       },
+       "reponse": "un",
+       "choix": [
+        "un",
+        "une"
+       ]
+      }
+     ],
+     "id": "6.4"
+    },
+    {
+     "type": "choix",
+     "competence": "phrases",
+     "titre": "Majuscule et point",
+     "consigne": "Une phrase commence par une majuscule et se termine par un point.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "le chat dort"
+       },
+       "reponse": "Le chat dort.",
+       "choix": [
+        "Le chat dort.",
+        "le chat dort.",
+        "Le chat dort"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "je vais à tours"
+       },
+       "reponse": "Je vais à Tours.",
+       "choix": [
+        "Je vais à Tours.",
+        "je vais à tours.",
+        "Je vais à Tours"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "elle mange une orange"
+       },
+       "reponse": "Elle mange une orange.",
+       "choix": [
+        "Elle mange une orange.",
+        "elle mange une orange.",
+        "Elle mange une orange"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "il fait beau"
+       },
+       "reponse": "Il fait beau.",
+       "choix": [
+        "Il fait beau.",
+        "il fait beau.",
+        "Il fait beau"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "nous sommes lundi"
+       },
+       "reponse": "Nous sommes lundi.",
+       "choix": [
+        "Nous sommes lundi.",
+        "nous sommes lundi.",
+        "Nous sommes lundi"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "tu lis un livre"
+       },
+       "reponse": "Tu lis un livre.",
+       "choix": [
+        "Tu lis un livre.",
+        "tu lis un livre.",
+        "Tu lis un livre"
+       ]
+      }
+     ],
+     "id": "6.5"
+    },
+    {
+     "type": "choix",
+     "competence": "grammaire",
+     "titre": "Un seul ou plusieurs ?",
+     "consigne": "Mets le groupe au pluriel. Le « s » s'écrit mais ne s'entend pas.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "le chat",
+        "audio": "les chats",
+        "libelle": "au pluriel"
+       },
+       "reponse": "les chats",
+       "choix": [
+        "les chats",
+        "les chat",
+        "le chats"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "une fleur",
+        "audio": "des fleurs",
+        "libelle": "au pluriel"
+       },
+       "reponse": "des fleurs",
+       "choix": [
+        "des fleurs",
+        "des fleur",
+        "une fleurs"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "le livre",
+        "audio": "les livres",
+        "libelle": "au pluriel"
+       },
+       "reponse": "les livres",
+       "choix": [
+        "les livres",
+        "les livre",
+        "le livres"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "une table",
+        "audio": "des tables",
+        "libelle": "au pluriel"
+       },
+       "reponse": "des tables",
+       "choix": [
+        "des tables",
+        "des table",
+        "une tables"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "le vélo",
+        "audio": "les vélos",
+        "libelle": "au pluriel"
+       },
+       "reponse": "les vélos",
+       "choix": [
+        "les vélos",
+        "les vélo",
+        "le vélos"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "une porte",
+        "audio": "des portes",
+        "libelle": "au pluriel"
+       },
+       "reponse": "des portes",
+       "choix": [
+        "des portes",
+        "des porte",
+        "une portes"
+       ]
+      }
+     ],
+     "id": "6.6"
+    },
+    {
+     "type": "choix",
+     "competence": "grammaire",
+     "titre": "Le verbe être",
+     "consigne": "Complète avec la bonne forme du verbe être.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "Je  …  à Tours"
+       },
+       "reponse": "suis",
+       "choix": [
+        "suis",
+        "es",
+        "est"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "Tu  …  à Tours"
+       },
+       "reponse": "es",
+       "choix": [
+        "es",
+        "suis",
+        "est"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "Il  …  à Tours"
+       },
+       "reponse": "est",
+       "choix": [
+        "est",
+        "suis",
+        "es"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "Nous  …  à Tours"
+       },
+       "reponse": "sommes",
+       "choix": [
+        "sommes",
+        "suis",
+        "es"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "Vous  …  à Tours"
+       },
+       "reponse": "êtes",
+       "choix": [
+        "êtes",
+        "suis",
+        "es"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "Elles  …  à Tours"
+       },
+       "reponse": "sont",
+       "choix": [
+        "sont",
+        "suis",
+        "es"
+       ]
+      }
+     ],
+     "id": "6.7"
+    },
+    {
+     "type": "dictee",
+     "competence": "encodage",
+     "titre": "J'écris des mots plus longs",
+     "consigne": "Écoute et écris. Prends ton temps, syllabe après syllabe.",
+     "questions": [
+      {
+       "mot": "maison",
+       "invite": {
+        "audio": "maison",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "bateau",
+       "invite": {
+        "audio": "bateau",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "chapeau",
+       "invite": {
+        "audio": "chapeau",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "montagne",
+       "invite": {
+        "audio": "montagne",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "musique",
+       "invite": {
+        "audio": "musique",
+        "libelle": "le mot"
+       }
+      },
+      {
+       "mot": "orange",
+       "invite": {
+        "audio": "orange",
+        "libelle": "le mot"
+       }
+      }
+     ],
+     "id": "6.8"
+    },
+    {
+     "type": "trace",
+     "competence": "ecriture",
+     "titre": "J'écris une majuscule et des mots",
+     "consigne": "Les noms de villes prennent une majuscule. Elle se trace trait par trait.",
+     "questions": [
+      {
+       "glyphes": [
+        "T",
+        "o",
+        "u",
+        "r",
+        "s"
+       ]
+      },
+      {
+       "glyphes": [
+        "m",
+        "e",
+        "r",
+        "c",
+        "i"
+       ]
+      },
+      {
+       "glyphes": [
+        "b",
+        "o",
+        "n",
+        "j",
+        "o",
+        "u",
+        "r"
+       ]
+      }
+     ],
+     "id": "6.9"
+    },
+    {
+     "type": "choix",
+     "competence": "phrases",
+     "titre": "Je valide mon A2",
+     "consigne": "Dix questions. C'est la dernière étape du parcours.",
+     "questions": [
+      {
+       "invite": {
+        "texte": "…  maison",
+        "picto": "maison"
+       },
+       "reponse": "la",
+       "choix": [
+        "la",
+        "le",
+        "l'"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  livre",
+        "picto": "livre"
+       },
+       "reponse": "un",
+       "choix": [
+        "un",
+        "une"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "le chat"
+       },
+       "reponse": "les chats",
+       "choix": [
+        "les chats",
+        "le chats",
+        "les chat"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "je vais à tours"
+       },
+       "reponse": "Je vais à Tours.",
+       "choix": [
+        "Je vais à Tours.",
+        "je vais à Tours",
+        "Je vais à tours"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "Nous  …  à l'école"
+       },
+       "reponse": "sommes",
+       "choix": [
+        "sommes",
+        "est",
+        "suis"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "…  étoile",
+        "picto": "etoile"
+       },
+       "reponse": "une",
+       "choix": [
+        "une",
+        "un"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "Tu  …  ton nom"
+       },
+       "reponse": "écris",
+       "choix": [
+        "écris",
+        "écrit",
+        "écrire"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "une fleur"
+       },
+       "reponse": "des fleurs",
+       "choix": [
+        "des fleurs",
+        "des fleur",
+        "les fleur"
+       ]
+      },
+      {
+       "invite": {
+        "audio": "Le chat est sur la table",
+        "libelle": "la phrase"
+       },
+       "reponse": "Le chat est sur la table.",
+       "choix": [
+        "Le chat est sur la table.",
+        "le chat est sur la table",
+        "Le chat est sur la table"
+       ]
+      },
+      {
+       "invite": {
+        "texte": "Elle  …  une orange"
+       },
+       "reponse": "mange",
+       "choix": [
+        "mange",
+        "manges",
+        "mangent"
+       ]
+      }
+     ],
+     "id": "6.10"
+    }
+   ]
+  }
+ ]
+}

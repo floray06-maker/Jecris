@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#E8501E">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="J'écris">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="J'écris en français — parcours A1 vers A2. Lycée Victor Laloux, Tours.">
+<title>J'écris en français — parcours A1 → A2</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone-192.png">
+<style>
+:root{
+  --papier:#FDFBF8; --encre:#16130F; --vermillon:#E8501E; --vermillon-f:#B93A10;
+  --ardoise:#2A5D7C; --vert:#2E7D5B; --gris:#8A837A; --trait:#DFD8CC; --creuse:#F4EFE6;
+  --reglure:#A9C2D8; --reglure-pale:#D6E2EC;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --base:16px; --rail:70px;
+}
+html.texte-moyen{--base:18px} html.texte-grand{--base:21px}
+html.contraste{--papier:#fff;--encre:#000;--gris:#4A443C;--trait:#8A837A;--creuse:#EDE7DC}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--papier);color:var(--encre);font-family:var(--sans);
+  font-size:var(--base);line-height:1.5;-webkit-text-size-adjust:100%;overscroll-behavior:none}
+button{font:inherit;color:inherit;cursor:pointer;font-family:var(--sans)}
+:focus-visible{outline:3px solid var(--vermillon);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0}
+h1{font-size:1.9em;line-height:1.1} h2{font-size:1.32em} h3{font-size:1.06em}
+p{max-width:60ch;margin:.5em 0}
+.discret{color:var(--gris);font-size:.85em}
+
+/* ---------- ossature ---------- */
+.barre{display:flex;align-items:center;gap:12px;padding:9px 16px;border-bottom:1px solid var(--trait);
+  background:var(--papier);position:sticky;top:0;z-index:5}
+.barre img{height:24px} .barre .espace{flex:1}
+.fil{font-family:var(--serif);font-size:1em}
+.puce{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--trait);background:#fff;
+  padding:4px 10px;border-radius:999px;font-size:.85em}
+.puce .rond{width:19px;height:19px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:.65em;font-weight:700}
+.ecran{display:none} .ecran.actif{display:block;animation:entre .25s ease both}
+@keyframes entre{from{opacity:0}to{opacity:1}}
+.colonne{max-width:780px;margin:0 auto;padding:20px 16px 40px}
+.lien{background:none;border:0;color:var(--gris);text-decoration:underline;text-underline-offset:3px;font-size:.88em;padding:6px 4px}
+.lien:hover{color:var(--encre)}
+.bouton{border:0;background:var(--vermillon);color:#fff;padding:12px 20px;border-radius:4px;font-weight:600}
+.bouton:hover{background:var(--vermillon-f)}
+.bouton.creux{background:none;color:var(--encre);border:1px solid var(--trait)}
+.bouton.creux:hover{background:var(--creuse)}
+.bouton[disabled]{opacity:.4;cursor:not-allowed}
+.rangee{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* ---------- chargement ---------- */
+#chargement{position:fixed;inset:0;background:var(--papier);display:grid;place-items:center;z-index:30;text-align:center}
+#chargement img{width:min(230px,58vw)}
+#chargement svg{width:min(300px,74vw);margin-top:22px;display:block}
+#chargement path{fill:none;stroke:var(--vermillon);stroke-width:5;stroke-linecap:round;
+  stroke-dasharray:var(--L);stroke-dashoffset:var(--L);animation:ecrire 1.5s .2s ease-out forwards}
+@keyframes ecrire{to{stroke-dashoffset:0}}
+#chargement .nom{font-family:var(--serif);font-size:1.5em;margin-top:12px}
+#chargement .lieu{color:var(--gris);font-size:.8em;margin-top:4px}
+
+/* ---------- connexion ---------- */
+.onglets{display:flex;border-bottom:1px solid var(--trait);margin:20px 0 6px}
+.onglets button{background:none;border:0;padding:10px 2px;margin-right:26px;color:var(--gris);
+  border-bottom:2px solid transparent}
+.onglets button[aria-selected=true]{color:var(--encre);border-bottom-color:var(--vermillon)}
+.champ{display:block;margin:16px 0}
+.champ span{display:block;font-size:.85em;color:var(--gris);margin-bottom:5px}
+input[type=text]{width:100%;font:inherit;padding:11px 13px;border:1px solid var(--trait);background:#fff;border-radius:4px}
+input[type=text]:focus{border-color:var(--vermillon);outline:none;box-shadow:0 0 0 3px rgba(232,80,30,.15)}
+.code{font-family:var(--serif);font-size:2.4em;letter-spacing:.16em;color:var(--vermillon);
+  border-bottom:2px solid var(--vermillon);display:inline-block;padding:0 6px 3px}
+.avertissement{border-left:3px solid var(--vermillon);background:#fff;padding:10px 13px;margin:14px 0;font-size:.85em}
+.profils{list-style:none;margin:12px 0 0;padding:0}
+.profils li{border-bottom:1px solid var(--trait)}
+.profils button{width:100%;display:flex;align-items:center;gap:12px;background:none;border:0;padding:11px 2px;text-align:left}
+.profils .rond{width:32px;height:32px;font-size:.85em}
+
+/* ---------- tableau de bord ---------- */
+.ruban{display:flex;align-items:center;gap:0;margin:18px 0 6px}
+.ruban .etape{flex:1;height:8px;background:var(--trait);position:relative}
+.ruban .etape i{position:absolute;inset:0 auto 0 0;background:var(--vermillon);transition:width .5s}
+.ruban .borne{font-family:var(--serif);font-size:.9em;color:var(--gris);padding:0 10px}
+.grand-chiffre{font-family:var(--serif);font-size:3.2em;line-height:.95}
+.grand-chiffre small{font-size:.3em;color:var(--gris)}
+.bandeau{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-top:6px}
+.competences{margin-top:26px}
+.comp{display:grid;grid-template-columns:1fr 120px 42px;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--trait)}
+.comp .barre-c{height:7px;background:var(--creuse);position:relative}
+.comp .barre-c i{position:absolute;inset:0 auto 0 0;background:var(--ardoise)}
+.comp .val{text-align:right;font-size:.85em;color:var(--gris)}
+
+/* ---------- carte des paliers ---------- */
+.route{position:relative;margin:22px 0 0;padding-left:var(--rail)}
+.route::before{content:"";position:absolute;left:calc(var(--rail) / 2);top:14px;bottom:14px;width:2px;
+  background:repeating-linear-gradient(180deg,var(--trait) 0 7px,transparent 7px 14px)}
+.station{position:relative;padding:0 0 26px}
+.station .pastille{position:absolute;left:calc(-1 * var(--rail));top:0;width:var(--rail);display:grid;place-items:center}
+.station .anneau{width:46px;height:46px;border-radius:50%;background:var(--papier);border:2px solid var(--trait);
+  display:grid;place-items:center;font-family:var(--serif);font-size:1.1em;color:var(--gris)}
+.station.ouvert .anneau{border-color:var(--vermillon);color:var(--vermillon)}
+.station.fini .anneau{background:var(--vermillon);border-color:var(--vermillon);color:#fff}
+.station h3{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.station .niveau{font-family:var(--sans);font-size:.7em;letter-spacing:.08em;color:#fff;background:var(--ardoise);
+  padding:2px 7px;border-radius:3px}
+.station.verrou{opacity:.55}
+.graphemes{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.graphemes span{font-family:var(--serif);font-size:1.05em;border:1px solid var(--trait);border-radius:3px;
+  padding:1px 9px;background:#fff;color:var(--vermillon)}
+.station .cadenas{font-size:.85em;color:var(--gris);margin-top:4px}
+.exos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:12px}
+.exo-tuile{display:flex;flex-direction:column;gap:5px;background:#fff;border:1px solid var(--trait);
+  border-radius:3px;padding:9px 10px;text-align:left}
+.exo-tuile:hover{border-color:var(--vermillon)}
+.exo-tuile .haut{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.exo-tuile .genre{font-size:.7em;color:var(--gris);border:1px solid var(--trait);border-radius:2px;padding:1px 5px}
+.exo-tuile .nom{font-size:.9em;line-height:1.25}
+.exo-tuile .et{font-size:.8em;letter-spacing:1px;color:var(--trait)}
+.exo-tuile .et b{color:var(--vermillon);font-weight:400}
+.exo-tuile[disabled]{opacity:.45}
+
+/* ---------- exercice ---------- */
+.exo-entete{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.exo-entete h2{flex:1;min-width:170px}
+.jetons{display:flex;gap:4px}
+.jeton{width:8px;height:8px;border-radius:50%;background:var(--trait)}
+.jeton.juste{background:var(--vert)} .jeton.faux{background:var(--vermillon)} .jeton.encours{box-shadow:0 0 0 3px rgba(232,80,30,.2);background:var(--vermillon)}
+.consigne{color:var(--gris);font-size:.9em;margin:0 0 14px}
+.invite{text-align:center;margin:10px 0 18px;min-height:60px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.invite .mot{font-family:var(--serif);font-size:2.1em;letter-spacing:.02em}
+.invite .picto{width:132px;height:132px}
+.invite .picto path,.invite .picto circle{fill:none;stroke:var(--encre);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.ecouter{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--vermillon);color:var(--vermillon);
+  background:#fff;padding:10px 18px;border-radius:999px;font-weight:600}
+.ecouter:hover{background:var(--vermillon);color:#fff}
+.ecouter svg{width:19px;height:19px;fill:currentColor}
+.choix{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;max-width:620px;margin:0 auto}
+.choix.pictos{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.opt{background:#fff;border:1px solid var(--trait);border-radius:4px;padding:16px 12px;font-size:1.15em;
+  font-family:var(--serif);min-height:62px;display:grid;place-items:center;transition:.12s}
+.opt:hover{border-color:var(--vermillon)}
+.opt.juste{border-color:var(--vert);background:#EEF6F1;color:var(--vert)}
+.opt.faux{border-color:var(--vermillon);background:#FDF0EA;opacity:.75}
+.opt svg{width:78px;height:78px}
+.opt svg path,.opt svg circle{fill:none;stroke:var(--encre);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+
+.piste{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:64px;padding:12px;
+  border:1px dashed var(--trait);border-radius:4px;background:#fff;margin-bottom:14px}
+.banque{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:56px}
+.tuile{background:#fff;border:1px solid var(--encre);border-radius:4px;padding:10px 15px;font-family:var(--serif);
+  font-size:1.25em;min-width:48px;text-align:center}
+.tuile.pose{border-style:solid;border-color:var(--vermillon);color:var(--vermillon)}
+.tuile.vide{border:1px dashed var(--trait);color:var(--trait);background:transparent}
+.tuile.juste{border-color:var(--vert);color:var(--vert)}
+.tuile.faux{border-color:var(--vermillon);background:#FDF0EA}
+.aide-alphabet{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin:14px 0 0;color:var(--gris);
+  font-family:var(--serif);font-size:.95em}
+.aide-alphabet span{padding:1px 3px}
+
+.clavier{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:600px;margin:0 auto}
+.clavier .tuile{min-width:44px;padding:9px 12px;font-size:1.15em}
+.grille-chrono{display:grid;grid-template-columns:repeat(auto-fit,minmax(54px,1fr));gap:7px;max-width:560px;margin:0 auto}
+.grille-chrono .tuile{padding:12px 0;min-width:0}
+.grille-chrono .tuile.pris{opacity:.3;border-color:var(--trait);color:var(--gris)}
+.pendule{font-family:var(--serif);font-size:1.7em;text-align:center;margin-bottom:10px}
+.pendule.urgence{color:var(--vermillon)}
+
+.ardoise-trace{position:relative;background:#fff;border:1px solid var(--trait);border-radius:3px;
+  height:min(46vh,330px);touch-action:none;overflow:hidden}
+.ardoise-trace svg{width:100%;height:100%;display:block;touch-action:none}
+.ligne-seyes{stroke:var(--reglure-pale);stroke-width:1}
+.ligne-base{stroke:var(--reglure);stroke-width:1.6}
+.ligne-verticale{stroke:var(--reglure-pale);stroke-width:1}
+.modele-fait{fill:none;stroke:#C9C2B7;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.modele-attente{fill:none;stroke:#E4DED4;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 14}
+.modele-actif{fill:none;stroke:rgba(232,80,30,.3);stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
+.modele-fleche{fill:none;stroke:var(--vermillon);stroke-width:3.4;stroke-linecap:round}
+.encre{fill:none;stroke:var(--encre);stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+.depart{fill:var(--vermillon)}
+.depart-txt{fill:#fff;font:700 15px var(--sans);text-anchor:middle;dominant-baseline:central}
+.secoue{animation:secousse .34s}
+@keyframes secousse{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+
+.retour{min-height:28px;margin:14px 0 4px;font-size:.95em;text-align:center}
+.retour.bien{color:var(--vert)} .retour.reprend{color:var(--vermillon-f)}
+.pied-exo{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.pied-exo .espace{flex:1}
+
+/* ---------- bilan ---------- */
+.bilan{text-align:center;padding:30px 10px}
+.bilan .etoiles{font-size:2.8em;letter-spacing:9px;color:var(--trait)}
+.bilan .etoiles b{color:var(--vermillon);font-weight:400;display:inline-block;animation:pose .4s ease both}
+.bilan .etoiles b:nth-child(2){animation-delay:.12s} .bilan .etoiles b:nth-child(3){animation-delay:.24s}
+@keyframes pose{from{transform:scale(.3) rotate(-16deg);opacity:0}to{transform:none;opacity:1}}
+.recompense{border:1px solid var(--vermillon);border-radius:999px;padding:6px 15px;display:inline-block;margin:12px 5px 0;font-size:.88em}
+
+/* ---------- progression / réglages ---------- */
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px;margin-top:12px}
+.badge{border:1px solid var(--trait);padding:12px;border-radius:3px;background:#fff}
+.badge.eteint{opacity:.4}
+.badge .b-nom{font-family:var(--serif)}
+.badge .b-txt{font-size:.78em;color:var(--gris)}
+.tableau{width:100%;border-collapse:collapse;margin-top:10px;font-size:.9em}
+.tableau th,.tableau td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--trait)}
+.tableau th{color:var(--gris);font-size:.85em;font-weight:600}
+.reglage{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:13px 0;border-bottom:1px solid var(--trait);flex-wrap:wrap}
+.segmente{display:flex;border:1px solid var(--trait);border-radius:4px;overflow:hidden}
+.segmente button{background:#fff;border:0;padding:9px 13px;font-size:.88em;border-right:1px solid var(--trait)}
+.segmente button:last-child{border-right:0}
+.segmente button[aria-pressed=true]{background:var(--vermillon);color:#fff}
+.pied{margin-top:28px;color:var(--gris);font-size:.8em}
+
+/* ---------- lecture à voix haute ---------- */
+.lecture{text-align:center;padding:14px 0 6px}
+.lecture .picto{width:150px;height:150px}
+.lecture .picto path,.lecture .picto circle{fill:none;stroke:var(--encre);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.agrandi{font-family:var(--serif);font-size:clamp(2.6em,11vw,4.4em);line-height:1.1;letter-spacing:.01em;margin:6px 0}
+.syl.s0{color:var(--encre)} .syl.s1{color:var(--vermillon)}
+.invite .mot .syl{letter-spacing:.01em}
+
+/* ---------- tablette : cibles larges, moins de défilement ---------- */
+@media (pointer:coarse){
+  button,.opt,.tuile{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+  .opt{min-height:84px;font-size:1.3em}
+  .tuile{padding:14px 18px;min-width:58px;font-size:1.35em}
+  .clavier .tuile{min-width:56px;padding:13px 15px}
+  .grille-chrono{grid-template-columns:repeat(auto-fit,minmax(62px,1fr))}
+  .bouton,.ecouter{padding:15px 24px}
+  .lien{padding:12px 8px}
+}
+@media (min-width:820px){
+  :root{--base:18px}
+  .colonne{max-width:900px;padding:24px 26px 44px}
+  .ardoise-trace{height:min(52vh,420px)}
+  .invite .picto{width:160px;height:160px}
+  .choix{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));max-width:760px}
+}
+@media (min-width:820px) and (orientation:landscape){
+  .ardoise-trace{height:min(58vh,430px)}
+}
+@media (max-height:560px) and (orientation:landscape){
+  .consigne{margin-bottom:8px} .invite{margin:4px 0 10px;min-height:0}
+  .invite .picto{width:92px;height:92px} .agrandi{font-size:2.2em}
+  .ardoise-trace{height:min(64vh,300px)}
+}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(18px);opacity:0;background:var(--encre);
+  color:#fff;padding:10px 17px;border-radius:4px;font-size:.88em;z-index:40;transition:.25s;pointer-events:none;max-width:88vw;text-align:center}
+#toast.vu{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+
+<div id="chargement" role="status">
+  <div>
+    <img id="logo-chargement" alt="Lycée Victor Laloux">
+    <svg viewBox="0 0 300 60" aria-hidden="true"><path id="trait-chargement"
+      d="M10,44 C26,10 46,10 58,44 C70,78 90,78 102,44 C114,10 134,10 146,44 C158,78 178,78 190,44 C200,18 214,10 232,14 C252,19 258,34 250,44 C242,54 228,50 226,40 C224,30 236,22 258,24 C272,25 282,30 292,38"/></svg>
+    <div class="nom">J'écris en français</div>
+    <div class="lieu">Parcours A1 → A2 · Lycée Victor Laloux, Tours</div>
+  </div>
+</div>
+
+<header class="barre" id="barre" hidden>
+  <img id="logo-barre" alt="">
+  <span class="fil" id="fil">J'écris en français</span>
+  <span class="espace"></span>
+  <button class="puce" id="puce-profil" hidden><span class="rond"></span><span class="nom"></span></button>
+</header>
+
+<!-- =============== CONNEXION =============== -->
+<section class="ecran" id="ec-connexion"><div class="colonne">
+  <h1>Bonjour.<br>Qui apprend aujourd'hui&nbsp;?</h1>
+  <div class="onglets" role="tablist">
+    <button role="tab" id="t-reprendre" aria-selected="true">Reprendre</button>
+    <button role="tab" id="t-nouveau" aria-selected="false">Nouveau parcours</button>
+  </div>
+  <div id="pan-reprendre">
+    <ul class="profils" id="liste-profils"></ul>
+    <p class="discret" id="vide-profils" hidden>Aucun parcours sur cet appareil. Ouvre-en un nouveau.</p>
+    <div style="margin-top:20px">
+      <label class="champ"><span>Ou retrouve ton parcours avec ton code</span>
+        <input type="text" id="saisie-code" maxlength="4" autocomplete="off" placeholder="482K"
+          style="max-width:160px;letter-spacing:.2em;font-family:var(--serif);font-size:1.5em"></label>
+      <button class="bouton creux" id="btn-code">Retrouver mon parcours</button>
+    </div>
+  </div>
+  <div id="pan-nouveau" hidden>
+    <label class="champ"><span>Ton prénom ou ton surnom</span>
+      <input type="text" id="saisie-pseudo" maxlength="18" autocomplete="off" placeholder="Amina"></label>
+    <button class="bouton" id="btn-creer">Créer mon parcours</button>
+    <div id="bloc-code" hidden style="margin-top:24px">
+      <p>Voici ton code. Note-le&nbsp;: il te permet de revenir à ton parcours.</p>
+      <div class="code" id="code-genere"></div>
+      <div style="margin-top:20px"><button class="bouton" id="btn-commencer">Commencer</button></div>
+    </div>
+  </div>
+  <div id="alerte-stockage"></div>
+</div></section>
+
+<!-- =============== TABLEAU DE BORD =============== -->
+<section class="ecran" id="ec-tableau"><div class="colonne">
+  <div class="bandeau">
+    <div>
+      <h1 id="tb-titre">—</h1>
+      <div class="discret" id="tb-resume"></div>
+    </div>
+    <div style="text-align:right">
+      <div class="grand-chiffre"><span id="tb-fait">0</span><small> / <span id="tb-total">48</span></small></div>
+      <div class="discret">exercices réussis</div>
+    </div>
+  </div>
+  <div class="ruban">
+    <span class="borne">A1</span>
+    <span class="etape"><i id="tb-ruban" style="width:0"></i></span>
+    <span class="borne">A2</span>
+  </div>
+  <div class="rangee" style="margin-top:22px">
+    <button class="bouton" id="btn-continuer">Continuer le parcours</button>
+    <button class="bouton creux" id="btn-carte">Voir les paliers</button>
+    <button class="lien" id="btn-progression">Ma progression</button>
+    <button class="lien" id="btn-reglages">Réglages</button>
+  </div>
+  <div class="competences">
+    <h2>Ce que je travaille</h2>
+    <div id="tb-competences"></div>
+  </div>
+  <div class="pied">Lycée Victor Laloux, Tours. Application hors ligne&nbsp;: tout reste sur cet appareil.</div>
+</div></section>
+
+<!-- =============== CARTE DES PALIERS =============== -->
+<section class="ecran" id="ec-carte"><div class="colonne">
+  <div class="rangee" style="justify-content:space-between">
+    <h1>Le parcours</h1><button class="lien" id="btn-retour-1">← Tableau de bord</button>
+  </div>
+  <p class="discret">Chaque palier s'ouvre lorsque le précédent est validé. Tu peux revenir à tout moment sur un exercice déjà fait pour améliorer ton score.</p>
+  <div class="route" id="route"></div>
+</div></section>
+
+<!-- =============== EXERCICE =============== -->
+<section class="ecran" id="ec-exercice"><div class="colonne">
+  <div class="exo-entete">
+    <button class="lien" id="btn-quitter">← Quitter</button>
+    <h2 id="exo-titre">—</h2>
+    <div class="jetons" id="exo-jetons"></div>
+  </div>
+  <p class="consigne" id="exo-consigne"></p>
+  <div id="exo-scene"></div>
+  <div class="retour" id="exo-retour"></div>
+  <div class="pied-exo" id="exo-pied"></div>
+</div></section>
+
+<!-- =============== PROGRESSION =============== -->
+<section class="ecran" id="ec-progression"><div class="colonne">
+  <div class="rangee" style="justify-content:space-between">
+    <h1>Ma progression</h1><button class="lien" id="btn-retour-2">← Tableau de bord</button>
+  </div>
+  <div id="pr-resume"></div>
+  <h2 style="margin-top:26px">Récompenses</h2>
+  <div class="badges" id="pr-badges"></div>
+  <h2 style="margin-top:26px">Détail des exercices</h2>
+  <table class="tableau"><thead><tr><th>Exercice</th><th>Étoiles</th><th>Score</th><th>Essais</th></tr></thead>
+  <tbody id="pr-detail"></tbody></table>
+</div></section>
+
+<!-- =============== RÉGLAGES =============== -->
+<section class="ecran" id="ec-reglages"><div class="colonne">
+  <div class="rangee" style="justify-content:space-between">
+    <h1>Réglages</h1><button class="lien" id="btn-retour-3">← Tableau de bord</button>
+  </div>
+
+  <div class="reglage"><div><div>Taille du texte</div><div class="discret">Pour lire sans effort.</div></div>
+    <div class="segmente" id="seg-texte"><button data-v="normal">Normale</button><button data-v="moyen">Grande</button><button data-v="grand">Très grande</button></div></div>
+
+  <div class="reglage"><div><div>Contraste renforcé</div><div class="discret">Noir sur blanc, traits plus marqués.</div></div>
+    <div class="segmente" id="seg-contraste"><button data-v="0">Normal</button><button data-v="1">Renforcé</button></div></div>
+
+  <div class="reglage"><div><div>Sons et voix</div><div class="discret">Signal après chaque réponse et lecture des consignes sonores.</div></div>
+    <div class="segmente" id="seg-son"><button data-v="1">Activés</button><button data-v="0">Coupés</button></div></div>
+
+  <div class="reglage"><div><div>Aide au tracé</div><div class="discret">Largeur du chemin accepté autour du modèle.</div></div>
+    <div class="segmente" id="seg-aide"><button data-v="guide">Guidée</button><button data-v="normal">Normale</button><button data-v="libre">Libre</button></div></div>
+
+  <div class="reglage"><div><div>Paliers verrouillés</div><div class="discret">En classe, l'enseignant peut ouvrir tout le parcours d'emblée.</div></div>
+    <div class="segmente" id="seg-libre"><button data-v="0">Progressifs</button><button data-v="1">Tous ouverts</button></div></div>
+
+  <div class="reglage"><div><div>Plein écran</div><div class="discret">Masque les barres du navigateur. Recommandé sur tablette.</div></div>
+    <div class="segmente" id="seg-plein"><button data-v="0">Fenêtre</button><button data-v="1">Plein écran</button></div></div>
+
+  <div class="reglage"><div><div>Mon parcours</div><div class="discret" id="info-profil"></div></div>
+    <div class="rangee"><button class="bouton creux" id="btn-exporter">Exporter</button>
+      <button class="bouton creux" id="btn-importer">Importer</button>
+      <button class="bouton creux" id="btn-changer">Changer</button></div></div>
+
+  <div class="reglage"><div><div>Contenu pédagogique</div><div class="discret">Les 48 exercices, modifiables par l'équipe enseignante.</div></div>
+    <div class="rangee"><button class="bouton creux" id="btn-exp-contenu">Exporter le parcours</button>
+      <button class="bouton creux" id="btn-imp-contenu">Importer un parcours</button>
+      <button class="lien" id="btn-reset-contenu">Rétablir</button></div></div>
+
+  <div class="reglage" style="border-bottom:0"><div><div>Effacer ma progression</div><div class="discret">Le parcours reste, les scores repartent à zéro.</div></div>
+    <div class="rangee"><button class="lien" id="btn-effacer-prog">Tout effacer</button></div></div>
+
+  <div class="pied">
+    <p><strong>J'écris en français</strong> — parcours A1 → A2, conçu pour le Lycée Victor Laloux, Tours (37000). Application web installable, fonctionnant hors ligne. Aucune donnée n'est transmise.</p>
+    <p id="info-stockage"></p><p id="info-voix"></p>
+  </div>
+</div></section>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="fichier-import" accept="application/json,.json" hidden>
+<script>
+"use strict";
+/* =====================================================================
+   J'écris en français — parcours A1 → A2
+   Lycée Victor Laloux, Tours. Application web installable, hors ligne.
+   Le contenu pédagogique vit dans parcours.json ; une copie est embarquée
+   pour que l'application fonctionne même ouverte comme simple fichier.
+   ===================================================================== */
+
+const LOGO = "data:image/png;base64,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";
+const DONNEES = {"metrique":{"hauteurBoucle":0,"hautCorps":80,"ligneBase":120,"basJambage":200,"interligne":40},"glyphes":{"a":{"l":78,"t":["M56,88 C52,78 36,72 26,82 C16,92 16,112 26,118 C36,124 50,116 54,106 C57,98 57,88 56,82 C56,96 56,110 58,116 C61,122 68,121 74,113"]},"b":{"l":74,"t":["M8,118 C16,88 24,44 36,16 C44,-2 52,4 48,28 C42,60 30,96 28,110 C36,119 50,122 60,114 C68,107 67,94 58,91 C52,89 46,93 45,99 C48,90 58,85 70,88"]},"c":{"l":68,"t":["M60,92 C56,80 40,70 28,80 C16,90 16,112 26,118 C38,125 54,118 62,106"]},"d":{"l":78,"t":["M54,86 C50,78 34,72 24,82 C14,92 14,112 24,118 C34,124 48,116 52,106 C56,94 60,50 64,26 C68,4 62,0 58,10 C54,22 52,70 52,100 C52,112 54,118 62,116 C68,114 72,110 76,104"]},"e":{"l":64,"t":["M8,110 C20,104 34,98 40,90 C46,82 40,72 33,80 C25,88 24,108 30,116 C36,123 50,120 60,110"]},"f":{"l":76,"t":["M14,116 C20,86 30,42 42,16 C50,-2 58,4 54,26 C50,48 34,90 28,120 C22,150 20,180 14,190 C8,199 2,194 6,184 C10,174 30,160 46,152 C56,147 64,146 72,146"]},"g":{"l":78,"t":["M56,88 C52,78 36,72 26,82 C16,92 16,112 26,118 C36,124 50,116 54,106 C57,98 57,88 56,82 C56,110 52,160 46,182 C40,199 28,199 26,188 C24,176 40,166 62,158 C68,156 72,154 76,152"]},"h":{"l":78,"t":["M8,118 C16,88 24,44 36,16 C44,-2 52,4 48,28 C42,60 30,96 28,116 C34,100 40,88 50,86 C60,84 64,94 60,106 C57,114 56,116 58,118 C61,121 68,120 74,112"]},"i":{"l":54,"t":["M8,118 C14,102 24,86 38,80 C40,96 38,108 38,114 C40,121 46,121 52,113","M36,48 C37,51 37,54 38,57"]},"j":{"l":56,"t":["M8,118 C14,102 24,86 38,80 C38,100 34,160 30,182 C26,198 14,199 12,188 C10,177 24,168 46,160 C50,158 52,157 54,156","M36,48 C37,51 37,54 38,57"]},"k":{"l":78,"t":["M8,118 C16,88 24,44 36,16 C44,-2 52,4 48,28 C42,60 30,96 28,114 C42,100 58,88 66,82 C72,78 72,92 58,99 C52,102 46,103 42,104 C53,107 62,111 62,117 C62,121 70,121 78,112"]},"l":{"l":60,"t":["M6,118 C14,88 24,42 36,14 C44,-4 52,2 48,26 C44,50 30,90 26,108 C24,117 32,121 40,117 C46,114 52,110 56,104"]},"m":{"l":100,"t":["M6,118 C10,100 20,86 32,80 C36,92 32,108 30,116 C34,100 42,88 52,86 C58,85 60,94 56,116 C60,100 68,88 78,86 C84,85 86,94 82,112 C84,120 90,121 96,113"]},"n":{"l":78,"t":["M6,118 C10,100 20,86 32,80 C36,92 32,108 30,116 C34,100 44,88 54,86 C62,85 64,94 60,112 C62,120 68,121 74,113"]},"o":{"l":70,"t":["M58,84 C52,74 34,70 24,80 C14,90 14,112 24,118 C34,124 48,118 52,106 C56,95 54,86 51,82 C54,78 60,76 68,78"]},"p":{"l":78,"t":["M10,118 C16,102 24,88 36,80 C34,112 26,160 20,184 C17,196 12,194 15,184 C20,158 28,116 34,102 C40,90 50,84 58,88 C66,92 64,104 54,110 C46,115 40,112 40,106 C44,112 52,116 64,112"]},"q":{"l":78,"t":["M56,88 C52,78 36,72 26,82 C16,92 16,112 26,118 C36,124 50,116 54,106 C57,98 57,88 56,82 C56,110 50,160 46,182 C44,192 48,196 56,190 C62,185 68,178 72,170"]},"r":{"l":70,"t":["M8,118 C14,100 22,86 34,74 C43,71 47,78 44,87 C41,95 38,101 36,107 C38,115 45,119 53,116 C59,114 63,110 68,105"]},"s":{"l":62,"t":["M9,118 C17,105 29,90 37,74 C41,84 36,99 33,109 C31,117 24,120 21,113 C18,106 31,100 43,106 C50,109 54,113 61,108"]},"t":{"l":62,"t":["M14,116 C20,96 30,60 40,42 C42,38 45,40 43,50 C39,68 32,100 32,112 C34,120 42,120 52,112","M16,58 C28,57 42,56 54,56"]},"u":{"l":78,"t":["M8,118 C12,100 22,86 34,80 C34,96 30,110 30,116 C34,120 42,116 48,104 C52,96 54,88 56,80 C56,96 54,110 56,116 C59,121 66,120 74,112"]},"v":{"l":74,"t":["M8,118 C12,100 22,86 34,80 C34,98 32,110 34,116 C40,120 48,110 54,98 C58,90 60,86 62,80 C60,92 58,102 62,106 C66,110 70,108 74,102"]},"w":{"l":94,"t":["M8,118 C12,100 22,86 34,80 C34,98 32,112 36,116 C42,120 50,106 56,92 C56,104 54,114 58,117 C64,121 72,108 78,92 C78,104 78,112 82,110 C86,108 88,104 92,100"]},"x":{"l":70,"t":["M12,78 C24,90 40,105 52,118","M56,78 C44,90 28,105 16,118 C22,116 30,114 38,116"]},"y":{"l":78,"t":["M8,118 C12,100 22,86 34,80 C34,96 30,110 30,116 C34,120 42,116 48,104 C52,96 54,88 56,80 C54,110 48,162 42,184 C38,198 26,199 24,188 C22,177 38,168 60,160 C64,159 68,158 72,157"]},"z":{"l":74,"t":["M8,98 C16,86 28,78 40,78 C46,78 44,88 38,96 C32,104 26,112 24,118 C32,116 42,114 50,116 C50,140 44,170 38,184 C33,196 22,197 20,187 C18,177 32,168 54,160 C58,159 62,158 66,157"]},"é":{"l":64,"b":"e","t":["M8,110 C20,104 34,98 40,90 C46,82 40,72 33,80 C25,88 24,108 30,116 C36,123 50,120 60,110","M50,44 C44,50 38,56 32,62"]},"è":{"l":64,"b":"e","t":["M8,110 C20,104 34,98 40,90 C46,82 40,72 33,80 C25,88 24,108 30,116 C36,123 50,120 60,110","M26,44 C32,50 38,56 44,62"]},"ê":{"l":64,"b":"e","t":["M8,110 C20,104 34,98 40,90 C46,82 40,72 33,80 C25,88 24,108 30,116 C36,123 50,120 60,110","M24,60 C30,52 34,46 36,44 C38,46 42,52 48,60"]},"à":{"l":78,"b":"a","t":["M56,88 C52,78 36,72 26,82 C16,92 16,112 26,118 C36,124 50,116 54,106 C57,98 57,88 56,82 C56,96 56,110 58,116 C61,122 68,121 74,113","M24,44 C30,50 36,56 42,62"]},"ù":{"l":78,"b":"u","t":["M8,118 C12,100 22,86 34,80 C34,96 30,110 30,116 C34,120 42,116 48,104 C52,96 54,88 56,80 C56,96 54,110 56,116 C59,121 66,120 74,112","M22,44 C28,50 34,56 40,62"]},"ç":{"l":68,"b":"c","t":["M60,92 C56,80 40,70 28,80 C16,90 16,112 26,118 C38,125 54,118 62,106","M30,118 C32,128 38,134 34,142 C31,148 24,146 22,140"]},"A":{"l":92,"M":1,"t":["M12,120 C22,84 34,44 46,12","M46,12 C58,44 70,84 80,120","M25,84 L67,84"]},"B":{"l":86,"M":1,"t":["M22,120 L22,12","M22,12 L52,12 C76,12 76,62 52,64 L22,64","M22,64 L56,64 C82,64 82,120 56,120 L22,120"]},"C":{"l":86,"M":1,"t":["M74,34 C64,12 28,8 20,46 C12,84 24,118 48,118 C62,118 70,110 74,100"]},"D":{"l":88,"M":1,"t":["M22,120 L22,12","M22,12 L44,12 C82,12 82,120 44,120 L22,120"]},"E":{"l":82,"M":1,"t":["M72,12 L22,12 L22,120 L72,120","M22,66 L60,66"]},"F":{"l":82,"M":1,"t":["M72,12 L22,12 L22,120","M22,66 L60,66"]},"G":{"l":90,"M":1,"t":["M74,34 C64,12 28,8 20,46 C12,84 24,118 48,118 C66,118 74,106 74,86 L52,86"]},"H":{"l":88,"M":1,"t":["M20,12 L20,120","M72,12 L72,120","M20,66 L72,66"]},"I":{"l":74,"M":1,"t":["M38,12 L38,120","M20,12 L56,12","M20,120 L56,120"]},"J":{"l":78,"M":1,"t":["M60,12 L60,88 C60,114 34,124 22,104"]},"K":{"l":86,"M":1,"t":["M20,12 L20,120","M72,12 L20,74","M40,56 L74,120"]},"L":{"l":80,"M":1,"t":["M22,12 L22,120 L74,120"]},"M":{"l":96,"M":1,"t":["M16,120 L16,12 L46,80 L76,12 L76,120"]},"N":{"l":90,"M":1,"t":["M18,120 L18,12 L74,120 L74,12"]},"O":{"l":92,"M":1,"t":["M46,10 C22,10 12,36 12,66 C12,96 24,120 46,120 C68,120 80,96 80,66 C80,36 70,10 46,10 Z"]},"P":{"l":84,"M":1,"t":["M22,120 L22,12","M22,12 L52,12 C80,12 80,68 52,68 L22,68"]},"Q":{"l":92,"M":1,"t":["M46,10 C22,10 12,36 12,66 C12,96 24,120 46,120 C68,120 80,96 80,66 C80,36 70,10 46,10 Z","M54,92 L82,128"]},"R":{"l":86,"M":1,"t":["M22,120 L22,12","M22,12 L52,12 C78,12 78,64 52,64 L22,64","M48,64 L78,120"]},"S":{"l":82,"M":1,"t":["M70,32 C62,12 30,6 22,30 C14,54 40,60 54,68 C74,79 76,118 44,118 C30,118 22,110 18,100"]},"T":{"l":84,"M":1,"t":["M16,12 L76,12","M46,12 L46,120"]},"U":{"l":88,"M":1,"t":["M18,12 L18,84 C18,110 32,120 46,120 C60,120 74,110 74,84 L74,12"]},"V":{"l":86,"M":1,"t":["M14,12 L44,120 L74,12"]},"W":{"l":100,"M":1,"t":["M8,12 L28,120 L46,44 L64,120 L84,12"]},"X":{"l":84,"M":1,"t":["M16,12 L72,120","M72,12 L16,120"]},"Y":{"l":84,"M":1,"t":["M16,12 L44,66 L72,12","M44,66 L44,120"]},"Z":{"l":84,"M":1,"t":["M18,12 L74,12 L18,120 L74,120"]},"geste-trait":{"l":220,"g":1,"t":["M20,120 C20,90 20,50 20,20","M90,120 C90,90 90,50 90,20","M160,120 C160,90 160,50 160,20"]},"geste-vague":{"l":240,"g":1,"t":["M10,118 C24,80 44,80 58,118 C72,156 92,156 106,118 C120,80 140,80 154,118 C168,156 188,156 202,118 C210,98 218,88 228,84"]},"geste-boucle":{"l":240,"g":1,"t":["M10,118 C18,88 28,42 40,14 C48,-4 56,2 52,26 C48,50 34,90 30,108 C28,118 36,122 44,116 C52,110 60,60 72,26 C80,2 90,2 86,26 C82,50 68,90 64,108 C62,118 70,122 78,116 C86,110 94,60 106,26 C114,2 124,2 120,26 C116,50 102,90 98,108 C96,118 104,122 112,116 C118,111 124,104 130,96"]},"geste-rond":{"l":240,"g":1,"t":["M56,84 C50,74 32,70 22,80 C12,90 12,112 22,118 C32,124 46,118 50,106 C54,94 52,86 49,82 C52,78 58,76 66,78","M132,84 C126,74 108,70 98,80 C88,90 88,112 98,118 C108,124 122,118 126,106 C130,94 128,86 125,82 C128,78 134,76 142,78","M208,84 C202,74 184,70 174,80 C164,90 164,112 174,118 C184,124 198,118 202,106 C206,94 204,86 201,82 C204,78 210,76 218,78"]},"geste-pont":{"l":240,"g":1,"t":["M10,118 C14,100 24,86 36,80 C40,92 36,108 34,116 C38,100 48,88 58,86 C66,85 68,94 64,112 C68,96 78,86 88,84 C96,83 98,92 94,110 C98,94 108,84 118,82 C126,81 128,90 124,110 C126,118 132,120 140,114"]},"geste-jambage":{"l":240,"g":1,"t":["M10,118 C14,100 24,86 36,80 C34,112 28,162 22,184 C18,198 6,199 4,188 C2,177 18,168 40,160","M76,118 C80,100 90,86 102,80 C100,112 94,162 88,184 C84,198 72,199 70,188 C68,177 84,168 106,160","M142,118 C146,100 156,86 168,80 C166,112 160,162 154,184 C150,198 138,199 136,188 C134,177 150,168 172,160"]}}};
+const G = DONNEES.glyphes, MET = DONNEES.metrique;
+const PARCOURS_EMBARQUE = {"version":2,"etablissement":"Lycée Victor Laloux, Tours","methode":"Progression syllabique explicite : correspondances graphème-phonème introduites une à une, mots strictement déchiffrables, fusion, lecture à voix haute et encodage en miroir.","competences":{"phonologie":"L'oreille","code":"Le code (lettres et sons)","lecture":"La lecture","encodage":"L'écriture sous dictée","comprehension":"La compréhension","ecriture":"Le geste d'écriture","phrases":"Les phrases","grammaire":"La grammaire"},"paliers":[{"n":1,"niveau":"A1","titre":"J'entends, je lis mes premières syllabes","resume":"Les cinq voyelles et trois consonnes. Assembler une consonne et une voyelle : le geste qui ouvre la lecture.","seuil":60,"graphemes":["a","i","o","u","e","é","l","m","r"],"exercices":[{"type":"choix","competence":"phonologie","titre":"J'entends le son « a »","consigne":"Écoute chaque mot. Entends-tu le son « a » ? Réponds oui ou non.","questions":[{"invite":{"audio":"lama","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"rame","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"ami","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"mari","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"mur","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"lime","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"mule","libelle":"le mot"},"reponse":"non","choix":["non","oui"]}],"id":"1.1"},{"type":"choix","competence":"code","titre":"Quelle lettre entends-tu au début ?","consigne":"Écoute la syllabe, puis touche la lettre par laquelle elle commence.","questions":[{"invite":{"audio":"mu","libelle":"la syllabe"},"reponse":"m","choix":["m","s","t"]},{"invite":{"audio":"ru","libelle":"la syllabe"},"reponse":"r","choix":["r","m","t"]},{"invite":{"audio":"lu","libelle":"la syllabe"},"reponse":"l","choix":["l","r","t"]},{"invite":{"audio":"ro","libelle":"la syllabe"},"reponse":"r","choix":["r","s","p"]},{"invite":{"audio":"ra","libelle":"la syllabe"},"reponse":"r","choix":["r","s","t"]},{"invite":{"audio":"ma","libelle":"la syllabe"},"reponse":"m","choix":["m","r","p"]}],"id":"1.2"},{"type":"sequence","competence":"code","titre":"J'assemble une syllabe","consigne":"Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.","questions":[{"cible":["m","i"],"banque":["m","i","r","a"],"invite":{"audio":"mi","libelle":"la syllabe"}},{"cible":["l","u"],"banque":["l","u","r","o"],"invite":{"audio":"lu","libelle":"la syllabe"}},{"cible":["l","a"],"banque":["l","a","r","o"],"invite":{"audio":"la","libelle":"la syllabe"}},{"cible":["r","u"],"banque":["r","u","l","i"],"invite":{"audio":"ru","libelle":"la syllabe"}},{"cible":["m","u"],"banque":["m","u","r","a"],"invite":{"audio":"mu","libelle":"la syllabe"}},{"cible":["m","o"],"banque":["m","o","r","a"],"invite":{"audio":"mo","libelle":"la syllabe"}}],"id":"1.3"},{"type":"lecture","competence":"lecture","titre":"Je lis des syllabes","consigne":"Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.","questions":[{"texte":"lo","audio":"lo"},{"texte":"li","audio":"li"},{"texte":"mo","audio":"mo"},{"texte":"lu","audio":"lu"},{"texte":"ri","audio":"ri"},{"texte":"la","audio":"la"},{"texte":"ru","audio":"ru"},{"texte":"ma","audio":"ma"}],"id":"1.4"},{"type":"dictee","competence":"encodage","titre":"J'écris des syllabes","consigne":"Écoute la syllabe et compose-la avec les lettres.","questions":[{"mot":"ra","invite":{"audio":"ra","libelle":"la syllabe"}},{"mot":"lu","invite":{"audio":"lu","libelle":"la syllabe"}},{"mot":"ro","invite":{"audio":"ro","libelle":"la syllabe"}},{"mot":"ru","invite":{"audio":"ru","libelle":"la syllabe"}},{"mot":"mi","invite":{"audio":"mi","libelle":"la syllabe"}},{"mot":"ma","invite":{"audio":"ma","libelle":"la syllabe"}}],"id":"1.5"},{"type":"lecture","competence":"lecture","titre":"Je lis des mots","consigne":"Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.","questions":[{"texte":"ami","syllabes":["a","mi"],"audio":"ami"},{"texte":"mari","syllabes":["ma","ri"],"audio":"mari"},{"texte":"mur","syllabes":["mur"],"audio":"mur","picto":"mur"},{"texte":"lama","syllabes":["la","ma"],"audio":"lama"},{"texte":"rame","syllabes":["ra","me"],"audio":"rame"},{"texte":"lime","syllabes":["li","me"],"audio":"lime"},{"texte":"mule","syllabes":["mu","le"],"audio":"mule"}],"id":"1.6"},{"type":"choix","competence":"lecture","titre":"Les mots à retenir","consigne":"Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.","questions":[{"invite":{"audio":"la","libelle":"le mot"},"reponse":"la","choix":["la","je suis","dans"]},{"invite":{"audio":"le","libelle":"le mot"},"reponse":"le","choix":["le","tu es","elles"]},{"invite":{"audio":"il","libelle":"le mot"},"reponse":"il","choix":["il","tu es","une"]},{"invite":{"audio":"elle","libelle":"le mot"},"reponse":"elle","choix":["elle","une","tu es"]}],"id":"1.7"},{"type":"choix","competence":"comprehension","titre":"Je lis et je comprends","consigne":"Lis le mot, puis dis ce que c'est.","questions":[{"invite":{"texte":"ami","syllabes":["a","mi"]},"reponse":"une personne","choix":["une personne","une musique","un temps"]},{"invite":{"texte":"mari","syllabes":["ma","ri"]},"reponse":"une personne","choix":["une personne","un vêtement","une musique"]},{"invite":{"texte":"mur","syllabes":["mur"]},"reponse":"un objet","choix":["un objet","une plante","un vêtement"]},{"invite":{"texte":"lama","syllabes":["la","ma"]},"reponse":"un animal","choix":["un animal","un lieu","un art"]},{"invite":{"texte":"rame","syllabes":["ra","me"]},"reponse":"un objet","choix":["un objet","un mot général","un aliment"]},{"invite":{"texte":"lime","syllabes":["li","me"]},"reponse":"un objet","choix":["un objet","un vêtement","le ciel"]},{"invite":{"texte":"mule","syllabes":["mu","le"]},"reponse":"un animal","choix":["un animal","une plante","une personne"]}],"id":"1.8"},{"type":"sequence","competence":"code","titre":"Je remets les syllabes en ordre","consigne":"Écoute le mot, puis remets ses syllabes dans l'ordre.","questions":[{"cible":["a","mi"],"banque":["a","mi","po"],"invite":{"audio":"ami","libelle":"le mot"}},{"cible":["ma","ri"],"banque":["ma","ri","po"],"invite":{"audio":"mari","libelle":"le mot"}},{"cible":["la","ma"],"banque":["la","ma","tu"],"invite":{"audio":"lama","libelle":"le mot"}},{"cible":["ra","me"],"banque":["ra","me","po"],"invite":{"audio":"rame","libelle":"le mot"}},{"cible":["li","me"],"banque":["li","me","ri"],"invite":{"audio":"lime","libelle":"le mot"}},{"cible":["mu","le"],"banque":["mu","le","ri"],"invite":{"audio":"mule","libelle":"le mot"}}],"id":"1.9"},{"type":"dictee","competence":"encodage","titre":"J'écris des mots","consigne":"Écoute le mot et écris-le, lettre après lettre.","questions":[{"mot":"ami","invite":{"audio":"ami","libelle":"le mot"}},{"mot":"mari","invite":{"audio":"mari","libelle":"le mot"}},{"mot":"mur","invite":{"audio":"mur","libelle":"le mot"}},{"mot":"lama","invite":{"audio":"lama","libelle":"le mot"}},{"mot":"rame","invite":{"audio":"rame","libelle":"le mot"}}],"id":"1.10"},{"type":"trace","competence":"ecriture","titre":"Je trace les nouvelles lettres","consigne":"Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.","questions":[{"glyphes":["a"]},{"glyphes":["i"]},{"glyphes":["o"]},{"glyphes":["u"]},{"glyphes":["l"]},{"glyphes":["m"]},{"glyphes":["r"]},{"glyphes":["a","m","i"]}],"id":"1.11"}]},{"n":2,"niveau":"A1","titre":"Je lis mes premiers mots","resume":"Cinq consonnes de plus. Assez de lettres pour lire de vrais mots de deux et trois syllabes.","seuil":60,"graphemes":["p","t","s","n","d"],"exercices":[{"type":"choix","competence":"phonologie","titre":"J'entends le son « i »","consigne":"Écoute chaque mot. Entends-tu le son « i » ? Réponds oui ou non.","questions":[{"invite":{"audio":"minute","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"pirate","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"domino","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"tulipe","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"papa","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"moto","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"salade","libelle":"le mot"},"reponse":"non","choix":["non","oui"]}],"id":"2.1"},{"type":"choix","competence":"code","titre":"Quelle lettre entends-tu au début ?","consigne":"Écoute la syllabe, puis touche la lettre par laquelle elle commence.","questions":[{"invite":{"audio":"po","libelle":"la syllabe"},"reponse":"p","choix":["p","d","s"]},{"invite":{"audio":"ti","libelle":"la syllabe"},"reponse":"t","choix":["t","s","l"]},{"invite":{"audio":"pa","libelle":"la syllabe"},"reponse":"p","choix":["p","n","l"]},{"invite":{"audio":"ta","libelle":"la syllabe"},"reponse":"t","choix":["t","p","l"]},{"invite":{"audio":"so","libelle":"la syllabe"},"reponse":"s","choix":["s","d","n"]},{"invite":{"audio":"no","libelle":"la syllabe"},"reponse":"n","choix":["n","s","l"]}],"id":"2.2"},{"type":"sequence","competence":"code","titre":"J'assemble une syllabe","consigne":"Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.","questions":[{"cible":["n","o"],"banque":["n","o","d","a"],"invite":{"audio":"no","libelle":"la syllabe"}},{"cible":["p","i"],"banque":["p","i","s","a"],"invite":{"audio":"pi","libelle":"la syllabe"}},{"cible":["s","i"],"banque":["s","i","d","a"],"invite":{"audio":"si","libelle":"la syllabe"}},{"cible":["t","o"],"banque":["t","o","d","a"],"invite":{"audio":"to","libelle":"la syllabe"}},{"cible":["p","o"],"banque":["p","o","s","a"],"invite":{"audio":"po","libelle":"la syllabe"}},{"cible":["s","o"],"banque":["s","o","n","i"],"invite":{"audio":"so","libelle":"la syllabe"}}],"id":"2.3"},{"type":"lecture","competence":"lecture","titre":"Je lis des syllabes","consigne":"Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.","questions":[{"texte":"ni","audio":"ni"},{"texte":"to","audio":"to"},{"texte":"da","audio":"da"},{"texte":"po","audio":"po"},{"texte":"di","audio":"di"},{"texte":"na","audio":"na"},{"texte":"sa","audio":"sa"},{"texte":"no","audio":"no"}],"id":"2.4"},{"type":"dictee","competence":"encodage","titre":"J'écris des syllabes","consigne":"Écoute la syllabe et compose-la avec les lettres.","questions":[{"mot":"sa","invite":{"audio":"sa","libelle":"la syllabe"}},{"mot":"pa","invite":{"audio":"pa","libelle":"la syllabe"}},{"mot":"na","invite":{"audio":"na","libelle":"la syllabe"}},{"mot":"pi","invite":{"audio":"pi","libelle":"la syllabe"}},{"mot":"po","invite":{"audio":"po","libelle":"la syllabe"}},{"mot":"da","invite":{"audio":"da","libelle":"la syllabe"}}],"id":"2.5"},{"type":"lecture","competence":"lecture","titre":"Je lis des mots","consigne":"Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.","questions":[{"texte":"papa","syllabes":["pa","pa"],"audio":"papa"},{"texte":"moto","syllabes":["mo","to"],"audio":"moto"},{"texte":"tomate","syllabes":["to","ma","te"],"audio":"tomate"},{"texte":"minute","syllabes":["mi","nu","te"],"audio":"minute"},{"texte":"salade","syllabes":["sa","la","de"],"audio":"salade"},{"texte":"pirate","syllabes":["pi","ra","te"],"audio":"pirate"},{"texte":"tulipe","syllabes":["tu","li","pe"],"audio":"tulipe"},{"texte":"domino","syllabes":["do","mi","no"],"audio":"domino"}],"id":"2.6"},{"type":"choix","competence":"lecture","titre":"Les mots à retenir","consigne":"Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.","questions":[{"invite":{"audio":"un","libelle":"le mot"},"reponse":"un","choix":["un","des","avec"]},{"invite":{"audio":"une","libelle":"le mot"},"reponse":"une","choix":["une","des","ils"]},{"invite":{"audio":"des","libelle":"le mot"},"reponse":"des","choix":["des","je","elle"]},{"invite":{"audio":"est","libelle":"le mot"},"reponse":"est","choix":["est","je","des"]}],"id":"2.7"},{"type":"choix","competence":"comprehension","titre":"Je lis et je comprends","consigne":"Lis le mot, puis dis ce que c'est.","questions":[{"invite":{"texte":"papa","syllabes":["pa","pa"]},"reponse":"une personne","choix":["une personne","un lieu","une musique"]},{"invite":{"texte":"moto","syllabes":["mo","to"]},"reponse":"un objet","choix":["un objet","un art","une personne"]},{"invite":{"texte":"tomate","syllabes":["to","ma","te"]},"reponse":"un aliment","choix":["un aliment","une personne","un mot général"]},{"invite":{"texte":"minute","syllabes":["mi","nu","te"]},"reponse":"un temps","choix":["un temps","un objet","le ciel"]},{"invite":{"texte":"salade","syllabes":["sa","la","de"]},"reponse":"un aliment","choix":["un aliment","un lieu","un objet"]},{"invite":{"texte":"pirate","syllabes":["pi","ra","te"]},"reponse":"une personne","choix":["une personne","un mot général","le ciel"]},{"invite":{"texte":"tulipe","syllabes":["tu","li","pe"]},"reponse":"une plante","choix":["une plante","une personne","un temps"]}],"id":"2.8"},{"type":"sequence","competence":"code","titre":"Je remets les syllabes en ordre","consigne":"Écoute le mot, puis remets ses syllabes dans l'ordre.","questions":[{"cible":["pa","pa"],"banque":["pa","pa","tu"],"invite":{"audio":"papa","libelle":"le mot"}},{"cible":["mo","to"],"banque":["mo","to","ri"],"invite":{"audio":"moto","libelle":"le mot"}},{"cible":["to","ma","te"],"banque":["to","ma","te","tu"],"invite":{"audio":"tomate","libelle":"le mot"}},{"cible":["mi","nu","te"],"banque":["mi","nu","te","tu"],"invite":{"audio":"minute","libelle":"le mot"}},{"cible":["sa","la","de"],"banque":["sa","la","de","ri"],"invite":{"audio":"salade","libelle":"le mot"}},{"cible":["pi","ra","te"],"banque":["pi","ra","te","tu"],"invite":{"audio":"pirate","libelle":"le mot"}}],"id":"2.9"},{"type":"dictee","competence":"encodage","titre":"J'écris des mots","consigne":"Écoute le mot et écris-le, lettre après lettre. Les deux derniers sont des mots des paliers précédents.","questions":[{"mot":"papa","invite":{"audio":"papa","libelle":"le mot"}},{"mot":"moto","invite":{"audio":"moto","libelle":"le mot"}},{"mot":"tomate","invite":{"audio":"tomate","libelle":"le mot"}},{"mot":"minute","invite":{"audio":"minute","libelle":"le mot"}},{"mot":"salade","invite":{"audio":"salade","libelle":"le mot"}},{"mot":"lama","invite":{"audio":"lama","libelle":"le mot"}},{"mot":"lime","invite":{"audio":"lime","libelle":"le mot"}}],"id":"2.10"},{"type":"trace","competence":"ecriture","titre":"Je trace les nouvelles lettres","consigne":"Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.","questions":[{"glyphes":["p"]},{"glyphes":["t"]},{"glyphes":["s"]},{"glyphes":["n"]},{"glyphes":["d"]},{"glyphes":["p","a","p","a"]}],"id":"2.11"}]},{"n":3,"niveau":"A1","titre":"Deux lettres pour un seul son","resume":"ou, on, an, en, in, ch : des sons qui s'écrivent avec deux lettres. Un obstacle majeur, franchi ici.","seuil":60,"graphemes":["ou","on","an","en","in","ch"],"exercices":[{"type":"choix","competence":"phonologie","titre":"J'entends le son « ou »","consigne":"Écoute chaque mot. Entends-tu le son « ou » ? Réponds oui ou non.","questions":[{"invite":{"audio":"mouton","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"poule","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"moulin","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"lapin","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"sapin","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"chaton","libelle":"le mot"},"reponse":"non","choix":["non","oui"]}],"id":"3.1"},{"type":"choix","competence":"code","titre":"Quelle lettre entends-tu au début ?","consigne":"Écoute la syllabe, puis touche la lettre par laquelle elle commence.","questions":[{"invite":{"audio":"pou","libelle":"la syllabe"},"reponse":"p","choix":["p","t","l"]},{"invite":{"audio":"lin","libelle":"la syllabe"},"reponse":"l","choix":["l","t","s"]},{"invite":{"audio":"son","libelle":"la syllabe"},"reponse":"s","choix":["s","ch","l"]},{"invite":{"audio":"chou","libelle":"la syllabe"},"reponse":"ch","choix":["ch","t","m"]},{"invite":{"audio":"sou","libelle":"la syllabe"},"reponse":"s","choix":["s","m","t"]},{"invite":{"audio":"chi","libelle":"la syllabe"},"reponse":"ch","choix":["ch","l","s"]}],"id":"3.2"},{"type":"sequence","competence":"code","titre":"J'assemble une syllabe","consigne":"Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.","questions":[{"cible":["m","on"],"banque":["m","on","l","a"],"invite":{"audio":"mon","libelle":"la syllabe"}},{"cible":["s","on"],"banque":["s","on","m","i"],"invite":{"audio":"son","libelle":"la syllabe"}},{"cible":["l","an"],"banque":["l","an","ch","on"],"invite":{"audio":"lan","libelle":"la syllabe"}},{"cible":["m","an"],"banque":["m","an","ch","i"],"invite":{"audio":"man","libelle":"la syllabe"}},{"cible":["l","ou"],"banque":["l","ou","t","in"],"invite":{"audio":"lou","libelle":"la syllabe"}},{"cible":["m","ou"],"banque":["m","ou","l","in"],"invite":{"audio":"mou","libelle":"la syllabe"}}],"id":"3.3"},{"type":"lecture","competence":"lecture","titre":"Je lis des syllabes","consigne":"Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.","questions":[{"texte":"pou","audio":"pou"},{"texte":"chi","audio":"chi"},{"texte":"lan","audio":"lan"},{"texte":"sou","audio":"sou"},{"texte":"son","audio":"son"},{"texte":"lin","audio":"lin"},{"texte":"pin","audio":"pin"},{"texte":"man","audio":"man"}],"id":"3.4"},{"type":"dictee","competence":"encodage","titre":"J'écris des syllabes","consigne":"Écoute la syllabe et compose-la avec les lettres.","questions":[{"mot":"pin","invite":{"audio":"pin","libelle":"la syllabe"}},{"mot":"pou","invite":{"audio":"pou","libelle":"la syllabe"}},{"mot":"cha","invite":{"audio":"cha","libelle":"la syllabe"}},{"mot":"sou","invite":{"audio":"sou","libelle":"la syllabe"}},{"mot":"ton","invite":{"audio":"ton","libelle":"la syllabe"}},{"mot":"lan","invite":{"audio":"lan","libelle":"la syllabe"}}],"id":"3.5"},{"type":"lecture","competence":"lecture","titre":"Je lis des mots","consigne":"Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.","questions":[{"texte":"mouton","syllabes":["mou","ton"],"audio":"mouton"},{"texte":"poule","syllabes":["pou","le"],"audio":"poule"},{"texte":"lapin","syllabes":["la","pin"],"audio":"lapin"},{"texte":"moulin","syllabes":["mou","lin"],"audio":"moulin"},{"texte":"chemin","syllabes":["che","min"],"audio":"chemin"},{"texte":"sapin","syllabes":["sa","pin"],"audio":"sapin"},{"texte":"dimanche","syllabes":["di","man","che"],"audio":"dimanche"},{"texte":"mandarine","syllabes":["man","da","ri","ne"],"audio":"mandarine"}],"id":"3.6"},{"type":"choix","competence":"lecture","titre":"Les mots à retenir","consigne":"Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.","questions":[{"invite":{"audio":"dans","libelle":"le mot"},"reponse":"dans","choix":["dans","mais","et"]},{"invite":{"audio":"sur","libelle":"le mot"},"reponse":"sur","choix":["sur","pour","il"]},{"invite":{"audio":"je","libelle":"le mot"},"reponse":"je","choix":["je","sur","tu"]},{"invite":{"audio":"tu","libelle":"le mot"},"reponse":"tu","choix":["tu","je","avec"]}],"id":"3.7"},{"type":"choix","competence":"comprehension","titre":"Je lis et je comprends","consigne":"Lis le mot, puis dis ce que c'est.","questions":[{"invite":{"texte":"mouton","syllabes":["mou","ton"]},"reponse":"un animal","choix":["un animal","un lieu","un temps"]},{"invite":{"texte":"poule","syllabes":["pou","le"]},"reponse":"un animal","choix":["un animal","un art","un temps"]},{"invite":{"texte":"lapin","syllabes":["la","pin"]},"reponse":"un animal","choix":["un animal","un lieu","une plante"]},{"invite":{"texte":"moulin","syllabes":["mou","lin"]},"reponse":"un objet","choix":["un objet","un lieu","un temps"]},{"invite":{"texte":"chemin","syllabes":["che","min"]},"reponse":"un lieu","choix":["un lieu","un temps","un animal"]},{"invite":{"texte":"sapin","syllabes":["sa","pin"]},"reponse":"une plante","choix":["une plante","un aliment","un lieu"]},{"invite":{"texte":"dimanche","syllabes":["di","man","che"]},"reponse":"un temps","choix":["un temps","une musique","un aliment"]}],"id":"3.8"},{"type":"sequence","competence":"code","titre":"Je remets les syllabes en ordre","consigne":"Écoute le mot, puis remets ses syllabes dans l'ordre.","questions":[{"cible":["mou","ton"],"banque":["mou","ton","po"],"invite":{"audio":"mouton","libelle":"le mot"}},{"cible":["pou","le"],"banque":["pou","le","po"],"invite":{"audio":"poule","libelle":"le mot"}},{"cible":["la","pin"],"banque":["la","pin","tu"],"invite":{"audio":"lapin","libelle":"le mot"}},{"cible":["mou","lin"],"banque":["mou","lin","po"],"invite":{"audio":"moulin","libelle":"le mot"}},{"cible":["che","min"],"banque":["che","min","po"],"invite":{"audio":"chemin","libelle":"le mot"}},{"cible":["sa","pin"],"banque":["sa","pin","ri"],"invite":{"audio":"sapin","libelle":"le mot"}}],"id":"3.9"},{"type":"dictee","competence":"encodage","titre":"J'écris des mots","consigne":"Écoute le mot et écris-le, lettre après lettre. Les deux derniers sont des mots des paliers précédents.","questions":[{"mot":"mouton","invite":{"audio":"mouton","libelle":"le mot"}},{"mot":"poule","invite":{"audio":"poule","libelle":"le mot"}},{"mot":"lapin","invite":{"audio":"lapin","libelle":"le mot"}},{"mot":"moulin","invite":{"audio":"moulin","libelle":"le mot"}},{"mot":"chemin","invite":{"audio":"chemin","libelle":"le mot"}},{"mot":"rame","invite":{"audio":"rame","libelle":"le mot"}},{"mot":"ami","invite":{"audio":"ami","libelle":"le mot"}}],"id":"3.10"},{"type":"trace","competence":"ecriture","titre":"Je trace les nouvelles lettres","consigne":"Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.","questions":[{"glyphes":["c"]},{"glyphes":["h"]},{"glyphes":["é"]},{"glyphes":["è"]},{"glyphes":["m","o","u","t","o","n"]}],"id":"3.11"}]},{"n":4,"niveau":"A1","titre":"Les dernières consonnes, les sons oi, au, ai","resume":"v, f, b, j, c, g, puis oi, au, eau, ai. Presque toute la langue écrite devient lisible.","seuil":60,"graphemes":["v","f","b","j","c","g","oi","au","eau","ai","ei","è","ê","â"],"exercices":[{"type":"choix","competence":"phonologie","titre":"J'entends le son « oi »","consigne":"Écoute chaque mot. Entends-tu le son « oi » ? Réponds oui ou non.","questions":[{"invite":{"audio":"voiture","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"boisson","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"poire","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"bateau","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"banane","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"jardin","libelle":"le mot"},"reponse":"non","choix":["non","oui"]}],"id":"4.1"},{"type":"choix","competence":"code","titre":"Quelle lettre entends-tu au début ?","consigne":"Écoute la syllabe, puis touche la lettre par laquelle elle commence.","questions":[{"invite":{"audio":"jo","libelle":"la syllabe"},"reponse":"j","choix":["j","b","m"]},{"invite":{"audio":"sau","libelle":"la syllabe"},"reponse":"s","choix":["s","g","p"]},{"invite":{"audio":"fa","libelle":"la syllabe"},"reponse":"f","choix":["f","m","s"]},{"invite":{"audio":"moi","libelle":"la syllabe"},"reponse":"m","choix":["m","b","s"]},{"invite":{"audio":"va","libelle":"la syllabe"},"reponse":"v","choix":["v","j","t"]},{"invite":{"audio":"vi","libelle":"la syllabe"},"reponse":"v","choix":["v","t","j"]}],"id":"4.2"},{"type":"sequence","competence":"code","titre":"J'assemble une syllabe","consigne":"Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.","questions":[{"cible":["v","i"],"banque":["v","i","b","a"],"invite":{"audio":"vi","libelle":"la syllabe"}},{"cible":["b","a"],"banque":["b","a","v","i"],"invite":{"audio":"ba","libelle":"la syllabe"}},{"cible":["g","a"],"banque":["g","a","m","eau"],"invite":{"audio":"ga","libelle":"la syllabe"}},{"cible":["b","eau"],"banque":["b","eau","p","oi"],"invite":{"audio":"beau","libelle":"la syllabe"}},{"cible":["m","oi"],"banque":["m","oi","f","a"],"invite":{"audio":"moi","libelle":"la syllabe"}},{"cible":["b","i"],"banque":["b","i","s","a"],"invite":{"audio":"bi","libelle":"la syllabe"}}],"id":"4.3"},{"type":"lecture","competence":"lecture","titre":"Je lis des syllabes","consigne":"Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.","questions":[{"texte":"vi","audio":"vi"},{"texte":"loi","audio":"loi"},{"texte":"toi","audio":"toi"},{"texte":"bi","audio":"bi"},{"texte":"peau","audio":"peau"},{"texte":"jo","audio":"jo"},{"texte":"moi","audio":"moi"},{"texte":"fo","audio":"fo"}],"id":"4.4"},{"type":"dictee","competence":"encodage","titre":"J'écris des syllabes","consigne":"Écoute la syllabe et compose-la avec les lettres.","questions":[{"mot":"ba","invite":{"audio":"ba","libelle":"la syllabe"}},{"mot":"ga","invite":{"audio":"ga","libelle":"la syllabe"}},{"mot":"beau","invite":{"audio":"beau","libelle":"la syllabe"}},{"mot":"loi","invite":{"audio":"loi","libelle":"la syllabe"}},{"mot":"toi","invite":{"audio":"toi","libelle":"la syllabe"}},{"mot":"va","invite":{"audio":"va","libelle":"la syllabe"}}],"id":"4.5"},{"type":"lecture","competence":"lecture","titre":"Je lis des mots","consigne":"Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.","questions":[{"texte":"bateau","syllabes":["ba","teau"],"audio":"bateau","picto":"bateau"},{"texte":"voiture","syllabes":["voi","tu","re"],"audio":"voiture"},{"texte":"gâteau","syllabes":["gâ","teau"],"audio":"gâteau"},{"texte":"chapeau","syllabes":["cha","peau"],"audio":"chapeau","picto":"chapeau"},{"texte":"jardin","syllabes":["jar","din"],"audio":"jardin"},{"texte":"table","syllabes":["ta","ble"],"audio":"table","picto":"table"},{"texte":"livre","syllabes":["li","vre"],"audio":"livre","picto":"livre"},{"texte":"robe","syllabes":["ro","be"],"audio":"robe","picto":"robe"}],"id":"4.6"},{"type":"choix","competence":"lecture","titre":"Les mots à retenir","consigne":"Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.","questions":[{"invite":{"audio":"avec","libelle":"le mot"},"reponse":"avec","choix":["avec","sur","pour"]},{"invite":{"audio":"pour","libelle":"le mot"},"reponse":"pour","choix":["pour","est","nous sommes"]},{"invite":{"audio":"c'est","libelle":"le mot"},"reponse":"c'est","choix":["c'est","un","les"]},{"invite":{"audio":"il y a","libelle":"le mot"},"reponse":"il y a","choix":["il y a","pour","est"]}],"id":"4.7"},{"type":"choix","competence":"comprehension","choixPicto":true,"titre":"Je lis et je choisis l'image","consigne":"Lis le mot sans l'écouter, puis touche l'image qui lui correspond.","questions":[{"invite":{"texte":"bateau","syllabes":["ba","teau"]},"reponse":"bateau","choix":["bateau","table","ballon"]},{"invite":{"texte":"chapeau","syllabes":["cha","peau"]},"reponse":"chapeau","choix":["chapeau","ballon","livre"]},{"invite":{"texte":"table","syllabes":["ta","ble"]},"reponse":"table","choix":["table","banane","bateau"]},{"invite":{"texte":"livre","syllabes":["li","vre"]},"reponse":"livre","choix":["livre","bateau","chapeau"]},{"invite":{"texte":"robe","syllabes":["ro","be"]},"reponse":"robe","choix":["robe","ballon","bateau"]},{"invite":{"texte":"ballon","syllabes":["bal","lon"]},"reponse":"ballon","choix":["ballon","table","bateau"]}],"id":"4.8"},{"type":"sequence","competence":"code","titre":"Je remets les syllabes en ordre","consigne":"Écoute le mot, puis remets ses syllabes dans l'ordre.","questions":[{"cible":["ba","teau"],"banque":["ba","teau","tu"],"invite":{"audio":"bateau","libelle":"le mot","picto":"bateau"}},{"cible":["voi","tu","re"],"banque":["voi","tu","re","po"],"invite":{"audio":"voiture","libelle":"le mot"}},{"cible":["gâ","teau"],"banque":["gâ","teau","ri"],"invite":{"audio":"gâteau","libelle":"le mot"}},{"cible":["cha","peau"],"banque":["cha","peau","ri"],"invite":{"audio":"chapeau","libelle":"le mot","picto":"chapeau"}},{"cible":["jar","din"],"banque":["jar","din","po"],"invite":{"audio":"jardin","libelle":"le mot"}},{"cible":["ta","ble"],"banque":["ta","ble","ri"],"invite":{"audio":"table","libelle":"le mot","picto":"table"}}],"id":"4.9"},{"type":"dictee","competence":"encodage","titre":"J'écris des mots","consigne":"Écoute le mot et écris-le, lettre après lettre. Les deux derniers sont des mots des paliers précédents.","questions":[{"mot":"bateau","invite":{"audio":"bateau","libelle":"le mot"}},{"mot":"voiture","invite":{"audio":"voiture","libelle":"le mot"}},{"mot":"gâteau","invite":{"audio":"gâteau","libelle":"le mot"}},{"mot":"chapeau","invite":{"audio":"chapeau","libelle":"le mot"}},{"mot":"jardin","invite":{"audio":"jardin","libelle":"le mot"}},{"mot":"tulipe","invite":{"audio":"tulipe","libelle":"le mot"}},{"mot":"poule","invite":{"audio":"poule","libelle":"le mot"}}],"id":"4.10"},{"type":"trace","competence":"ecriture","titre":"Je trace les nouvelles lettres","consigne":"Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.","questions":[{"glyphes":["v"]},{"glyphes":["f"]},{"glyphes":["b"]},{"glyphes":["j"]},{"glyphes":["g"]},{"glyphes":["b","a","t","e","a","u"]}],"id":"4.11"}]},{"n":5,"niveau":"A1","titre":"Les sons plus rares, les lettres muettes","resume":"eu, gn, ill, qu, ge, s entre deux voyelles, et ces lettres finales qu'on écrit sans les entendre.","seuil":60,"graphemes":["eu","gn","ill","qu","ph","z","y","ien","oin","ge","gi","ss","h","x","k","w","t#","s#","d#","x#"],"exercices":[{"type":"choix","competence":"phonologie","titre":"J'entends le son « eu »","consigne":"Écoute chaque mot. Entends-tu le son « eu » ? Réponds oui ou non.","questions":[{"invite":{"audio":"fleur","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"feuille","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"deux","libelle":"le mot"},"reponse":"oui","choix":["oui","non"]},{"invite":{"audio":"chaise","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"musique","libelle":"le mot"},"reponse":"non","choix":["non","oui"]},{"invite":{"audio":"orange","libelle":"le mot"},"reponse":"non","choix":["non","oui"]}],"id":"5.1"},{"type":"choix","competence":"code","titre":"Quelle lettre entends-tu au début ?","consigne":"Écoute la syllabe, puis touche la lettre par laquelle elle commence.","questions":[{"invite":{"audio":"zo","libelle":"la syllabe"},"reponse":"z","choix":["z","d","qu"]},{"invite":{"audio":"leu","libelle":"la syllabe"},"reponse":"l","choix":["l","d","m"]},{"invite":{"audio":"jeu","libelle":"la syllabe"},"reponse":"j","choix":["j","f","ph"]},{"invite":{"audio":"gna","libelle":"la syllabe"},"reponse":"gn","choix":["gn","f","p"]},{"invite":{"audio":"qui","libelle":"la syllabe"},"reponse":"qu","choix":["qu","s","d"]},{"invite":{"audio":"meu","libelle":"la syllabe"},"reponse":"m","choix":["m","d","qu"]}],"id":"5.2"},{"type":"sequence","competence":"code","titre":"J'assemble une syllabe","consigne":"Écoute la syllabe, puis mets la consonne et la voyelle dans le bon ordre.","questions":[{"cible":["gn","o"],"banque":["gn","o","qu","a"],"invite":{"audio":"gno","libelle":"la syllabe"}},{"cible":["gn","a"],"banque":["gn","a","d","o"],"invite":{"audio":"gna","libelle":"la syllabe"}},{"cible":["l","eu"],"banque":["l","eu","gn","a"],"invite":{"audio":"leu","libelle":"la syllabe"}},{"cible":["ph","o"],"banque":["ph","o","qu","a"],"invite":{"audio":"pho","libelle":"la syllabe"}},{"cible":["m","eu"],"banque":["m","eu","p","i"],"invite":{"audio":"meu","libelle":"la syllabe"}},{"cible":["qu","i"],"banque":["qu","i","f","o"],"invite":{"audio":"qui","libelle":"la syllabe"}}],"id":"5.3"},{"type":"lecture","competence":"lecture","titre":"Je lis des syllabes","consigne":"Lis chaque syllabe à voix haute, puis écoute pour vérifier. Sois honnête avec toi-même : c'est ainsi qu'on progresse.","questions":[{"texte":"zo","audio":"zo"},{"texte":"pho","audio":"pho"},{"texte":"gno","audio":"gno"},{"texte":"deu","audio":"deu"},{"texte":"qua","audio":"qua"},{"texte":"meu","audio":"meu"},{"texte":"gna","audio":"gna"},{"texte":"feu","audio":"feu"}],"id":"5.4"},{"type":"dictee","competence":"encodage","titre":"J'écris des syllabes","consigne":"Écoute la syllabe et compose-la avec les lettres.","questions":[{"mot":"gno","invite":{"audio":"gno","libelle":"la syllabe"}},{"mot":"peu","invite":{"audio":"peu","libelle":"la syllabe"}},{"mot":"qua","invite":{"audio":"qua","libelle":"la syllabe"}},{"mot":"deu","invite":{"audio":"deu","libelle":"la syllabe"}},{"mot":"gna","invite":{"audio":"gna","libelle":"la syllabe"}},{"mot":"meu","invite":{"audio":"meu","libelle":"la syllabe"}}],"id":"5.5"},{"type":"lecture","competence":"lecture","titre":"Je lis des mots","consigne":"Les syllabes sont de deux couleurs : lis-les l'une après l'autre, puis le mot entier.","questions":[{"texte":"fleur","syllabes":["fleur"],"audio":"fleur","picto":"fleur"},{"texte":"soleil","syllabes":["so","leil"],"audio":"soleil","picto":"soleil"},{"texte":"étoile","syllabes":["é","toi","le"],"audio":"étoile","picto":"étoile"},{"texte":"poisson","syllabes":["pois","son"],"audio":"poisson","picto":"poisson"},{"texte":"feuille","syllabes":["feu","ille"],"audio":"feuille"},{"texte":"montagne","syllabes":["mon","ta","gne"],"audio":"montagne"},{"texte":"musique","syllabes":["mu","si","que"],"audio":"musique"},{"texte":"rose","syllabes":["ro","se"],"audio":"rose"}],"id":"5.6"},{"type":"choix","competence":"lecture","titre":"Les mots à retenir","consigne":"Ces petits mots reviennent sans cesse et ne se déchiffrent pas toujours : on les reconnaît d'un coup d'œil. Écoute, puis touche le bon.","questions":[{"invite":{"audio":"les","libelle":"le mot"},"reponse":"les","choix":["les","nous sommes","tu"]},{"invite":{"audio":"elles","libelle":"le mot"},"reponse":"elles","choix":["elles","tu","est"]},{"invite":{"audio":"ils","libelle":"le mot"},"reponse":"ils","choix":["ils","est","un"]},{"invite":{"audio":"et","libelle":"le mot"},"reponse":"et","choix":["et","il est","nous sommes"]},{"invite":{"audio":"mais","libelle":"le mot"},"reponse":"mais","choix":["mais","est","avec"]}],"id":"5.7"},{"type":"choix","competence":"comprehension","choixPicto":true,"titre":"Je lis et je choisis l'image","consigne":"Lis le mot sans l'écouter, puis touche l'image qui lui correspond.","questions":[{"invite":{"texte":"fleur","syllabes":["fleur"]},"reponse":"fleur","choix":["fleur","chat","lit"]},{"invite":{"texte":"soleil","syllabes":["so","leil"]},"reponse":"soleil","choix":["soleil","étoile","lit"]},{"invite":{"texte":"étoile","syllabes":["é","toi","le"]},"reponse":"étoile","choix":["étoile","fleur","sac"]},{"invite":{"texte":"poisson","syllabes":["pois","son"]},"reponse":"poisson","choix":["poisson","maison","lit"]},{"invite":{"texte":"chaise","syllabes":["chai","se"]},"reponse":"chaise","choix":["chaise","orange","soleil"]},{"invite":{"texte":"maison","syllabes":["mai","son"]},"reponse":"maison","choix":["maison","chat","étoile"]}],"id":"5.8"},{"type":"sequence","competence":"code","titre":"Je remets les syllabes en ordre","consigne":"Écoute le mot, puis remets ses syllabes dans l'ordre.","questions":[{"cible":["so","leil"],"banque":["so","leil","tu"],"invite":{"audio":"soleil","libelle":"le mot","picto":"soleil"}},{"cible":["é","toi","le"],"banque":["é","toi","le","ri"],"invite":{"audio":"étoile","libelle":"le mot","picto":"étoile"}},{"cible":["pois","son"],"banque":["pois","son","ri"],"invite":{"audio":"poisson","libelle":"le mot","picto":"poisson"}},{"cible":["feu","ille"],"banque":["feu","ille","ri"],"invite":{"audio":"feuille","libelle":"le mot"}},{"cible":["mon","ta","gne"],"banque":["mon","ta","gne","tu"],"invite":{"audio":"montagne","libelle":"le mot"}},{"cible":["mu","si","que"],"banque":["mu","si","que","tu"],"invite":{"audio":"musique","libelle":"le mot"}}],"id":"5.9"},{"type":"dictee","competence":"encodage","titre":"J'écris des mots","consigne":"Écoute le mot et écris-le, lettre après lettre. Les deux derniers sont des mots des paliers précédents.","questions":[{"mot":"fleur","invite":{"audio":"fleur","libelle":"le mot"}},{"mot":"soleil","invite":{"audio":"soleil","libelle":"le mot"}},{"mot":"étoile","invite":{"audio":"étoile","libelle":"le mot"}},{"mot":"poisson","invite":{"audio":"poisson","libelle":"le mot"}},{"mot":"feuille","invite":{"audio":"feuille","libelle":"le mot"}},{"mot":"dame","invite":{"audio":"dame","libelle":"le mot"}},{"mot":"minute","invite":{"audio":"minute","libelle":"le mot"}}],"id":"5.10"},{"type":"trace","competence":"ecriture","titre":"Je trace les nouvelles lettres","consigne":"Pars du point orange et suis le chemin d'un seul geste. Le dernier modèle est un mot entier.","questions":[{"glyphes":["q"]},{"glyphes":["k"]},{"glyphes":["w"]},{"glyphes":["x"]},{"glyphes":["y"]},{"glyphes":["z"]},{"glyphes":["f","l","e","u","r"]}],"id":"5.11"}]},{"n":6,"niveau":"A2","titre":"Je lis et j'écris des phrases","resume":"La phrase : majuscule et point, articles, genre et nombre, premiers verbes. L'entrée dans l'A2 écrit.","seuil":65,"graphemes":[],"exercices":[{"type":"sequence","competence":"phrases","titre":"Je remets la phrase en ordre","consigne":"Écoute la phrase, puis remets les mots dans l'ordre. Relis-la ensuite à voix haute.","questions":[{"cible":["Le","chat","est","sur","la","table"],"invite":{"audio":"Le chat est sur la table","libelle":"la phrase"}},{"cible":["Je","mange","une","banane"],"invite":{"audio":"Je mange une banane","libelle":"la phrase"}},{"cible":["La","fleur","est","dans","le","jardin"],"invite":{"audio":"La fleur est dans le jardin","libelle":"la phrase"}},{"cible":["Il","y","a","un","livre","sur","la","chaise"],"invite":{"audio":"Il y a un livre sur la chaise","libelle":"la phrase"}},{"cible":["Nous","habitons","à","Tours"],"invite":{"audio":"Nous habitons à Tours","libelle":"la phrase"}}],"id":"6.1"},{"type":"lecture","competence":"lecture","titre":"Je lis des phrases","consigne":"Lis chaque phrase à voix haute, d'un seul souffle, puis écoute pour vérifier.","questions":[{"texte":"Le chat est sur la table.","audio":"Le chat est sur la table"},{"texte":"Je mange une banane.","audio":"Je mange une banane"},{"texte":"La fleur est dans le jardin.","audio":"La fleur est dans le jardin"},{"texte":"Il y a un livre sur la chaise.","audio":"Il y a un livre sur la chaise"},{"texte":"Nous habitons à Tours.","audio":"Nous habitons à Tours"}],"id":"6.2"},{"type":"choix","competence":"grammaire","titre":"le, la, l'","consigne":"Choisis l'article qui convient.","questions":[{"invite":{"texte":"…  table","picto":"table"},"reponse":"la","choix":["la","le","l'"]},{"invite":{"texte":"…  livre","picto":"livre"},"reponse":"le","choix":["le","la","l'"]},{"invite":{"texte":"…  maison","picto":"maison"},"reponse":"la","choix":["la","le","l'"]},{"invite":{"texte":"…  bateau","picto":"bateau"},"reponse":"le","choix":["le","la","l'"]},{"invite":{"texte":"…  porte","picto":"porte"},"reponse":"la","choix":["la","le","l'"]},{"invite":{"texte":"…  vélo","picto":"vélo"},"reponse":"le","choix":["le","la","l'"]},{"invite":{"texte":"…  fleur","picto":"fleur"},"reponse":"la","choix":["la","le","l'"]},{"invite":{"texte":"…  pain","picto":"pain"},"reponse":"le","choix":["le","la","l'"]}],"id":"6.3"},{"type":"choix","competence":"grammaire","titre":"un ou une ?","consigne":"Masculin ou féminin ? Regarde l'image, écoute, puis choisis.","questions":[{"invite":{"texte":"…  table","picto":"table"},"reponse":"une","choix":["une","un"]},{"invite":{"texte":"…  livre","picto":"livre"},"reponse":"un","choix":["un","une"]},{"invite":{"texte":"…  chaise","picto":"chaise"},"reponse":"une","choix":["une","un"]},{"invite":{"texte":"…  bateau","picto":"bateau"},"reponse":"un","choix":["un","une"]},{"invite":{"texte":"…  étoile","picto":"étoile"},"reponse":"une","choix":["une","un"]},{"invite":{"texte":"…  arbre","picto":"arbre"},"reponse":"un","choix":["un","une"]},{"invite":{"texte":"…  orange","picto":"orange"},"reponse":"une","choix":["une","un"]},{"invite":{"texte":"…  poisson","picto":"poisson"},"reponse":"un","choix":["un","une"]}],"id":"6.4"},{"type":"choix","competence":"phrases","titre":"Majuscule et point","consigne":"Une phrase commence par une majuscule et se termine par un point.","questions":[{"invite":{"texte":"le chat dort"},"reponse":"Le chat dort.","choix":["Le chat dort.","le chat dort.","Le chat dort"]},{"invite":{"texte":"je vais à tours"},"reponse":"Je vais à Tours.","choix":["Je vais à Tours.","je vais à tours.","Je vais à Tours"]},{"invite":{"texte":"elle mange une orange"},"reponse":"Elle mange une orange.","choix":["Elle mange une orange.","elle mange une orange.","Elle mange une orange"]},{"invite":{"texte":"il fait beau"},"reponse":"Il fait beau.","choix":["Il fait beau.","il fait beau.","Il fait beau"]},{"invite":{"texte":"nous sommes lundi"},"reponse":"Nous sommes lundi.","choix":["Nous sommes lundi.","nous sommes lundi.","Nous sommes lundi"]},{"invite":{"texte":"tu lis un livre"},"reponse":"Tu lis un livre.","choix":["Tu lis un livre.","tu lis un livre.","Tu lis un livre"]}],"id":"6.5"},{"type":"choix","competence":"grammaire","titre":"Un seul ou plusieurs ?","consigne":"Mets le groupe au pluriel. Le « s » s'écrit mais ne s'entend pas.","questions":[{"invite":{"texte":"le chat","audio":"les chats","libelle":"au pluriel"},"reponse":"les chats","choix":["les chats","les chat","le chats"]},{"invite":{"texte":"une fleur","audio":"des fleurs","libelle":"au pluriel"},"reponse":"des fleurs","choix":["des fleurs","des fleur","une fleurs"]},{"invite":{"texte":"le livre","audio":"les livres","libelle":"au pluriel"},"reponse":"les livres","choix":["les livres","les livre","le livres"]},{"invite":{"texte":"une table","audio":"des tables","libelle":"au pluriel"},"reponse":"des tables","choix":["des tables","des table","une tables"]},{"invite":{"texte":"le vélo","audio":"les vélos","libelle":"au pluriel"},"reponse":"les vélos","choix":["les vélos","les vélo","le vélos"]},{"invite":{"texte":"une porte","audio":"des portes","libelle":"au pluriel"},"reponse":"des portes","choix":["des portes","des porte","une portes"]}],"id":"6.6"},{"type":"choix","competence":"grammaire","titre":"Le verbe être","consigne":"Complète avec la bonne forme du verbe être.","questions":[{"invite":{"texte":"Je  …  à Tours"},"reponse":"suis","choix":["suis","es","est"]},{"invite":{"texte":"Tu  …  à Tours"},"reponse":"es","choix":["es","suis","est"]},{"invite":{"texte":"Il  …  à Tours"},"reponse":"est","choix":["est","suis","es"]},{"invite":{"texte":"Nous  …  à Tours"},"reponse":"sommes","choix":["sommes","suis","es"]},{"invite":{"texte":"Vous  …  à Tours"},"reponse":"êtes","choix":["êtes","suis","es"]},{"invite":{"texte":"Elles  …  à Tours"},"reponse":"sont","choix":["sont","suis","es"]}],"id":"6.7"},{"type":"dictee","competence":"encodage","titre":"J'écris des mots plus longs","consigne":"Écoute et écris. Prends ton temps, syllabe après syllabe.","questions":[{"mot":"maison","invite":{"audio":"maison","libelle":"le mot"}},{"mot":"bateau","invite":{"audio":"bateau","libelle":"le mot"}},{"mot":"chapeau","invite":{"audio":"chapeau","libelle":"le mot"}},{"mot":"montagne","invite":{"audio":"montagne","libelle":"le mot"}},{"mot":"musique","invite":{"audio":"musique","libelle":"le mot"}},{"mot":"orange","invite":{"audio":"orange","libelle":"le mot"}}],"id":"6.8"},{"type":"trace","competence":"ecriture","titre":"J'écris une majuscule et des mots","consigne":"Les noms de villes prennent une majuscule. Elle se trace trait par trait.","questions":[{"glyphes":["T","o","u","r","s"]},{"glyphes":["m","e","r","c","i"]},{"glyphes":["b","o","n","j","o","u","r"]}],"id":"6.9"},{"type":"choix","competence":"phrases","titre":"Je valide mon A2","consigne":"Dix questions. C'est la dernière étape du parcours.","questions":[{"invite":{"texte":"…  maison","picto":"maison"},"reponse":"la","choix":["la","le","l'"]},{"invite":{"texte":"…  livre","picto":"livre"},"reponse":"un","choix":["un","une"]},{"invite":{"texte":"le chat"},"reponse":"les chats","choix":["les chats","le chats","les chat"]},{"invite":{"texte":"je vais à tours"},"reponse":"Je vais à Tours.","choix":["Je vais à Tours.","je vais à Tours","Je vais à tours"]},{"invite":{"texte":"Nous  …  à l'école"},"reponse":"sommes","choix":["sommes","est","suis"]},{"invite":{"texte":"…  étoile","picto":"etoile"},"reponse":"une","choix":["une","un"]},{"invite":{"texte":"Tu  …  ton nom"},"reponse":"écris","choix":["écris","écrit","écrire"]},{"invite":{"texte":"une fleur"},"reponse":"des fleurs","choix":["des fleurs","des fleur","les fleur"]},{"invite":{"audio":"Le chat est sur la table","libelle":"la phrase"},"reponse":"Le chat est sur la table.","choix":["Le chat est sur la table.","le chat est sur la table","Le chat est sur la table"]},{"invite":{"texte":"Elle  …  une orange"},"reponse":"mange","choix":["mange","manges","mangent"]}],"id":"6.10"}]}]};
+
+/* ------------------------------------------------------------- outils */
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const SVGNS = "http://www.w3.org/2000/svg";
+function svgEl(n, attrs) {
+  const e = document.createElementNS(SVGNS, n);
+  for (const k in (attrs || {})) e.setAttribute(k, attrs[k]);
+  return e;
+}
+function el(tag, cls, txt) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (txt !== undefined) e.textContent = txt;
+  return e;
+}
+const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
+function demander(m) { try { return window.confirm(m); } catch (e) { return true; } }
+function melanger(a) { const t = a.slice(); for (let i = t.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[t[i], t[j]] = [t[j], t[i]]; } return t; }
+let minuteurToast;
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.classList.add("vu");
+  clearTimeout(minuteurToast); minuteurToast = setTimeout(() => t.classList.remove("vu"), 2600);
+}
+
+/* ------------------------------------------------------------ pictogrammes
+   Dessins au trait, embarqués : aucune image à télécharger.              */
+const PICTOS = {
+  maison: "M14,54 L50,20 L86,54 M24,48 L24,86 L76,86 L76,48 M42,86 L42,62 L58,62 L58,86",
+  arbre: "M50,88 L50,54 M50,54 C28,54 20,40 32,30 C34,16 54,10 62,20 C78,18 84,38 70,46 C70,54 60,57 50,54 M50,68 L38,58 M50,74 L62,62",
+  soleil: "M50,30 A20,20 0 1,0 50,70 A20,20 0 1,0 50,30 M50,8 L50,18 M50,82 L50,92 M8,50 L18,50 M82,50 L92,50 M20,20 L28,28 M72,72 L80,80 M80,20 L72,28 M28,72 L20,80",
+  lune: "M64,14 A36,36 0 1,0 64,86 A48,48 0 0,1 64,14 Z",
+  chat: "M28,42 L32,20 L46,32 M72,42 L68,20 L54,32 M50,28 C70,28 80,44 80,58 C80,75 67,86 50,86 C33,86 20,75 20,58 C20,44 30,28 50,28 M40,52 L40,58 M60,52 L60,58 M50,64 L46,68 M50,64 L54,68 M14,58 L34,61 M14,70 L34,66 M86,58 L66,61 M86,70 L66,66",
+  poisson: "M18,50 C32,30 62,30 74,50 C62,70 32,70 18,50 Z|M74,50 L90,36 L90,64 Z|M29,44 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0",
+  livre: "M50,28 C40,22 24,22 16,26 L16,76 C24,72 40,72 50,78 C60,72 76,72 84,76 L84,26 C76,22 60,22 50,28 Z M50,28 L50,78",
+  porte: "M26,14 L74,14 L74,90 L26,90 Z|M60.5,54 a3.5,3.5 0 1,0 7.0,0 a3.5,3.5 0 1,0 -7.0,0",
+  tasse: "M24,34 L24,66 C24,77 33,84 44,84 L56,84 C67,84 76,77 76,66 L76,34 Z M76,44 L86,44 C94,44 94,62 86,62 L76,62 M36,24 C36,18 42,18 42,12 M52,24 C52,18 58,18 58,12",
+  cle: "M49,36 a15,15 0 1,0 30,0 a15,15 0 1,0 -30,0|M53,47 L20,80 M26,74 L35,83 M35,65 L44,74",
+  velo: "M9,68 a17,17 0 1,0 34,0 a17,17 0 1,0 -34,0|M57,68 a17,17 0 1,0 34,0 a17,17 0 1,0 -34,0|M26,68 L46,68 M46,68 L58,40 M46,68 L64,40 M64,40 L74,68 M50,40 L60,40 M64,40 L72,36 M68,32 L76,36",
+  table: "M12,44 L88,44 L88,51 L12,51 Z M22,51 L22,84 M78,51 L78,84",
+  bateau: "M20,58 L80,58 L68,82 L32,82 Z|M50,58 L50,14|M54,20 L74,50 L54,50 Z",
+  etoile: "M50.0,16.0 L58.8,39.9 L84.2,40.9 L64.3,56.6 L71.2,81.1 L50.0,67.0 L28.8,81.1 L35.7,56.6 L15.8,40.9 L41.2,39.9 Z",
+  pain: "M20,58 C20,40 80,40 80,58 C80,73 67,80 50,80 C33,80 20,73 20,58 Z M34,48 L27,64 M46,46 L39,64 M58,46 L51,64 M70,48 L63,64",
+  pomme: "M50,34 C39,25 22,32 22,50 C22,69 37,86 50,86 C63,86 78,69 78,50 C78,32 61,25 50,34 M50,34 L50,20 M50,24 C57,15 68,15 70,10",
+  fleur: "M50.0,46.0 C29.0,16.0 71.0,16.0 50.0,46.0|M50.0,46.0 C65.5,12.8 86.5,49.2 50.0,46.0|M50.0,46.0 C86.5,42.8 65.5,79.2 50.0,46.0|M50.0,46.0 C71.0,76.0 29.0,76.0 50.0,46.0|M50.0,46.0 C34.5,79.2 13.5,42.8 50.0,46.0|M50.0,46.0 C13.5,49.2 34.5,12.8 50.0,46.0|M42,46 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0|M50,78 L50,94 M50,88 C43,86 39,81 38,76",
+  ballon: "M20,50 a30,30 0 1,0 60,0 a30,30 0 1,0 -60,0|M50,20 C34,34 34,66 50,80 M50,20 C66,34 66,66 50,80 M20,50 L80,50",
+  banane: "M20,38 C22,66 46,86 72,82 C86,80 88,68 78,66 C56,70 38,56 34,36 C32,28 20,30 20,38 Z|M20,38 C18,34 14,32 12,34",
+  lit: "M12,78 L12,56 L88,56 L88,78|M12,66 L88,66|M18,56 C18,47 36,47 36,56|M12,56 L12,38|M88,56 L88,46",
+  sac: "M28,40 L72,40 L78,84 L22,84 Z|M40,40 C40,24 60,24 60,40",
+  robe: "M36,18 L64,18 L70,34 L62,38 L70,84 L30,84 L38,38 L30,34 Z|M36,18 C42,26 58,26 64,18",
+  mur: "M14,30 L86,30 L86,78 L14,78 Z|M14,46 L86,46 M14,62 L86,62|M38,30 L38,46 M62,30 L62,46|M26,46 L26,62 M50,46 L50,62 M74,46 L74,62|M38,62 L38,78 M62,62 L62,78",
+  feu: "M50,14 C62,32 74,40 74,56 C74,73 63,86 50,86 C37,86 26,73 26,56 C26,43 35,37 41,26 C44,37 47,43 51,40 C54,36 52,24 50,14 Z|M50,60 C56,66 56,76 50,80 C44,76 44,66 50,60 Z",
+  chapeau: "M14,68 C14,59 33,54 50,54 C67,54 86,59 86,68 C86,77 67,82 50,82 C33,82 14,77 14,68 Z|M34,64 L34,32 C34,22 66,22 66,32 L66,64",
+  orange: "M22,58 a28,28 0 1,0 56,0 a28,28 0 1,0 -56,0|M50,30 L50,22|M50,26 C58,16 70,18 74,12",
+  chaise: "M26,54 L74,54 L74,61 L26,61 Z|M26,54 L26,12 L34,12 L34,54|M26,26 L34,26|M30,61 L30,86 M70,61 L70,86"
+};
+const sansAccent = m => m.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+function picto(nom) {
+  const d = PICTOS[sansAccent(String(nom || "")).toLowerCase()];
+  if (!d) return null;
+  const s = svgEl("svg", { viewBox: "0 0 100 100", "aria-hidden": "true" });
+  d.split("|").forEach(p => s.appendChild(svgEl("path", { d: p })));
+  return s;
+}
+
+/* ----------------------------------------------------------------- coffre */
+const Coffre = (() => {
+  const habille = (o, nom, durable) => Object.assign(o, { nom, durable });
+  if (typeof window !== "undefined" && window.storage && typeof window.storage.get === "function") {
+    return habille({
+      async lire(k) { try { const r = await window.storage.get(k); return r ? JSON.parse(r.value) : null; } catch (e) { return null; } },
+      async ecrire(k, v) { await window.storage.set(k, JSON.stringify(v)); },
+      async retirer(k) { try { await window.storage.delete(k); } catch (e) { } }
+    }, "espace applicatif", true);
+  }
+  const idb = {
+    base: null,
+    ouvrir() {
+      return new Promise((ok, non) => {
+        let r; try { r = indexedDB.open("jecris-parcours", 1); } catch (e) { return non(e); }
+        r.onupgradeneeded = () => r.result.createObjectStore("kv");
+        r.onsuccess = () => ok(r.result); r.onerror = () => non(r.error);
+      });
+    },
+    async tx(mode, fn) {
+      if (!this.base) this.base = await this.ouvrir();
+      return new Promise((ok, non) => {
+        const t = this.base.transaction("kv", mode), rq = fn(t.objectStore("kv"));
+        rq.onsuccess = () => ok(rq.result); rq.onerror = () => non(rq.error);
+      });
+    }
+  };
+  const parIdb = {
+    async lire(k) { const v = await idb.tx("readonly", s => s.get(k)); return v === undefined ? null : v; },
+    async ecrire(k, v) { await idb.tx("readwrite", s => s.put(v, k)); },
+    async retirer(k) { await idb.tx("readwrite", s => s.delete(k)); }
+  };
+  const local = {
+    async lire(k) { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; },
+    async ecrire(k, v) { localStorage.setItem(k, JSON.stringify(v)); },
+    async retirer(k) { localStorage.removeItem(k); }
+  };
+  const vive = new Map();
+  const enMemoire = {
+    async lire(k) { return vive.has(k) ? JSON.parse(vive.get(k)) : null; },
+    async ecrire(k, v) { vive.set(k, JSON.stringify(v)); },
+    async retirer(k) { vive.delete(k); }
+  };
+  let choisi = null;
+  const proxy = {
+    nom: "…", durable: true,
+    async _resoudre() {
+      if (choisi) return choisi;
+      try { await parIdb.ecrire("jef.test", 1); await parIdb.retirer("jef.test"); choisi = habille(parIdb, "base locale (IndexedDB)", true); }
+      catch (e) {
+        try { await local.ecrire("jef.test", 1); await local.retirer("jef.test"); choisi = habille(local, "mémoire du navigateur", true); }
+        catch (e2) { choisi = habille(enMemoire, "mémoire vive (non conservée)", false); }
+      }
+      proxy.nom = choisi.nom; proxy.durable = choisi.durable; return choisi;
+    },
+    async lire(k) { return (await this._resoudre()).lire(k); },
+    async ecrire(k, v) { return (await this._resoudre()).ecrire(k, v); },
+    async retirer(k) { return (await this._resoudre()).retirer(k); }
+  };
+  return proxy;
+})();
+const CLE = { profils: "jef2.profils", parcours: c => "jef2.parcours." + c, dernier: "jef2.dernier", contenu: "jef2.contenu" };
+
+/* ------------------------------------------------------------------ son */
+let audio = null, voix = null, voixPrete = false;
+function chargerVoix() {
+  try {
+    const v = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+    voix = v.find(x => /^fr/i.test(x.lang)) || null;
+    voixPrete = v.length > 0;
+  } catch (e) { voix = null; }
+}
+if (window.speechSynthesis) { chargerVoix(); speechSynthesis.onvoiceschanged = chargerVoix; }
+const voixDisponible = () => !!voix;
+
+function dire(texte, libelle) {
+  if (!etat.profil || !etat.profil.reglages.son) { toast("Les sons sont coupés dans les réglages."); return; }
+  const phrase = (libelle ? libelle + " " : "") + texte;
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(phrase);
+    u.lang = "fr-FR"; u.rate = 0.82; u.pitch = 1;
+    if (voix) u.voice = voix;
+    speechSynthesis.speak(u);
+  } catch (e) { toast("La lecture à voix haute n'est pas disponible sur cet appareil."); }
+}
+function son(type) {
+  if (!etat.profil || !etat.profil.reglages.son) return;
+  try {
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    if (audio.state === "suspended") audio.resume();
+    const notes = type === "juste" ? [[660, 0], [880, .09]] : type === "fini" ? [[523, 0], [659, .1], [784, .2]] : [[280, 0]];
+    notes.forEach(([f, t]) => {
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.type = "sine"; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, audio.currentTime + t);
+      g.gain.exponentialRampToValueAtTime(0.1, audio.currentTime + t + .02);
+      g.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + t + .22);
+      o.connect(g); g.connect(audio.destination);
+      o.start(audio.currentTime + t); o.stop(audio.currentTime + t + .25);
+    });
+  } catch (e) { }
+}
+
+/* ---- moteur de tracé, identique à celui de l'application d'écriture ---- */
+
+const mesureur = svgEl("svg", { width: 0, height: 0, style: "position:absolute;left:-9999px;top:0" });
+const cheminMesure = svgEl("path");
+mesureur.appendChild(cheminMesure); document.body.appendChild(mesureur);
+const cacheTraits = new Map();
+
+function traitMesure(d) {
+  if (cacheTraits.has(d)) return cacheTraits.get(d);
+  cheminMesure.setAttribute("d", d);
+  const L = cheminMesure.getTotalLength();
+  const pts = [];
+  const pas = Math.max(1.6, L / 220);
+  for (let s = 0; s <= L; s += pas) { const p = cheminMesure.getPointAtLength(s); pts.push({ x: p.x, y: p.y }); }
+  const fin = cheminMesure.getPointAtLength(L); pts.push({ x: fin.x, y: fin.y });
+  const o = { d, L, pts, debut: pts[0], fin: pts[pts.length - 1] };
+  cacheTraits.set(d, o); return o;
+}
+
+function disposer(noms) {
+  const items = []; let x = 0, precedent = null;
+  noms.forEach((n, i) => {
+    const g = G[n]; if (!g) return;
+    const principal = traitMesure(g.t[0]);
+    const attache = !g.M && !g.g && precedent && !precedent.g.M && !precedent.g.g;
+    if (i > 0) {
+      x = attache
+        ? precedent.dx + precedent.principal.fin.x - principal.debut.x + 2
+        : precedent.dx + precedent.g.l + 8;
+    }
+    items.push({ nom: n, g, dx: x, principal });
+    precedent = items[items.length - 1];
+  });
+  const largeur = items.length ? items[items.length - 1].dx + items[items.length - 1].g.l : 100;
+  const traits = [];
+  items.forEach(it => it.g.t.forEach((d, i) => traits.push({ d, dx: it.dx, glyphe: it.nom, rang: i, mes: traitMesure(d) })));
+  return { items, largeur, traits };
+}
+
+function reglure(g, largeur, hauteur) {
+  const x0 = -16, x1 = largeur + 16;
+  for (let y = 0; y <= 200; y += 40)
+    g.appendChild(svgEl("line", { x1: x0, y1: y, x2: x1, y2: y, class: y === MET.ligneBase ? "ligne-base" : "ligne-seyes" }));
+  for (let x = 0; x <= largeur + 8; x += 40)
+    g.appendChild(svgEl("line", { x1: x, y1: 0, x2: x, y2: 200, class: "ligne-verticale" }));
+}
+
+function reechantillonner(pts, pas) {
+  if (pts.length < 2) return pts.slice();
+  const out = [pts[0]]; let reste = pas;
+  for (let i = 1; i < pts.length; i++) {
+    let a = out[out.length - 1], b = pts[i];
+    let d = Math.hypot(b.x - a.x, b.y - a.y);
+    while (d >= reste) {
+      const t = reste / d;
+      const np = { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t };
+      out.push(np); a = np; d = Math.hypot(b.x - a.x, b.y - a.y); reste = pas;
+    }
+    reste -= d;
+  }
+  return out;
+}
+
+function longueurPolyligne(p) {
+  let l = 0; for (let i = 1; i < p.length; i++) l += Math.hypot(p[i].x - p[i - 1].x, p[i].y - p[i - 1].y);
+  return l;
+}
+
+function lisser(p, k) {
+  if (p.length < 3) return p.slice();
+  const out = [];
+  for (let i = 0; i < p.length; i++) {
+    let sx = 0, sy = 0, n = 0;
+    for (let j = Math.max(0, i - k); j <= Math.min(p.length - 1, i + k); j++) { sx += p[j].x; sy += p[j].y; n++; }
+    out.push({ x: sx / n, y: sy / n });
+  }
+  return out;
+}
+
+function evaluerTrait(ref, brut, tol) {
+  // le doigt tremble : on lisse avant de juger
+  const user = lisser(reechantillonner(brut, 3.2), 2);
+  const lgRef = Math.max(1, longueurPolyligne(ref));
+
+  // point du i, accent, cedille : trop court pour juger d'un sens, on juge la place
+  if (lgRef < 30) {
+    const pts = brut.length ? brut : user;
+    let ux = 0, uy = 0; pts.forEach(p => { ux += p.x; uy += p.y; }); ux /= pts.length; uy /= pts.length;
+    let rx = 0, ry = 0; ref.forEach(p => { rx += p.x; ry += p.y; }); rx /= ref.length; ry /= ref.length;
+    const d = Math.hypot(ux - rx, uy - ry);
+    const place = clamp((tol * 1.8 - d) / (tol * 1.5), 0, 1);
+    return {
+      score: place >= 0.5 ? clamp(0.55 + 0.45 * place, 0, 1) : place * 0.4,
+      cause: place >= 0.5 ? "ok" : "place", forme: place, parcours: 1, sens: 1, couverture: 1
+    };
+  }
+  if (user.length < 4) return { score: 0, cause: "court", forme: 0, parcours: 0, sens: 0, couverture: 0 };
+  const lgUser = longueurPolyligne(user);
+
+  const tolLarge = tol * 1.15, carre = tolLarge * tolLarge;
+  const touche = new Array(ref.length).fill(false);
+  let somme = 0; const idxs = [];
+  for (const p of user) {
+    let meilleur = Infinity, bi = 0;
+    for (let i = 0; i < ref.length; i++) {
+      const dx = p.x - ref[i].x, dy = p.y - ref[i].y, d = dx * dx + dy * dy;
+      if (d < meilleur) { meilleur = d; bi = i; }
+      if (d < carre) touche[i] = true;
+    }
+    somme += Math.sqrt(meilleur); idxs.push(bi);
+  }
+  const moyenne = somme / user.length;
+
+  // rester sur le chemin
+  const forme = clamp((tol * 1.6 - moyenne) / (tol * 1.3), 0, 1);
+  // parcourir tout le modèle, du départ à l'arrivée
+  const couverture = touche.filter(Boolean).length / ref.length;
+  let iMin = idxs[0], iMax = idxs[0];
+  for (const i of idxs) { if (i < iMin) iMin = i; if (i > iMax) iMax = i; }
+  const avancee = iMax / Math.max(1, ref.length - 1);
+  const retenue = Math.min(couverture, avancee);
+  const parcours = clamp((retenue - 0.15) / 0.75, 0, 1);
+  const debutAtteint = iMin <= ref.length * 0.16;
+  // un seul mouvement, dans le bon sens : corrélation entre l'ordre du geste
+  // et l'avancée sur le modèle — robuste au tremblement du doigt
+  let sx = 0, sy = 0, sxy = 0, sxx = 0, syy = 0;
+  const n = idxs.length;
+  for (let i = 0; i < n; i++) { sx += i; sy += idxs[i]; sxy += i * idxs[i]; sxx += i * i; syy += idxs[i] * idxs[i]; }
+  const den = Math.sqrt(Math.max(1e-9, (n * sxx - sx * sx) * (n * syy - sy * sy)));
+  const rho = (n * sxy - sx * sy) / den;
+  const sens = clamp(rho, 0, 1);
+  // ne pas repasser dix fois sur le trait
+  const exces = clamp(1 - Math.max(0, lgUser / lgRef - 1.6) / 1.2, 0.4, 1);
+
+  // chaque critère est nécessaire : aucun ne rachète les autres
+  let score = forme * (0.25 + 0.75 * parcours) * (0.35 + 0.65 * sens) * exces;
+  let cause = "ok";
+  const inverse = rho < -0.25;
+  if (inverse) { score = Math.min(score, 0.25); cause = "inverse"; }
+  else if (!debutAtteint) { score = Math.min(score, 0.40); cause = "depart"; }
+  else if (retenue < 0.78) { score = Math.min(score, 0.40); cause = "incomplet"; }
+  else if (forme < 0.5) cause = "hors";
+  else if (sens < 0.7) cause = "sens";
+  else if (score < 0.42) cause = "tremble";
+  return { score: clamp(score, 0, 1), cause, forme, parcours, sens, couverture };
+}
+
+/* ------------------------------------------------------------------ état */
+const etat = { contenu: null, profils: [], profil: null, session: null, ecran: "connexion" };
+const TOLERANCES = { guide: 30, normal: 23, libre: 17 };
+const COULEURS = ["#E8501E", "#2E7D5B", "#2A5D7C", "#8E44AD", "#B93A10", "#4A5B6A"];
+const AL = "abcdefghijklmnopqrstuvwxyz".split("");
+
+function montrer(nom) {
+  etat.ecran = nom;
+  $$(".ecran").forEach(e => e.classList.toggle("actif", e.id === "ec-" + nom));
+  $("#barre").hidden = (nom === "connexion");
+  $("#puce-profil").hidden = !etat.profil;
+  window.scrollTo(0, 0);
+}
+const tousExos = () => etat.contenu.paliers.reduce((a, p) => a.concat(p.exercices.map(e => ({ e, p }))), []);
+const trouverExo = id => tousExos().find(x => x.e.id === id);
+const etatExo = id => (etat.profil.exos || {})[id];
+const faits = () => Object.values(etat.profil.exos || {}).filter(e => e.etoiles >= 1).length;
+
+function palierValide(n) {
+  const p = etat.contenu.paliers.find(x => x.n === n); if (!p) return false;
+  const st = p.exercices.map(e => etatExo(e.id));
+  if (st.some(s => !s || s.etoiles < 1)) return false;
+  const moy = st.reduce((a, s) => a + s.score, 0) / st.length;
+  return moy >= (p.seuil || 60);
+}
+function palierOuvert(n) {
+  if (n === 1) return true;
+  if (etat.profil.reglages.libre) return true;
+  return palierValide(n - 1);
+}
+function prochainExo() {
+  for (const p of etat.contenu.paliers) {
+    if (!palierOuvert(p.n)) continue;
+    const e = p.exercices.find(x => !etatExo(x.id)) || p.exercices.find(x => etatExo(x.id).etoiles < 3);
+    if (e) return e;
+  }
+  return etat.contenu.paliers[0].exercices[0];
+}
+
+/* --------------------------------------------------------------- badges */
+const BADGES = [
+  { id: "alphabet", nom: "Alphabet maîtrisé", txt: "Palier 1 validé.", test: () => palierValide(1) },
+  { id: "syllabes", nom: "Premières syllabes", txt: "Palier 2 validé.", test: () => palierValide(2) },
+  { id: "mots", nom: "Premiers mots", txt: "Palier 3 validé.", test: () => palierValide(3) },
+  { id: "a2", nom: "Passage en A2", txt: "Palier 4 validé.", test: () => palierValide(4) },
+  { id: "plume", nom: "Belle main", txt: "Huit tracés à trois étoiles.", test: () => tousExos().filter(x => x.e.type === "trace" && etatExo(x.e.id) && etatExo(x.e.id).etoiles === 3).length >= 8 },
+  { id: "oreille", nom: "Oreille fine", txt: "Six exercices d'écoute réussis.", test: () => tousExos().filter(x => x.e.competence === "ecoute" && etatExo(x.e.id) && etatExo(x.e.id).score >= 80).length >= 6 },
+  { id: "sansfaute", nom: "Sans une faute", txt: "Un exercice à 100 sur 100.", test: () => Object.values(etat.profil.exos || {}).some(s => s.score >= 100) },
+  { id: "vitesse", nom: "Alphabet éclair", txt: "L'alphabet en moins de 75 secondes.", test: () => etat.profil.chrono && etat.profil.chrono <= 75 },
+  { id: "complet", nom: "Parcours complet", txt: "Les 48 exercices réussis.", test: () => faits() >= tousExos().length }
+];
+
+/* -------------------------------------------------------------- profils */
+function genererCode(pris) {
+  const L = "ABCDEFGHJKLMNPRSTUVWXYZ";
+  for (let i = 0; i < 500; i++) {
+    const c = String(Math.floor(Math.random() * 900) + 100) + L[Math.floor(Math.random() * L.length)];
+    if (pris.indexOf(c) < 0) return c;
+  }
+  return String(Date.now()).slice(-3) + "Z";
+}
+function nouveauProfil(pseudo) {
+  return {
+    code: genererCode(etat.profils.map(p => p.code)), pseudo,
+    couleur: COULEURS[etat.profils.length % COULEURS.length],
+    cree: new Date().toISOString().slice(0, 10),
+    reglages: { texte: "normal", contraste: 0, son: 1, aide: "normal", libre: 0 },
+    exos: {}, badges: [], chrono: null
+  };
+}
+async function chargerProfils() { etat.profils = (await Coffre.lire(CLE.profils)) || []; }
+async function enregistrer() {
+  if (!etat.profil) return;
+  await Coffre.ecrire(CLE.parcours(etat.profil.code), etat.profil);
+  const r = { code: etat.profil.code, pseudo: etat.profil.pseudo, couleur: etat.profil.couleur, cree: etat.profil.cree };
+  const i = etat.profils.findIndex(p => p.code === r.code);
+  if (i < 0) etat.profils.push(r); else etat.profils[i] = r;
+  await Coffre.ecrire(CLE.profils, etat.profils);
+  await Coffre.ecrire(CLE.dernier, etat.profil.code);
+}
+function appliquerReglages() {
+  const r = etat.profil.reglages;
+  document.documentElement.className =
+    (r.texte === "moyen" ? "texte-moyen " : r.texte === "grand" ? "texte-grand " : "") + (r.contraste ? "contraste" : "");
+}
+async function ouvrirProfil(code) {
+  const p = await Coffre.lire(CLE.parcours(code));
+  if (!p) { toast("Aucun parcours avec ce code sur cet appareil."); return false; }
+  p.reglages = Object.assign({ texte: "normal", contraste: 0, son: 1, aide: "normal", libre: 0 }, p.reglages || {});
+  p.exos = p.exos || {}; p.badges = p.badges || [];
+  etat.profil = p; appliquerReglages();
+  await Coffre.ecrire(CLE.dernier, code);
+  majPuce(); rendreTableau(); montrer("tableau"); return true;
+}
+function majPuce() {
+  const b = $("#puce-profil");
+  $(".rond", b).style.background = etat.profil.couleur;
+  $(".rond", b).textContent = etat.profil.pseudo.slice(0, 1).toUpperCase();
+  $(".nom", b).textContent = etat.profil.pseudo + " · " + etat.profil.code;
+}
+
+/* ----------------------------------------------------- tableau de bord */
+function rendreTableau() {
+  const c = etat.contenu, total = tousExos().length, n = faits();
+  let courant = c.paliers[0];
+  for (const p of c.paliers) if (palierOuvert(p.n)) courant = p;
+  $("#tb-titre").textContent = courant.niveau + " · Palier " + courant.n + " — " + courant.titre;
+  $("#tb-resume").textContent = courant.resume;
+  $("#tb-fait").textContent = n; $("#tb-total").textContent = total;
+  $("#tb-ruban").style.width = (100 * n / total) + "%";
+
+  const hote = $("#tb-competences"); hote.textContent = "";
+  const comps = {};
+  tousExos().forEach(({ e }) => {
+    const k = e.competence; comps[k] = comps[k] || { total: 0, somme: 0, faits: 0 };
+    comps[k].total++;
+    const s = etatExo(e.id); if (s) { comps[k].faits++; comps[k].somme += s.score; }
+  });
+  Object.keys(comps).forEach(k => {
+    const d = comps[k], pct = Math.round(100 * d.faits / d.total);
+    const r = el("div", "comp");
+    r.appendChild(el("div", null, (c.competences && c.competences[k]) || k));
+    const b = el("div", "barre-c"); const i = el("i"); i.style.width = pct + "%"; b.appendChild(i);
+    r.appendChild(b);
+    r.appendChild(el("div", "val", d.faits + "/" + d.total));
+    hote.appendChild(r);
+  });
+}
+
+/* --------------------------------------------------- carte des paliers */
+const GENRES = { choix: "choisir", sequence: "ordonner", trace: "tracer", dictee: "écrire", chrono: "jeu", lecture: "lire" };
+function rendreCarte() {
+  const hote = $("#route"); hote.textContent = "";
+  etat.contenu.paliers.forEach(p => {
+    const ouvert = palierOuvert(p.n), valide = palierValide(p.n);
+    const st = el("div", "station" + (valide ? " fini" : ouvert ? " ouvert" : " verrou"));
+    const pa = el("div", "pastille"); const an = el("div", "anneau", valide ? "✓" : String(p.n)); pa.appendChild(an);
+    st.appendChild(pa);
+    const h = el("h3"); h.appendChild(el("span", null, p.titre));
+    h.appendChild(el("span", "niveau", p.niveau)); st.appendChild(h);
+    st.appendChild(el("div", "discret", p.resume));
+    if (p.graphemes && p.graphemes.length) {
+      const g = el("div", "graphemes");
+      p.graphemes.filter(x => x.indexOf("#") < 0).forEach(x => g.appendChild(el("span", null, x)));
+      st.appendChild(g);
+    }
+    if (!ouvert) {
+      st.appendChild(el("div", "cadenas", "Ce palier s'ouvre quand le palier " + (p.n - 1) +
+        " est terminé avec une moyenne de " + (etat.contenu.paliers[p.n - 2].seuil || 60) + " sur 100."));
+    } else {
+      const g = el("div", "exos");
+      p.exercices.forEach(e => {
+        const s = etatExo(e.id);
+        const b = el("button", "exo-tuile");
+        const haut = el("div", "haut");
+        haut.appendChild(el("span", "genre", GENRES[e.type] || e.type));
+        haut.appendChild(el("span", "discret", e.id));
+        b.appendChild(haut);
+        b.appendChild(el("div", "nom", e.titre));
+        const et = el("div", "et");
+        et.innerHTML = [0, 1, 2].map(i => i < (s ? s.etoiles : 0) ? "<b>★</b>" : "★").join("");
+        b.appendChild(et);
+        b.addEventListener("click", () => lancerExercice(e.id));
+        g.appendChild(b);
+      });
+      st.appendChild(g);
+    }
+    hote.appendChild(st);
+  });
+}
+
+/* ======================================================================
+   MOTEUR D'EXERCICES — cinq formats, une même mécanique de score
+   ====================================================================== */
+const ELOGES = ["C'est juste.", "Très bien.", "Exactement.", "Bravo.", "Parfait.", "Voilà."];
+const RELANCES = ["Ce n'est pas encore ça. Regarde bien et réessaie.",
+  "Presque. Essaie encore une fois.", "Pas tout à fait. Prends ton temps."];
+
+function lancerExercice(id) {
+  const t = trouverExo(id); if (!t) return;
+  if (etat.session && etat.session.horloge) clearInterval(etat.session.horloge);
+  etat.session = { exo: t.e, palier: t.p, i: 0, resultats: [], essais: 0, debut: Date.now() };
+  $("#exo-titre").textContent = t.e.titre;
+  $("#exo-consigne").textContent = t.e.consigne;
+  $("#fil").textContent = "Palier " + t.p.n + " · " + t.p.titre;
+  montrer("exercice");
+  poserQuestion();
+}
+function jetons() {
+  const s = etat.session, h = $("#exo-jetons"); h.textContent = "";
+  s.exo.questions.forEach((_, i) => {
+    const r = s.resultats[i];
+    h.appendChild(el("span", "jeton" + (i < s.i ? (r >= 0.6 ? " juste" : " faux") : i === s.i ? " encours" : "")));
+  });
+}
+function retour(txt, ton) { const r = $("#exo-retour"); r.textContent = txt; r.className = "retour " + (ton || ""); }
+
+function poserQuestion() {
+  const s = etat.session;
+  if (s.horloge) { clearInterval(s.horloge); s.horloge = null; }
+  s.essais = 0;
+  $("#exo-scene").textContent = ""; $("#exo-pied").textContent = "";
+  retour("", ""); jetons();
+  const q = s.exo.questions[s.i];
+  ({ choix: rendreChoix, sequence: rendreSequence, trace: rendreTrace, dictee: rendreDictee,
+    chrono: rendreChrono, lecture: rendreLecture }[s.exo.type] || rendreChoix)(q);
+}
+function noterEtSuivre(score, delai) {
+  const s = etat.session;
+  s.resultats[s.i] = clamp(score, 0, 1);
+  s.i++; jetons();
+  setTimeout(() => { if (s.i < s.exo.questions.length) poserQuestion(); else finirExercice(); }, delai || 850);
+}
+function scoreParEssais(n) { return n === 0 ? 1 : n === 1 ? 0.6 : n === 2 ? 0.35 : 0.15; }
+
+/* ---- invite commune : texte, image, écoute ---- */
+function motSyllabe(texte, syllabes, classe) {
+  const d = el("div", classe || "mot");
+  if (!syllabes || !syllabes.length) { d.textContent = texte; return d; }
+  syllabes.forEach((sy, i) => d.appendChild(el("span", "syl s" + (i % 2), sy)));
+  return d;
+}
+function construireInvite(inv, hote) {
+  if (!inv) return;
+  const zone = el("div", "invite");
+  if (inv.picto) { const p = picto(inv.picto); if (p) { p.classList.add("picto"); zone.appendChild(p); } }
+  const parle = inv.audio || inv.son;
+  if (inv.texte) zone.appendChild(motSyllabe(inv.texte, inv.syllabes));
+  if (parle) {
+    const b = el("button", "ecouter");
+    b.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>';
+    b.appendChild(el("span", null, "Écouter"));
+    b.addEventListener("click", () => jouer(inv));
+    zone.appendChild(b);
+    const muet = !voixDisponible() || !etat.profil.reglages.son;
+    if (muet && !inv.texte && !inv.picto) zone.appendChild(el("div", "discret", inv.audio));
+    if (!muet) setTimeout(() => jouer(inv), 350);
+  }
+  hote.appendChild(zone);
+}
+function jouer(inv) {
+  if (inv.son) { try { const a = new Audio(inv.son); a.play(); return; } catch (e) { } }
+  dire(inv.audio, inv.libelle);
+}
+
+/* ---- 1. choix multiple ---- */
+function rendreChoix(q) {
+  const s = etat.session, scene = $("#exo-scene");
+  construireInvite(q.invite, scene);
+  const g = el("div", "choix" + (s.exo.choixPicto ? " pictos" : ""));
+  melanger(q.choix).forEach(c => {
+    const b = el("button", "opt");
+    if (s.exo.choixPicto) { const p = picto(c); if (p) b.appendChild(p); else b.textContent = c; b.setAttribute("aria-label", c); }
+    else b.textContent = c;
+    b.addEventListener("click", () => {
+      if (b.disabled) return;
+      if (c === q.reponse) {
+        b.classList.add("juste"); son("juste");
+        retour(ELOGES[Math.floor(Math.random() * ELOGES.length)], "bien");
+        $$(".opt", g).forEach(x => x.disabled = true);
+        noterEtSuivre(scoreParEssais(s.essais));
+      } else {
+        b.classList.add("faux"); b.disabled = true; son("reprend");
+        s.essais++;
+        if (s.essais >= 2) {
+          $$(".opt", g).forEach(x => { if (x.textContent === q.reponse || x.getAttribute("aria-label") === q.reponse) x.classList.add("juste"); x.disabled = true; });
+          retour("La bonne réponse était : " + q.reponse, "reprend");
+          noterEtSuivre(0.15, 1600);
+        } else retour(RELANCES[Math.floor(Math.random() * RELANCES.length)], "reprend");
+      }
+    });
+    g.appendChild(b);
+  });
+  scene.appendChild(g);
+}
+
+/* ---- 2. mise en ordre (lettres, syllabes, mots) ---- */
+function rendreSequence(q) {
+  const s = etat.session, scene = $("#exo-scene");
+  construireInvite(q.invite, scene);
+  const piste = el("div", "piste"), banque = el("div", "banque");
+  const cible = q.cible, source = melanger(q.banque || cible);
+  const poses = new Array(cible.length).fill(null);
+
+  function redessiner() {
+    piste.textContent = ""; banque.textContent = "";
+    poses.forEach((v, i) => {
+      const t = el("button", "tuile " + (v === null ? "vide" : "pose"), v === null ? "·" : v.txt);
+      if (v !== null) t.addEventListener("click", () => { poses[i] = null; redessiner(); });
+      piste.appendChild(t);
+    });
+    source.forEach((txt, k) => {
+      if (poses.some(p => p && p.k === k)) return;
+      const t = el("button", "tuile", txt);
+      t.addEventListener("click", () => {
+        const libre = poses.indexOf(null);
+        if (libre < 0) { retour("La ligne est complète. Retire une étiquette pour la changer.", ""); return; }
+        poses[libre] = { k, txt }; redessiner();
+        if (poses.every(p => p)) verifier();
+      });
+      banque.appendChild(t);
+    });
+  }
+  function verifier() {
+    const rep = poses.map(p => p.txt);
+    const bon = rep.every((v, i) => v === cible[i]);
+    if (bon) {
+      $$(".tuile.pose", piste).forEach(t => { t.classList.remove("pose"); t.classList.add("juste"); });
+      son("juste"); retour(ELOGES[Math.floor(Math.random() * ELOGES.length)], "bien");
+      noterEtSuivre(scoreParEssais(s.essais));
+    } else {
+      s.essais++;
+      $$(".tuile", piste).forEach((t, i) => { if (rep[i] !== cible[i]) t.classList.add("faux"); });
+      son("reprend");
+      if (s.essais >= 3) {
+        retour("Voici l'ordre attendu : " + cible.join(" "), "reprend");
+        poses.forEach((_, i) => poses[i] = { k: -1, txt: cible[i] });
+        redessiner(); $$(".tuile.pose", piste).forEach(t => t.classList.add("juste"));
+        noterEtSuivre(0.15, 2200);
+      } else {
+        retour("Les étiquettes en rouge ne sont pas à leur place. Touche-les pour les enlever.", "reprend");
+        setTimeout(() => { poses.forEach((p, i) => { if (p && p.txt !== cible[i]) poses[i] = null; }); redessiner(); }, 1200);
+      }
+    }
+  }
+  scene.appendChild(piste); scene.appendChild(banque);
+  if (s.exo.competence === "alphabet" && !s.exo.aveugle) {
+    const a = el("div", "aide-alphabet");
+    AL.forEach(l => a.appendChild(el("span", null, l)));
+    scene.appendChild(a);
+  }
+  const pied = $("#exo-pied");
+  const v = el("button", "bouton", "Vérifier"); v.addEventListener("click", () => { if (poses.every(p => p)) verifier(); else retour("Place d'abord toutes les étiquettes.", ""); });
+  const z = el("button", "bouton creux", "Tout enlever");
+  z.addEventListener("click", () => { poses.fill(null); redessiner(); retour("", ""); });
+  pied.append(z, el("span", "espace"), v);
+  redessiner();
+}
+
+/* ---- 3. dictée : composer un mot avec un clavier de lettres ---- */
+function rendreDictee(q) {
+  const s = etat.session, scene = $("#exo-scene");
+  construireInvite(q.invite, scene);
+  const lettres = Array.from(q.mot.toLowerCase());
+  const sup = melanger(AL.filter(l => lettres.indexOf(l) < 0)).slice(0, 4);
+  const clavierLettres = melanger(Array.from(new Set(lettres.concat(sup))));
+  const saisie = [];
+  const piste = el("div", "piste"), clavier = el("div", "clavier");
+
+  function redessiner() {
+    piste.textContent = "";
+    lettres.forEach((_, i) => piste.appendChild(el("div", "tuile " + (saisie[i] ? "pose" : "vide"), saisie[i] || "·")));
+  }
+  function verifier() {
+    const bon = lettres.every((l, i) => saisie[i] === l);
+    if (bon) {
+      $$(".tuile", piste).forEach(t => { t.classList.remove("pose"); t.classList.add("juste"); });
+      son("juste"); retour("Bien écrit.", "bien");
+      noterEtSuivre(scoreParEssais(s.essais));
+    } else {
+      s.essais++; son("reprend");
+      $$(".tuile", piste).forEach((t, i) => { if (saisie[i] !== lettres[i]) t.classList.add("faux"); });
+      if (s.essais >= 3) {
+        lettres.forEach((l, i) => saisie[i] = l); redessiner();
+        $$(".tuile", piste).forEach(t => t.classList.add("juste"));
+        retour("Le mot s'écrit : " + q.mot, "reprend");
+        noterEtSuivre(0.15, 2200);
+      } else {
+        retour("Certaines lettres ne sont pas à leur place.", "reprend");
+        setTimeout(() => { lettres.forEach((l, i) => { if (saisie[i] !== l) saisie[i] = null; }); redessiner(); }, 1200);
+      }
+    }
+  }
+  clavierLettres.forEach(l => {
+    const b = el("button", "tuile", l);
+    b.addEventListener("click", () => {
+      const i = saisie.length < lettres.length ? saisie.length : -1;
+      let libre = -1;
+      for (let k = 0; k < lettres.length; k++) if (!saisie[k]) { libre = k; break; }
+      if (libre < 0) { retour("Le mot est complet. Efface pour corriger.", ""); return; }
+      saisie[libre] = l; redessiner();
+      if (saisie.filter(Boolean).length === lettres.length) verifier();
+    });
+    clavier.appendChild(b);
+  });
+  scene.append(piste, clavier);
+  const pied = $("#exo-pied");
+  const eff = el("button", "bouton creux", "Effacer");
+  eff.addEventListener("click", () => { saisie.length = 0; redessiner(); retour("", ""); });
+  const v = el("button", "bouton", "Vérifier");
+  v.addEventListener("click", () => { if (saisie.filter(Boolean).length === lettres.length) verifier(); else retour("Complète d'abord le mot.", ""); });
+  pied.append(eff, el("span", "espace"), v);
+  redessiner();
+}
+
+/* ---- 6. lecture à voix haute, avec auto-évaluation ---- */
+function rendreLecture(q) {
+  const s = etat.session, scene = $("#exo-scene");
+  const zone = el("div", "lecture");
+  if (q.picto) { const p = picto(q.picto); if (p) { p.classList.add("picto"); zone.appendChild(p); } }
+  zone.appendChild(motSyllabe(q.texte, q.syllabes, "agrandi"));
+  if (q.aide) zone.appendChild(el("div", "discret", q.aide));
+  scene.appendChild(zone);
+
+  const consigne = el("div", "discret");
+  consigne.textContent = "Lis à voix haute, puis écoute pour vérifier.";
+  consigne.style.textAlign = "center";
+  scene.appendChild(consigne);
+
+  const pied = $("#exo-pied");
+  const ec = el("button", "ecouter");
+  ec.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>';
+  ec.appendChild(el("span", null, "Écouter"));
+  let ecoute = false;
+  ec.addEventListener("click", () => { ecoute = true; dire(q.audio || q.texte); });
+  const non = el("button", "bouton creux", "Pas encore");
+  non.addEventListener("click", () => {
+    retour("Écoute le modèle, puis relis-le à voix haute. Tu le retrouveras plus loin.", "reprend");
+    noterEtSuivre(0.4, 1400);
+  });
+  const oui = el("button", "bouton", "Je l'ai bien lu");
+  oui.addEventListener("click", () => {
+    son("juste");
+    retour(ecoute ? "Bien. Relis-le encore une fois pour l'ancrer." : "Bien lu.", "bien");
+    noterEtSuivre(ecoute ? 0.8 : 1, 900);
+  });
+  pied.append(ec, el("span", "espace"), non, oui);
+}
+
+/* ---- 4. tracé guidé ---- */
+function rendreTrace(q) {
+  const s = etat.session, scene = $("#exo-scene");
+  const boite = el("div", "ardoise-trace");
+  const svg = svgEl("svg", { preserveAspectRatio: "xMidYMid meet" });
+  boite.appendChild(svg); scene.appendChild(boite);
+
+  const d = disposer(q.glyphes);
+  s.trace = { d, iTrait: 0, scores: [], svg, boite };
+  svg.setAttribute("viewBox", "-18 -16 " + (d.largeur + 36) + " 232");
+  const gr = svgEl("g"); reglure(gr, d.largeur, 200); svg.appendChild(gr);
+  s.trace.gModele = svgEl("g"); svg.appendChild(s.trace.gModele);
+  s.trace.gEncre = svgEl("g"); svg.appendChild(s.trace.gEncre);
+  s.trace.gGuide = svgEl("g"); svg.appendChild(s.trace.gGuide);
+  dessinerModele();
+  brancherTrace(svg);
+
+  const pied = $("#exo-pied");
+  const eff = el("button", "bouton creux", "Effacer");
+  eff.addEventListener("click", () => {
+    s.trace.gEncre.textContent = ""; s.trace.iTrait = 0; s.trace.scores = []; dessinerModele(); retour("", "");
+  });
+  const pas = el("button", "bouton creux", "Passer ce trait");
+  pas.addEventListener("click", () => {
+    const t = s.trace.d.traits[s.trace.iTrait];
+    s.trace.gEncre.appendChild(svgEl("path", { d: t.d, transform: "translate(" + t.dx + ",0)", class: "encre", style: "opacity:.25" }));
+    s.trace.scores.push(0.35); s.trace.iTrait++;
+    if (s.trace.iTrait >= s.trace.d.traits.length) finirTrace(); else dessinerModele();
+  });
+  pied.append(eff, el("span", "espace"), pas);
+}
+function dessinerModele() {
+  const t = etat.session.trace;
+  t.gModele.textContent = ""; t.gGuide.textContent = "";
+  t.d.traits.forEach((x, i) => t.gModele.appendChild(svgEl("path", {
+    d: x.d, transform: "translate(" + x.dx + ",0)",
+    class: i < t.iTrait ? "modele-fait" : i === t.iTrait ? "modele-actif" : "modele-attente"
+  })));
+  const c = t.d.traits[t.iTrait]; if (!c) return;
+  const g = svgEl("g", { transform: "translate(" + c.dx + ",0)" });
+  const f = svgEl("path", { d: c.d, class: "modele-fleche" });
+  f.style.strokeDasharray = "24 " + (c.mes.L + 40);
+  f.appendChild(svgEl("animate", {
+    attributeName: "stroke-dashoffset", from: c.mes.L + 24, to: -20,
+    dur: Math.max(1.1, c.mes.L / 190) + "s", repeatCount: "indefinite"
+  }));
+  g.appendChild(f);
+  g.appendChild(svgEl("circle", { cx: c.mes.debut.x, cy: c.mes.debut.y, r: 13, class: "depart" }));
+  const n = svgEl("text", { x: c.mes.debut.x, y: c.mes.debut.y, class: "depart-txt" });
+  n.textContent = String(t.iTrait + 1); g.appendChild(n);
+  t.gGuide.appendChild(g);
+}
+function brancherTrace(svg) {
+  let pts = null, chemin = null;
+  const conv = ev => {
+    const ctm = svg.getScreenCTM(); if (!ctm) return null;
+    const p = svg.createSVGPoint(); p.x = ev.clientX; p.y = ev.clientY;
+    const q = p.matrixTransform(ctm.inverse()); return { x: q.x, y: q.y };
+  };
+  svg.addEventListener("pointerdown", ev => {
+    const t = etat.session && etat.session.trace; if (!t || t.iTrait >= t.d.traits.length) return;
+    ev.preventDefault(); svg.setPointerCapture(ev.pointerId);
+    const p = conv(ev); if (!p) return;
+    pts = [p]; chemin = svgEl("path", { class: "encre" });
+    t.gEncre.appendChild(chemin); chemin.setAttribute("d", "M" + p.x.toFixed(1) + "," + p.y.toFixed(1));
+  });
+  svg.addEventListener("pointermove", ev => {
+    if (!pts) return; ev.preventDefault();
+    const p = conv(ev); if (!p) return;
+    const q = pts[pts.length - 1];
+    if (Math.hypot(p.x - q.x, p.y - q.y) < 1.2) return;
+    pts.push(p); chemin.setAttribute("d", chemin.getAttribute("d") + "L" + p.x.toFixed(1) + "," + p.y.toFixed(1));
+  });
+  const fin = () => { if (!pts) return; const a = pts, c = chemin; pts = null; chemin = null; validerTrait(a, c); };
+  svg.addEventListener("pointerup", fin);
+  svg.addEventListener("pointercancel", fin);
+}
+const MESSAGES = {
+  place: "Le point se pose juste au-dessus de la lettre.",
+  tremble: "Trace d'un seul geste, posément, sans repasser dessus.",
+  depart: "Il faut partir du point orange, au début du chemin.",
+  court: "Le trait est trop court. Va jusqu'au bout du chemin.",
+  incomplet: "Presque : il faut aller jusqu'à la fin du chemin.",
+  hors: "Reste bien sur le chemin orange.",
+  sens: "Le chemin se parcourt d'un seul mouvement, sans revenir en arrière.",
+  inverse: "C'est le bon chemin, mais à l'envers. Repars du point orange."
+};
+function validerTrait(pts, chemin) {
+  const s = etat.session, t = s.trace;
+  const c = t.d.traits[t.iTrait]; if (!c) return;
+  const ref = c.mes.pts.map(p => ({ x: p.x + c.dx, y: p.y }));
+  const r = evaluerTrait(ref, pts, TOLERANCES[etat.profil.reglages.aide] || 23);
+  if (r.score < 0.42) {
+    retour(MESSAGES[r.cause] || MESSAGES.hors, "reprend"); son("reprend");
+    t.boite.classList.add("secoue"); setTimeout(() => t.boite.classList.remove("secoue"), 340);
+    setTimeout(() => { if (chemin && chemin.parentNode) chemin.parentNode.removeChild(chemin); }, 420);
+    return;
+  }
+  t.scores.push(r.score); son("juste");
+  retour(ELOGES[Math.floor(Math.random() * ELOGES.length)], "bien");
+  t.iTrait++;
+  if (t.iTrait >= t.d.traits.length) setTimeout(finirTrace, 500); else dessinerModele();
+}
+function finirTrace() {
+  const t = etat.session.trace;
+  const m = t.scores.reduce((a, b) => a + b, 0) / Math.max(1, t.scores.length);
+  noterEtSuivre(m, 600);
+}
+
+/* ---- 5. jeu chronométré : l'alphabet dans l'ordre ---- */
+function rendreChrono(q) {
+  const s = etat.session, scene = $("#exo-scene");
+  const lettres = q.lettres || AL, duree = q.temps || 120;
+  let i = 0, fautes = 0, reste = duree, fini = false;
+  const pendule = el("div", "pendule", duree + " s");
+  const g = el("div", "grille-chrono");
+  scene.append(pendule, g);
+  const tuiles = melanger(lettres).map(l => {
+    const b = el("button", "tuile", l);
+    b.addEventListener("click", () => {
+      if (fini || b.classList.contains("pris")) return;
+      if (l === lettres[i]) {
+        b.classList.add("pris"); i++; son("juste");
+        retour(i + " / " + lettres.length, "bien");
+        if (i >= lettres.length) terminer();
+      } else {
+        fautes++; son("reprend"); b.classList.add("faux");
+        setTimeout(() => b.classList.remove("faux"), 400);
+        retour("Ce n'est pas la lettre attendue. Cherche le « " + lettres[i] + " ».", "reprend");
+      }
+    });
+    g.appendChild(b); return b;
+  });
+  const horloge = s.horloge = setInterval(() => {
+    reste--; pendule.textContent = reste + " s";
+    pendule.classList.toggle("urgence", reste <= 15);
+    if (reste <= 0) terminer();
+  }, 1000);
+  function terminer() {
+    if (fini) return; fini = true; clearInterval(horloge);
+    const temps = duree - reste;
+    const part = i / lettres.length;
+    const vitesse = clamp(1 - Math.max(0, temps - 45) / 110, 0.35, 1);
+    const score = clamp(part * (0.55 + 0.45 * vitesse) - fautes * 0.015, 0, 1);
+    if (i >= lettres.length && (!etat.profil.chrono || temps < etat.profil.chrono)) etat.profil.chrono = temps;
+    retour(i + " lettres en " + temps + " secondes, " + fautes + " erreur" + (fautes > 1 ? "s" : "") + ".", "bien");
+    noterEtSuivre(score, 1400);
+  }
+  const pied = $("#exo-pied");
+  const st = el("button", "bouton creux", "Arrêter");
+  st.addEventListener("click", terminer);
+  pied.append(el("span", "espace"), st);
+}
+
+/* ---------------------------------------------------------- fin d'exercice */
+function etoilesDe(s) { return s >= 0.85 ? 3 : s >= 0.65 ? 2 : 1; }
+async function finirExercice() {
+  const s = etat.session, p = etat.profil;
+  const score = s.resultats.reduce((a, b) => a + b, 0) / Math.max(1, s.resultats.length);
+  const et = etoilesDe(score);
+  const anc = p.exos[s.exo.id];
+  const validesAvant = etat.contenu.paliers.map(x => palierValide(x.n));
+  p.exos[s.exo.id] = {
+    etoiles: Math.max(et, anc ? anc.etoiles : 0),
+    score: Math.max(Math.round(score * 100), anc ? anc.score : 0),
+    essais: (anc ? anc.essais : 0) + 1,
+    palier: s.palier.n, competence: s.exo.competence,
+    date: new Date().toISOString().slice(0, 10)
+  };
+  const nouveaux = BADGES.filter(b => p.badges.indexOf(b.id) < 0 && b.test());
+  nouveaux.forEach(b => p.badges.push(b.id));
+  const ouvre = etat.contenu.paliers.find((x, k) => !validesAvant[k] && palierValide(x.n));
+  await enregistrer(); son("fini");
+
+  const scene = $("#exo-scene"); scene.textContent = ""; $("#exo-pied").textContent = ""; retour("", "");
+  const b = el("div", "bilan");
+  const e = el("div", "etoiles");
+  e.innerHTML = [0, 1, 2].map(i => i < et ? "<b>★</b>" : "★").join("");
+  b.appendChild(e);
+  b.appendChild(el("h2", null, et === 3 ? "Excellent." : et === 2 ? "C'est bien." : "Exercice terminé."));
+  b.appendChild(el("p", "discret", "Résultat : " + Math.round(score * 100) + " sur 100."));
+  nouveaux.forEach(n => b.appendChild(el("div", "recompense", "Récompense : " + n.nom)));
+  if (ouvre) {
+    const suivant = etat.contenu.paliers.find(x => x.n === ouvre.n + 1);
+    if (suivant) b.appendChild(el("div", "recompense", "Palier " + suivant.n + " ouvert : " + suivant.titre));
+  }
+  const r = el("div", "rangee"); r.style.cssText = "justify-content:center;margin-top:22px";
+  const b1 = el("button", "bouton creux", "Recommencer"); b1.onclick = () => lancerExercice(s.exo.id);
+  const liste = s.palier.exercices;
+  const idx = liste.findIndex(x => x.id === s.exo.id);
+  const suiv = liste[idx + 1] ||
+    (etat.contenu.paliers.find(x => x.n === s.palier.n + 1 && palierOuvert(x.n)) || { exercices: [] }).exercices[0];
+  const b2 = el("button", "bouton", suiv ? "Exercice suivant" : "Voir le parcours");
+  b2.onclick = () => suiv ? lancerExercice(suiv.id) : (rendreCarte(), montrer("carte"));
+  const b3 = el("button", "lien", "Tableau de bord");
+  b3.onclick = () => { rendreTableau(); montrer("tableau"); };
+  r.append(b1, b2, b3); b.appendChild(r);
+  scene.appendChild(b);
+}
+
+/* ------------------------------------------------------------ progression */
+function rendreProgression() {
+  const p = etat.profil, total = tousExos().length;
+  const vals = Object.values(p.exos || {});
+  const moy = vals.length ? Math.round(vals.reduce((a, s) => a + s.score, 0) / vals.length) : 0;
+  const trois = vals.filter(s => s.etoiles === 3).length;
+  const dernierPalier = etat.contenu.paliers.filter(x => palierValide(x.n)).pop();
+  $("#pr-resume").innerHTML = "<p>" + faits() + " exercices réussis sur " + total + ", dont " + trois +
+    " à trois étoiles. Score moyen : " + moy + " sur 100.<br>Niveau atteint : " +
+    (dernierPalier ? dernierPalier.niveau + ", palier " + dernierPalier.n + " validé" : "A1, palier 1 en cours") +
+    (p.chrono ? ".<br>Meilleur temps sur l'alphabet : " + p.chrono + " secondes." : ".") + "</p>";
+  const bd = $("#pr-badges"); bd.textContent = "";
+  BADGES.forEach(b => {
+    const d = el("div", "badge" + (p.badges.indexOf(b.id) < 0 ? " eteint" : ""));
+    d.appendChild(el("div", "b-nom", b.nom)); d.appendChild(el("div", "b-txt", b.txt));
+    bd.appendChild(d);
+  });
+  const tb = $("#pr-detail"); tb.textContent = "";
+  tousExos().forEach(({ e }) => {
+    const s = p.exos[e.id]; if (!s) return;
+    const tr = document.createElement("tr");
+    tr.innerHTML = "<td></td><td></td><td></td><td></td>";
+    tr.children[0].textContent = e.id + " · " + e.titre;
+    tr.children[1].innerHTML = [0, 1, 2].map(i => i < s.etoiles
+      ? "<b style='color:var(--vermillon);font-weight:400'>★</b>" : "<span style='color:var(--trait)'>★</span>").join("");
+    tr.children[2].textContent = s.score;
+    tr.children[3].textContent = s.essais;
+    tb.appendChild(tr);
+  });
+}
+
+/* --------------------------------------------------------------- réglages */
+function rendreReglages() {
+  const r = etat.profil.reglages;
+  const seg = (id, v) => $$("#" + id + " button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v) === String(v)));
+  seg("seg-texte", r.texte); seg("seg-contraste", r.contraste); seg("seg-son", r.son);
+  seg("seg-aide", r.aide); seg("seg-libre", r.libre); majPleinEcran();
+  $("#info-profil").textContent = etat.profil.pseudo + " · code " + etat.profil.code + " · ouvert le " + etat.profil.cree;
+  $("#info-stockage").textContent = "Enregistrement : " + Coffre.nom +
+    (Coffre.durable ? "." : " — cette page ne peut rien conserver ici. Exporte ton parcours avant de fermer, ou installe l'application.");
+  $("#info-voix").textContent = voixDisponible()
+    ? "Voix de lecture : une voix française est disponible sur cet appareil."
+    : "Aucune voix française n'est installée sur cet appareil : les exercices d'écoute affichent alors le mot écrit. Voir le README pour ajouter des enregistrements.";
+}
+function majPleinEcran() {
+  const on = !!document.fullscreenElement;
+  $$("#seg-plein button").forEach(b => b.setAttribute("aria-pressed", String((b.dataset.v === "1") === on)));
+}
+function brancherSegments() {
+  const lier = (id, cle, f) => $$("#" + id + " button").forEach(b => b.addEventListener("click", async () => {
+    etat.profil.reglages[cle] = f(b.dataset.v);
+    appliquerReglages(); await enregistrer(); rendreReglages();
+  }));
+  lier("seg-texte", "texte", v => v);
+  lier("seg-contraste", "contraste", v => +v);
+  lier("seg-son", "son", v => +v);
+  lier("seg-aide", "aide", v => v);
+  lier("seg-libre", "libre", v => +v);
+  $$("#seg-plein button").forEach(b => b.addEventListener("click", () => {
+    const veut = b.dataset.v === "1";
+    try {
+      if (veut && !document.fullscreenElement) document.documentElement.requestFullscreen();
+      else if (!veut && document.fullscreenElement) document.exitFullscreen();
+    } catch (e) { toast("Le plein écran n'est pas disponible sur cet appareil."); }
+    setTimeout(majPleinEcran, 300);
+  }));
+  document.addEventListener("fullscreenchange", majPleinEcran);
+}
+
+/* ------------------------------------------------------ fichiers et liens */
+function telecharger(nom, objet) {
+  const b = new Blob([JSON.stringify(objet, null, 1)], { type: "application/json" });
+  const u = URL.createObjectURL(b);
+  const a = document.createElement("a"); a.href = u; a.download = nom;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(u), 4000);
+}
+function lireFichier(apres) {
+  const f = $("#fichier-import"); f.value = "";
+  f.onchange = () => {
+    const fi = f.files[0]; if (!fi) return;
+    const r = new FileReader();
+    r.onload = () => { try { apres(JSON.parse(r.result)); } catch (e) { toast("Fichier illisible."); } };
+    r.readAsText(fi);
+  };
+  f.click();
+}
+function verifierParcours(o) {
+  if (!o || !Array.isArray(o.paliers) || !o.paliers.length) return "Ce fichier ne contient pas de paliers.";
+  const types = ["choix", "sequence", "trace", "dictee", "chrono", "lecture"];
+  for (const p of o.paliers) {
+    if (!Array.isArray(p.exercices) || !p.exercices.length) return "Le palier " + p.n + " n'a aucun exercice.";
+    for (const e of p.exercices) {
+      if (types.indexOf(e.type) < 0) return "Type d'exercice inconnu : " + e.type + " (" + e.id + ").";
+      if (!Array.isArray(e.questions) || !e.questions.length) return "L'exercice " + e.id + " n'a aucune question.";
+      for (const q of e.questions) {
+        if (e.type === "trace") {
+          const abs = (q.glyphes || []).filter(g => !G[g]);
+          if (abs.length) return "Tracés inconnus dans " + e.id + " : " + abs.join(" ");
+        }
+        if (e.type === "choix" && (!q.choix || q.choix.indexOf(q.reponse) < 0))
+          return "Question sans bonne réponse dans " + e.id + ".";
+        if (e.type === "sequence" && !Array.isArray(q.cible)) return "Séquence sans cible dans " + e.id + ".";
+        if (e.type === "dictee" && !q.mot) return "Dictée sans mot dans " + e.id + ".";
+        if (e.type === "lecture" && !q.texte) return "Lecture sans texte dans " + e.id + ".";
+      }
+    }
+  }
+  return null;
+}
+function brancher() {
+  $("#t-reprendre").onclick = () => {
+    $("#t-reprendre").setAttribute("aria-selected", "true"); $("#t-nouveau").setAttribute("aria-selected", "false");
+    $("#pan-reprendre").hidden = false; $("#pan-nouveau").hidden = true;
+  };
+  $("#t-nouveau").onclick = () => {
+    $("#t-nouveau").setAttribute("aria-selected", "true"); $("#t-reprendre").setAttribute("aria-selected", "false");
+    $("#pan-nouveau").hidden = false; $("#pan-reprendre").hidden = true;
+    if (!etat.profil) { $("#btn-creer").disabled = false; $("#bloc-code").hidden = true; }
+    $("#saisie-pseudo").focus();
+  };
+  $("#btn-creer").onclick = async () => {
+    const n = $("#saisie-pseudo").value.trim();
+    if (n.length < 2) { toast("Écris ton prénom pour ouvrir un parcours."); return; }
+    etat.profil = nouveauProfil(n); appliquerReglages(); await enregistrer();
+    $("#code-genere").textContent = etat.profil.code; $("#bloc-code").hidden = false;
+    $("#btn-creer").disabled = true; majPuce();
+  };
+  $("#btn-commencer").onclick = () => { rendreTableau(); montrer("tableau"); };
+  $("#btn-code").onclick = () => {
+    const c = $("#saisie-code").value.trim().toUpperCase();
+    if (!/^\d{3}[A-Z]$/.test(c)) { toast("Le code s'écrit avec trois chiffres et une lettre, par exemple 482K."); return; }
+    ouvrirProfil(c);
+  };
+  $("#saisie-code").addEventListener("input", e => e.target.value = e.target.value.toUpperCase());
+  $("#puce-profil").onclick = () => { rendreReglages(); montrer("reglages"); };
+  $("#btn-continuer").onclick = () => { const e = prochainExo(); if (e) lancerExercice(e.id); };
+  $("#btn-carte").onclick = () => { rendreCarte(); montrer("carte"); };
+  $("#btn-progression").onclick = () => { rendreProgression(); montrer("progression"); };
+  $("#btn-reglages").onclick = () => { rendreReglages(); montrer("reglages"); };
+  $("#btn-retour-1").onclick = $("#btn-retour-2").onclick = $("#btn-retour-3").onclick =
+    () => { rendreTableau(); montrer("tableau"); };
+  $("#btn-quitter").onclick = () => {
+    try { speechSynthesis.cancel(); } catch (e) { }
+    if (etat.session && etat.session.horloge) { clearInterval(etat.session.horloge); etat.session.horloge = null; }
+    etat.session = null;
+    rendreCarte(); montrer("carte");
+  };
+  $("#btn-exporter").onclick = () => telecharger("parcours-" + etat.profil.pseudo + "-" + etat.profil.code + ".json",
+    { type: "parcours-eleve", profil: etat.profil });
+  $("#btn-importer").onclick = () => lireFichier(async o => {
+    const p = o && (o.profil || (o.code && o.pseudo ? o : null));
+    if (!p || !p.code) { toast("Ce fichier n'est pas un parcours d'élève."); return; }
+    const dejà = await Coffre.lire(CLE.parcours(p.code));
+    if (dejà && !demander("Un parcours porte déjà le code " + p.code + ". Le remplacer ?")) return;
+    etat.profil = p; appliquerReglages(); await enregistrer(); majPuce();
+    rendreTableau(); montrer("tableau"); toast("Parcours de " + p.pseudo + " importé.");
+  });
+  $("#btn-changer").onclick = async () => { etat.profil = null; await chargerProfils(); rendreConnexion(); montrer("connexion"); };
+  $("#btn-exp-contenu").onclick = () => telecharger("parcours.json", etat.contenu);
+  $("#btn-imp-contenu").onclick = () => lireFichier(async o => {
+    const err = verifierParcours(o);
+    if (err) { toast(err); return; }
+    await Coffre.ecrire(CLE.contenu, o); etat.contenu = o;
+    rendreTableau(); toast("Parcours chargé : " + o.paliers.length + " paliers.");
+  });
+  $("#btn-reset-contenu").onclick = async () => {
+    await Coffre.retirer(CLE.contenu); etat.contenu = await contenuInitial(true);
+    rendreTableau(); toast("Parcours d'origine rétabli.");
+  };
+  $("#btn-effacer-prog").onclick = async () => {
+    if (!demander("Effacer toute la progression de " + etat.profil.pseudo + " ?")) return;
+    etat.profil.exos = {}; etat.profil.badges = []; etat.profil.chrono = null;
+    await enregistrer(); rendreTableau(); toast("Progression effacée.");
+  };
+  brancherSegments();
+}
+function rendreConnexion() {
+  const ul = $("#liste-profils"); ul.textContent = "";
+  $("#vide-profils").hidden = etat.profils.length > 0;
+  etat.profils.forEach(p => {
+    const li = document.createElement("li");
+    const b = el("button");
+    const r = el("span", "rond", (p.pseudo || "?").slice(0, 1).toUpperCase());
+    r.style.background = p.couleur || "#E8501E";
+    b.append(r, el("span", null, p.pseudo), el("span", "discret", p.code));
+    b.lastChild.style.marginLeft = "auto";
+    b.addEventListener("click", () => ouvrirProfil(p.code));
+    li.appendChild(b); ul.appendChild(li);
+  });
+}
+
+/* ------------------------------------------------------------- démarrage */
+async function contenuInitial(force) {
+  if (!force) {
+    const perso = await Coffre.lire(CLE.contenu);
+    if (perso && !verifierParcours(perso)) return perso;
+  }
+  // fichier séparé si l'application est servie ; sinon la copie embarquée
+  try {
+    if (location.protocol.indexOf("http") === 0) {
+      const r = await fetch("parcours.json", { cache: "no-cache" });
+      if (r.ok) { const o = await r.json(); if (!verifierParcours(o)) return o; }
+    }
+  } catch (e) { }
+  return PARCOURS_EMBARQUE;
+}
+
+async function demarrer() {
+  $("#logo-chargement").src = LOGO; $("#logo-barre").src = LOGO;
+  const t = $("#trait-chargement"); t.style.setProperty("--L", t.getTotalLength());
+
+  etat.contenu = await contenuInitial(false);
+  await chargerProfils();
+  brancher();
+
+  if (!Coffre.durable) {
+    $("#alerte-stockage").innerHTML = '<div class="avertissement">Ce navigateur n\'autorise pas l\'enregistrement pour un fichier ouvert directement. ' +
+      'La progression tiendra la séance mais ne sera pas conservée. Installe l\'application ou ouvre-la depuis un serveur pour garder les parcours.</div>';
+  }
+  const dernier = await Coffre.lire(CLE.dernier);
+  setTimeout(async () => {
+    const c = $("#chargement");
+    c.style.transition = "opacity .4s"; c.style.opacity = "0";
+    setTimeout(() => c.remove(), 420);
+    if (dernier && etat.profils.some(p => p.code === dernier)) await ouvrirProfil(dernier);
+    else { rendreConnexion(); montrer("connexion"); }
+  }, 1900);
+}
+if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0)
+  navigator.serviceWorker.register("sw.js").catch(() => { });
+document.addEventListener("contextmenu", e => { if (e.target.closest && e.target.closest(".ardoise-trace")) e.preventDefault(); });
+demarrer();
+</script>
+</body>
+</html>
