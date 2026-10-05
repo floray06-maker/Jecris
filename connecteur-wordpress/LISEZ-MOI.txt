@@ -1,0 +1,86 @@
+CONNECTEUR TUTOR LMS — nosreussites.org
+========================================
+
+PRÉREQUIS
+---------
+- Node.js 18+ (pour les scripts .mjs)
+- WordPress avec Application Password activé
+- Plugin Tutor LMS (version gratuite) installé et activé
+- Plugin nr-tutor-rest installé et activé (dossier nr-tutor-rest/)
+
+INSTALLATION DU PLUGIN
+----------------------
+1. Copier le dossier nr-tutor-rest/ dans wp-content/plugins/ sur le serveur LWS.
+   (par FTP, gestionnaire de fichiers LWS, ou ZIP depuis l'admin WordPress)
+2. Dans WordPress → Extensions → Activer "NR Tutor REST".
+3. Vérifier que l'endpoint répond :
+   curl -u "admin:xxxx xxxx xxxx" https://nosreussites.org/wp-json/nr-tutor/v1/topics \
+     -X POST -H "Content-Type: application/json" \
+     -d '{"titre":"Test","cours_id":875}'
+
+CONFIGURATION
+-------------
+1. Copier .env.exemple → .env
+2. Remplir WP_URL, WP_USER, WP_APP_PASSWORD
+   (WP_APP_PASSWORD = mot de passe d'application WordPress, pas le mot de passe du compte)
+
+UTILISATION
+-----------
+
+# Tester la connexion WordPress
+node wp.mjs test
+
+# Lister les cours
+node tutor.mjs cours
+
+# Créer un cours
+node tutor.mjs creer-cours "Ma nouvelle recette"
+
+# Créer une rubrique dans le cours 875
+node tutor.mjs creer-rubrique 875 "Ingrédients"
+
+# Créer une leçon dans la rubrique 910, appartenant au cours 875
+node tutor.mjs creer-lecon 910 875 "Choisir ses œufs"
+
+# Créer un quiz dans la rubrique 910, appartenant au cours 875
+node tutor.mjs creer-quiz 910 875 "Quiz sur les ingrédients"
+
+# Créer une question dans le quiz 920
+node tutor.mjs creer-question 920 "Combien d'œufs faut-il par omelette ?" \
+  --type=single_choice --points=2 \
+  --reponses='[{"texte":"1","correct":false},{"texte":"2","correct":true},{"texte":"3","correct":false}]'
+
+TYPES DE QUESTIONS SUPPORTÉS
+-----------------------------
+  true_false          Vrai/Faux
+  single_choice       Choix unique (défaut)
+  multiple_choice     Choix multiple
+  open_ended          Réponse libre longue
+  short_answer        Réponse courte
+  fill_in_the_blank   Texte à trous
+  matching            Correspondances
+  image_answering     Réponse sur image
+  ordering            Remise en ordre
+
+STRUCTURE D'UN COURS TUTOR LMS
+-------------------------------
+  Cours (post type: courses)
+  └── Rubrique / Topic (post type: topics, parent = cours)
+      ├── Leçon (post type: lesson, parent = rubrique)
+      └── Quiz (post type: tutor_quiz, parent = rubrique)
+          └── Questions (table wp_tutor_quiz_questions)
+              └── Réponses (table wp_tutor_quiz_question_answers)
+
+AUTHENTIFICATION
+----------------
+Le plugin nr-tutor-rest utilise l'Application Password WordPress standard
+(Basic Auth : WP_USER + WP_APP_PASSWORD). Aucune Consumer Key Tutor LMS
+n'est nécessaire.
+
+ERREURS COURANTES
+-----------------
+401  → WP_USER ou WP_APP_PASSWORD incorrect dans .env
+403  → L'utilisateur n'a pas le rôle Administrateur
+404  → Le plugin nr-tutor-rest n'est pas activé, ou le cours/rubrique/quiz
+       introuvable avec l'ID fourni
+500  → Tutor LMS non activé (tables manquantes) ou erreur interne WordPress
