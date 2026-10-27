@@ -1,0 +1,15 @@
+# Caddy obtient et renouvelle seul les certificats HTTPS (Let's Encrypt).
+{
+	email {$ACME_EMAIL}
+}
+
+# Application web
+{$APP_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:3000
+}
+
+# Signalisation LiveKit (WebSocket sécurisé)
+{$LIVEKIT_DOMAIN} {
+	reverse_proxy 127.0.0.1:7880
+}

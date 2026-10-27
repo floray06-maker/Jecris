@@ -1,0 +1,28 @@
+# Configuration du serveur vidéo LiveKit.
+# Les clés d'API ne figurent pas ici : elles viennent de la variable LIVEKIT_KEYS (fichier .env).
+# Référence : https://docs.livekit.io/home/self-hosting/deployment/
+
+port: 7880
+logging:
+  level: info
+
+rtc:
+  # Repli TCP pour les réseaux qui bloquent l'UDP
+  tcp_port: 7881
+  # Plage UDP du trafic audio et vidéo (à ouvrir dans le pare-feu)
+  port_range_start: 50000
+  port_range_end: 60000
+  # Découvre l'adresse IP publique du serveur
+  use_external_ip: true
+
+turn:
+  # Relais TURN intégré, en UDP sur le port 3478.
+  # Le relais TURN chiffré sur le port 443 (réseaux très filtrés) est prévu à l'étape 2.
+  enabled: true
+  udp_port: 3478
+
+room:
+  # Une salle vide est fermée au bout de 5 minutes
+  empty_timeout: 300
+  # Garde-fou à ajuster selon la puissance du serveur
+  max_participants: 100

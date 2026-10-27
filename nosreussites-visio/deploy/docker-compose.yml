@@ -1,0 +1,45 @@
+# Production : un seul serveur (VPS) qui fait tourner les trois services.
+# Les trois conteneurs partagent le réseau de l'hôte, ce que LiveKit recommande
+# pour acheminer le trafic WebRTC (plage de ports UDP) sans perte de performance.
+
+services:
+  caddy:
+    image: caddy:2.11-alpine
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN}
+      LIVEKIT_DOMAIN: ${LIVEKIT_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+  livekit:
+    image: livekit/livekit-server:v1.13.10
+    restart: unless-stopped
+    network_mode: host
+    command: --config /etc/livekit.yaml
+    environment:
+      LIVEKIT_KEYS: "${LIVEKIT_API_KEY}: ${LIVEKIT_API_SECRET}"
+    volumes:
+      - ./livekit.yaml:/etc/livekit.yaml:ro
+
+  web:
+    build: ../web
+    image: nosreussites-visio-web
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      HOSTNAME: 127.0.0.1
+      PORT: 3000
+      LIVEKIT_URL: wss://${LIVEKIT_DOMAIN}
+      LIVEKIT_API_KEY: ${LIVEKIT_API_KEY}
+      LIVEKIT_API_SECRET: ${LIVEKIT_API_SECRET}
+    depends_on:
+      - livekit
+
+volumes:
+  caddy_data:
+  caddy_config:

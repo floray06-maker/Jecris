@@ -1,0 +1,10 @@
+# Développement local : serveur LiveKit en mode --dev (clé devkey, secret "secret").
+# Lancer avec : docker compose -f docker-compose.dev.yml up
+services:
+  livekit:
+    image: livekit/livekit-server:v1.13.10
+    command: --dev --bind 0.0.0.0
+    ports:
+      - "7880:7880"
+      - "7881:7881"
+      - "7882:7882/udp"
