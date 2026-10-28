@@ -12,12 +12,13 @@ Application de visioconférence hébergée par le porteur du projet, pour le dom
 
 - Le projet est conservé dans le dépôt public `floray06-maker/jecris`, dossier `nosreussites-visio/`, sur la branche `main`. Aucun secret ne doit y entrer.
 - Serveur média LiveKit autohébergé, interface propre au projet.
+- Domaine nosreussites.org acheté chez LWS ; site actuel sur un hébergement web mutualisé LWS (offre standard), qui ne peut pas accueillir la visio.
 - Le domaine nosreussites.org porte déjà un site, qui reste chez son hébergeur actuel. L'application répond sur `visio.nosreussites.org`, servie par un VPS séparé ; `rtc` et `turn` pointent vers le même VPS.
 
 ## En attente du porteur du projet
 
-- Le prestataire chez qui le domaine a été acheté, et la manière dont le site actuel est construit et hébergé.
-- L'achat du VPS.
+- L'achat du VPS (chez LWS ou un autre hébergeur), avec un débit suffisant.
+- L'ajout des trois enregistrements DNS dans l'espace client LWS, une fois l'adresse IP du VPS connue.
 
 ## Conventions
 

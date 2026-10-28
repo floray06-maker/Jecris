@@ -20,6 +20,10 @@ Une fois l'application en ligne, il reste à placer sur le site existant un bout
 
 Si le site actuel tourne lui-même sur un VPS, l'application peut en principe s'y installer aussi. Les ports 80 et 443 y sont alors déjà occupés par le serveur web du site, et la configuration de `deploy/` doit être adaptée. Un serveur séparé reste plus simple et évite qu'une réunion chargée ralentisse le site.
 
+### Situation de nosreussites.org
+
+Le domaine a été acheté chez LWS et le site est installé sur un hébergement web mutualisé LWS (offre standard). Cet hébergement ne peut pas faire tourner la visioconférence ; le site y reste, et seuls trois enregistrements DNS sont à ajouter dans l'espace client LWS (section 3).
+
 ## 2. Le serveur
 
 ### Quel type de serveur
@@ -46,7 +50,11 @@ La vidéo consomme surtout de la bande passante. Estimation pour une classe de 2
 
 ### Où l'acheter
 
-Hébergeurs à comparer, tous en Europe : OVHcloud (France), Scaleway (France), Hetzner (Allemagne). Vérifiez sur l'offre choisie le volume de trafic inclus, la possibilité d'ouvrir des ports UDP et la disponibilité d'Ubuntu 24.04. Pour la configuration ci-dessus, le prix se situe entre une dizaine et quelques dizaines d'euros par mois selon l'hébergeur ; il est à vérifier au moment de la commande.
+Hébergeurs à comparer, tous en Europe : LWS (France), OVHcloud (France), Scaleway (France), Hetzner (Allemagne). Prendre le VPS chez LWS garde le domaine, le site et le serveur dans le même espace client.
+
+Chez LWS, le trafic des VPS est annoncé illimité mais le débit est plafonné selon l'offre. D'après les pages de LWS consultées le 28 octobre 2026, ce plafond va de 100 Mbit/s en entrée de gamme à 500 Mbit/s, voire 1 Gbit/s, sur les offres supérieures. Un débit de 100 Mbit/s suffit pour des réunions de quelques personnes, pas pour une classe entière caméras allumées (voir l'estimation ci-dessus). Vérifiez le débit indiqué sur la fiche de l'offre avant de commander, pas seulement la mention « trafic illimité ».
+
+ Vérifiez sur l'offre choisie le volume de trafic inclus, la possibilité d'ouvrir des ports UDP et la disponibilité d'Ubuntu 24.04. Pour la configuration ci-dessus, le prix se situe entre une dizaine et quelques dizaines d'euros par mois selon l'hébergeur ; il est à vérifier au moment de la commande.
 
 ## 3. Les enregistrements DNS
 
@@ -61,6 +69,15 @@ Les enregistrements se créent dans la zone DNS de nosreussites.org, chez le bur
 Dans la plupart des interfaces, le champ « Nom » ne demande que la partie avant le domaine (`visio`, `rtc`, `turn`).
 
 Ne modifiez pas les enregistrements existants, en particulier ceux du domaine nu (`@`), de `www` et les enregistrements `MX` : ils font fonctionner le site actuel et la messagerie. Si la zone est gérée par Cloudflare, désactivez le proxy (nuage gris, « DNS only ») sur les trois nouveaux enregistrements.
+
+### Chez LWS
+
+1. Se connecter à l'espace client LWS Panel.
+2. Ouvrir la gestion du domaine nosreussites.org, puis la rubrique de la zone DNS (intitulée « Gestion de la zone DNS » dans la documentation de LWS).
+3. Avant toute modification, noter ou capturer les enregistrements existants, comme le recommande LWS.
+4. Ajouter les trois enregistrements de type A du tableau ci-dessus, avec dans le champ du nom `visio`, `rtc` puis `turn`, et comme valeur l'adresse IPv4 du VPS.
+
+Ces modifications ne prennent effet que si le domaine utilise les serveurs DNS de LWS, ce qui est le réglage par défaut d'un domaine acheté et hébergé chez LWS. Les intitulés exacts de l'interface peuvent différer légèrement de ceux-ci.
 
 ## 4. Les ports à ouvrir
 
@@ -94,7 +111,7 @@ En l'état, rien n'est enregistré : la vidéo et les messages de la discussion
 
 ## Liste de contrôle
 
-- [ ] Accès à la zone DNS de nosreussites.org (identifiants du bureau d'enregistrement)
+- [ ] Accès à l'espace client LWS (zone DNS de nosreussites.org)
 - [ ] VPS commandé (Ubuntu 24.04, adresse IP notée)
 - [ ] Trois enregistrements DNS créés
 - [ ] Adresse électronique choisie pour les certificats
